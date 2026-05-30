@@ -11,8 +11,8 @@ function ResponsiveCamera() {
   useEffect(() => {
     const aspect = size.width / size.height;
     // On portrait screens, increase the FOV so content isn't cropped.
-    // 55 is the baseline FOV.
-    const fov = aspect < 1 ? Math.min(85, 55 / aspect) : 55;
+    // 55 is the baseline FOV. We cap at 120 to allow tall phones to see the top of the cards.
+    const fov = aspect < 1 ? Math.min(120, 55 / aspect) : 55;
     (camera as any).fov = fov;
     camera.updateProjectionMatrix();
   }, [camera, size]);
