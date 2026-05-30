@@ -11,20 +11,15 @@ export function MissionPillarGrid({ compact = false }: MissionPillarGridProps) {
         compact ? "mt-6 grid-cols-3 gap-3" : "mt-14 md:grid-cols-3"
       }`}
     >
-      {missionPillars.map((pillar, i) => (
+      {missionPillars.map((pillar) => (
         <li
           key={pillar.title}
           className={`group rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-transparent transition hover:border-lors-glow/30 hover:shadow-lg hover:shadow-lors-accent/10 ${
             compact ? "p-3" : "p-6"
           }`}
         >
-          <span
-            className={`font-mono text-lors-glow/60 ${compact ? "text-xs" : "text-sm"}`}
-          >
-            0{i + 1}
-          </span>
           <h3
-            className={`mt-3 font-display font-semibold text-white ${
+            className={`font-display font-semibold text-white ${
               compact ? "text-sm" : "text-xl"
             }`}
           >
