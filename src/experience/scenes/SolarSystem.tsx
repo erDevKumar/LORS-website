@@ -64,14 +64,24 @@ function OrbitRing({ quality }: { quality: Quality }) {
 function usePanelLayout() {
   const { size } = useThree();
   return useMemo(() => {
-    const isMobile = size.width < 768;
+    const isMobileOrTablet = size.width < 1024;
+    
+    if (isMobileOrTablet) {
+      return {
+        width: Math.floor(size.width * 0.9) + "px",
+        height: Math.floor(size.height * 0.8) + "px",
+        scale: 1.0,
+        glow: [size.width * 0.08, size.height * 0.08] as [number, number],
+      };
+    }
+    
     return {
-      width: isMobile ? "350px" : "920px",
-      height: isMobile ? "700px" : "680px",
-      scale: isMobile ? 1.35 : 0.95,
-      glow: (isMobile ? [25, 45] : [42, 33]) as [number, number],
+      width: "920px",
+      height: "680px",
+      scale: 0.95,
+      glow: [42, 33] as [number, number],
     };
-  }, [size.width]);
+  }, [size.width, size.height]);
 }
 
 function ActiveGlow({ body }: { body: BodyDef }) {
