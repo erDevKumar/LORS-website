@@ -41,11 +41,19 @@ export function useGalaxyPanelScroll(panelId: string, showHint = false) {
   useEffect(() => {
     if (panelAct === undefined) return;
 
+    let timer = 0;
     const isActive = activeAct === panelAct;
+    
     if (isActive && !wasActiveRef.current) {
       resetScrollAndHint();
+    } else if (!isActive && wasActiveRef.current) {
+      timer = window.setTimeout(() => {
+        resetScrollAndHint();
+      }, 800);
     }
+    
     wasActiveRef.current = isActive;
+    return () => window.clearTimeout(timer);
   }, [activeAct, panelAct, resetScrollAndHint]);
 
   useEffect(() => {
