@@ -66,11 +66,19 @@ function usePanelLayout() {
   return useMemo(() => {
     const isMobileOrTablet = size.width < 1024;
     
+    // Calculate the camera FOV exactly as ResponsiveCamera does
+    const aspect = size.width / size.height;
+    const fov = aspect < 1 ? Math.min(120, 55 / aspect) : 55;
+    const fovRad = (fov * Math.PI) / 360; // fov / 2 in radians
+    
+    // Calculate perfect scale multiplier to make 1 CSS pixel = 1 Screen pixel at average distance
+    const exactScale = (1805 * Math.tan(fovRad)) / size.height;
+    
     if (isMobileOrTablet) {
       return {
         width: Math.floor(size.width * 0.9) + "px",
         height: Math.floor(size.height * 0.8) + "px",
-        scale: 1.0,
+        scale: exactScale,
         glow: [size.width * 0.08, size.height * 0.08] as [number, number],
       };
     }
@@ -78,7 +86,7 @@ function usePanelLayout() {
     return {
       width: "920px",
       height: "680px",
-      scale: 0.95,
+      scale: exactScale,
       glow: [42, 33] as [number, number],
     };
   }, [size.width, size.height]);
