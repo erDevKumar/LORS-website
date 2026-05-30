@@ -61,11 +61,21 @@ function OrbitRing({ quality }: { quality: Quality }) {
   );
 }
 
+function panelLayout() {
+  return {
+    width: "920px",
+    height: "680px",
+    scale: 0.95,
+    glow: [42, 33] as [number, number],
+  };
+}
+
 function ActiveGlow({ body }: { body: BodyDef }) {
   const activeAct = useStore((s) => s.activeAct);
   const pos = useMemo(() => panelPosition(body.act), [body.act]);
   const matRef = useRef<THREE.SpriteMaterial>(null);
   const tex = useMemo(() => glowSprite(), []);
+  const glow = panelLayout().glow;
 
   useFrame((state, dt) => {
     if (!matRef.current) return;
@@ -80,7 +90,7 @@ function ActiveGlow({ body }: { body: BodyDef }) {
   });
 
   return (
-    <sprite position={[pos.x, pos.y, pos.z - 1]} scale={[42, 33, 1]}>
+    <sprite position={[pos.x, pos.y, pos.z - 1]} scale={[glow[0], glow[1], 1]}>
       <spriteMaterial
         ref={matRef}
         map={tex}
@@ -98,6 +108,7 @@ function ActiveGlow({ body }: { body: BodyDef }) {
 function Panel({ body }: { body: BodyDef }) {
   const activeAct = useStore((s) => s.activeAct);
   const pos = useMemo(() => panelPosition(body.act), [body.act]);
+  const layout = useMemo(() => panelLayout(), []);
   const groupRef = useRef<THREE.Group>(null);
   const domRef = useRef<HTMLDivElement>(null);
   const active = useRef(0);
@@ -120,10 +131,10 @@ function Panel({ body }: { body: BodyDef }) {
       <Html
         transform
         className="hologram-panel-container"
-        scale={0.95}
+        scale={layout.scale}
         style={{
-          width: "920px",
-          height: "680px",
+          width: layout.width,
+          height: layout.height,
           display: "flex",
           alignItems: "stretch",
           justifyContent: "center",
@@ -131,6 +142,7 @@ function Panel({ body }: { body: BodyDef }) {
       >
         <div
           ref={domRef}
+          data-galaxy-panel-id={body.id}
           style={{ opacity: 0, pointerEvents: "none" }}
           className="planet-panel flex h-full w-full overflow-hidden rounded-3xl"
         >

@@ -52,10 +52,40 @@ export type CareersRoleTrack = ContentHighlight;
 
 export type EngineeringPrinciple = ContentHighlight;
 
+export type LegalBullet = {
+  title: string;
+  body: string;
+};
+
+export type LegalSubsection = LegalBullet;
+
+export type LegalSection = {
+  title: string;
+  intro?: string;
+  body?: string;
+  bullets?: LegalBullet[];
+  subsections?: LegalSubsection[];
+  emphasis?: "legal";
+  contact?: {
+    label: string;
+    email: string;
+  };
+};
+
+export type LegalDocument = {
+  title: string;
+  lastUpdated: string;
+  intro: string;
+  sections: LegalSection[];
+};
+
 export const techStack = generatedContent.techStack;
 export const engineeringCulture = generatedContent.engineeringCulture;
 export const ecosystemContent = generatedContent.ecosystemContent;
 export const careersContent = generatedContent.careersContent;
+export const privacyPolicy = generatedContent.privacyPolicy as LegalDocument;
+export const termsAndConditions = generatedContent.termsAndConditions as LegalDocument;
+export const disclaimer = generatedContent.disclaimer as LegalDocument;
 
 export const statusLabels: Record<ProjectStatus, string> = {
   live: "Live",
@@ -87,10 +117,10 @@ export function getProject(id: string): Project | undefined {
 }
 
 export const navLinks = [
-  { label: "Products", href: "#ecosystem" },
-  { label: "Tech", href: "#tech" },
-  { label: "Careers", href: "#careers" },
-  { label: "Contact", href: "#contact" },
+  { label: "Products", href: "/#ecosystem" },
+  { label: "Tech", href: "/#tech" },
+  { label: "Careers", href: "/#careers" },
+  { label: "Contact", href: "/#contact" },
 ] as const;
 
 export function contactEmail(): string {

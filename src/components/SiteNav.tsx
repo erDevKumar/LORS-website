@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { navLinks, siteContent } from "../content";
 import { useNavSolid } from "../hooks/useNavSolid";
 
@@ -16,21 +17,21 @@ export function SiteNav() {
         className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6"
         aria-label="Main"
       >
-        <a
-          href="#"
+        <Link
+          to="/"
           className="font-display text-lg font-bold tracking-tight text-white hover:text-lors-glow"
         >
           {siteContent.companyName}
-        </a>
+        </Link>
         <ul className="flex items-center gap-1 sm:gap-6">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
+              <Link
+                to={link.href}
                 className="rounded-lg px-2 py-1.5 text-xs font-medium text-white/75 transition hover:bg-white/5 hover:text-lors-glow sm:px-3 sm:text-sm"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

@@ -21,7 +21,7 @@ export const CAM_DIST = 22;
 /** Vertical lift for cinematic framing */
 export const CAM_LIFT = 5.0;
 
-const PLANET_ANGLE_STEP = THREE.MathUtils.degToRad(60);
+const PLANET_ANGLE_STEP = THREE.MathUtils.degToRad(360 / 6);
 
 export type BodyKind = "sun" | "planet";
 
@@ -35,6 +35,8 @@ export interface BodyDef {
   atmosphere: string;
   hasRing?: boolean;
   ringColor?: string;
+  /** When false, carousel skips inner scroll handoff (hero, short cards). */
+  scrollable?: boolean;
 }
 
 export const BODIES: BodyDef[] = [
@@ -46,6 +48,7 @@ export const BODIES: BodyDef[] = [
     color: "#ffd27a",
     emissive: "#ff9a3c",
     atmosphere: "#ffb454",
+    scrollable: false,
   },
   {
     id: "ecosystem",
@@ -102,12 +105,14 @@ export const BODIES: BodyDef[] = [
     color: "#ffc24d",
     emissive: "#b9701a",
     atmosphere: "#ffd98a",
+    scrollable: false,
   },
 ];
 
-export const MAX_ACT = BODIES.length - 1;
+export const CARD_COUNT = BODIES.length;
+export const MAX_ACT = CARD_COUNT - 1;
 
-/** Angle of a planet around the ring. act 1..6 -> 0..300 deg, starting at front. */
+/** Angle of a planet around the ring. act 1..6 -> evenly spaced, starting at front. */
 export function planetAngle(act: number): number {
   return (act - 1) * PLANET_ANGLE_STEP - Math.PI / 2;
 }

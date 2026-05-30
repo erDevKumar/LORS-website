@@ -55,6 +55,22 @@ const careersContent = {
   roleTracks: careersMatter.data.roleTracks || [],
 };
 
+function readLegalDocument(filename) {
+  const filePath = path.join(CONTENT_DIR, filename);
+  const raw = fs.readFileSync(filePath, "utf8");
+  const parsed = matter(raw);
+  return {
+    title: parsed.data.title || "",
+    lastUpdated: parsed.data.lastUpdated || "",
+    intro: parsed.data.intro || "",
+    sections: parsed.data.sections || [],
+  };
+}
+
+const privacyPolicy = readLegalDocument("privacy-policy.md");
+const termsAndConditions = readLegalDocument("terms-and-conditions.md");
+const disclaimer = readLegalDocument("disclaimer.md");
+
 // 6. Read products/
 const productsDir = path.join(CONTENT_DIR, "products");
 const productFiles = fs.existsSync(productsDir) ? fs.readdirSync(productsDir) : [];
@@ -82,6 +98,9 @@ const contentObj = {
   engineeringCulture,
   ecosystemContent,
   careersContent,
+  privacyPolicy,
+  termsAndConditions,
+  disclaimer,
   featuredProjects,
 };
 

@@ -15,9 +15,7 @@ pitch: >-
   RouteMates is a travel-companion super app engineered specifically for
   group-based journeys—whether it's a motorcycle convoy carving through mountain
   passes or a multi-car family road trip. The app bridges community and
-  coordination, seamlessly combining the high-utility tracking of Google Maps
-  with the instant communication of WhatsApp and the curated discovery of
-  TripAdvisor.
+  coordination, seamlessly combining the high-utility tracking of Google Maps.
 features:
   - title: Real-Time Group Telemetry
     body: >-

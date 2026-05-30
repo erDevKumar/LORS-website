@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import type { PanelScrollState } from "../utils/galaxyPanelScroll";
 
 export type QualityTier = "ultra" | "standard" | "fallback";
 
@@ -13,6 +14,8 @@ interface AppState {
   setScrollIndex: (index: number) => void;
   prefersReducedMotion: boolean;
   setPrefersReducedMotion: (reduced: boolean) => void;
+  panelScrollState: PanelScrollState;
+  setPanelScrollState: (state: PanelScrollState) => void;
 }
 
 export const useStore = create<AppState>((set) => ({
@@ -26,4 +29,6 @@ export const useStore = create<AppState>((set) => ({
   setScrollIndex: (index) => set({ scrollIndex: index }),
   prefersReducedMotion: false,
   setPrefersReducedMotion: (reduced) => set({ prefersReducedMotion: reduced }),
+  panelScrollState: { atTop: true, atBottom: true, canScroll: false },
+  setPanelScrollState: (state) => set({ panelScrollState: state }),
 }));

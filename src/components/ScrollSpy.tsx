@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useStore } from "../store/useStore";
+import { MAX_ACT } from "../experience/galaxyLayout";
 
 export function ScrollSpy() {
   const setScrollProgress = useStore((state) => state.setScrollProgress);
@@ -23,7 +24,7 @@ export function ScrollSpy() {
       useStore.getState().setScrollIndex(exactIndex);
 
       // Determine active act using precise rounding
-      const act = Math.min(6, Math.max(0, Math.round(exactIndex)));
+      const act = Math.min(MAX_ACT, Math.max(0, Math.round(exactIndex)));
       
       setActiveAct(act);
     };

@@ -1,19 +1,27 @@
 import { useEffect } from "react";
 import { useStore } from "../store/useStore";
+import { CARD_COUNT } from "../experience/galaxyLayout";
+import {
+  applyPanelPageScroll,
+  applyPanelWheelScroll,
+  canScrollPanelInDirection,
+  CARD_HANDOFF_TOUCH_THRESHOLD,
+  CARD_HANDOFF_WHEEL_THRESHOLD,
+  getPanelScrollRootForAct,
+  getPanelScrollRootFromTarget,
+  isAtScrollBoundary,
+  isPanelScrollable,
+  resetPanelScrollForAct,
+  shouldHandoffToCarousel,
+} from "../utils/galaxyPanelScroll";
 
 /**
  * Looping carousel navigation for the galaxy (WebGL) experience.
  *
- * The 7 scroll-driver sections map 1:1 to the orbital cards. This controller
- * intercepts wheel / touch / keyboard input and moves exactly one card per
- * gesture, wrapping around the ends so the cards "circle up again":
- *   - scrolling down past the last card -> first card
- *   - scrolling up past the first card  -> last card
- *
- * In fallback (no-WebGL) mode this does nothing and native scrolling is used.
+ * Long panels scroll internally first; the carousel advances only when the
+ * active panel is scrolled to its top or bottom boundary and the user
+ * deliberately overscrolls past the resistance threshold.
  */
-const CARD_COUNT = 7;
-
 export function GalaxyScrollNav() {
   const qualityTier = useStore((state) => state.qualityTier);
 
@@ -29,30 +37,41 @@ export function GalaxyScrollNav() {
     const vh = () => window.innerHeight || 1;
     const clampWrap = (i: number) => ((i % CARD_COUNT) + CARD_COUNT) % CARD_COUNT;
 
-    // Logical target card. This is the single source of truth for navigation and
-    // is deliberately decoupled from the live (possibly mid-animation) scrollY,
-    // so a new gesture always advances from the *intended* card, never from a
-    // fractional in-flight position.
     let targetIndex = clampWrap(Math.round(window.scrollY / vh()));
 
     let locked = false;
     let unlockTimer = 0;
     let settleTimer = 0;
     let touchStartY = 0;
-    // Per-gesture latch: a single trackpad fling emits a long stream of wheel
-    // events. We act once on the first event, then ignore the rest until the
-    // stream goes quiet (momentum ends), so one fling = one card.
+    let touchScrollRoot: HTMLElement | null = null;
+    let touchGestureIsPanelScroll = false;
     let wheelLatched = false;
     let wheelIdleTimer = 0;
+    let boundaryOverscroll = 0;
+
+    const activeScrollRoot = () => getPanelScrollRootForAct(targetIndex);
+
+    const resetBoundaryOverscroll = () => {
+      boundaryOverscroll = 0;
+    };
+
+    const schedulePanelReset = (act: number) => {
+      window.requestAnimationFrame(() => {
+        resetPanelScrollForAct(act);
+      });
+    };
 
     const goTo = (rawIndex: number) => {
       const index = clampWrap(rawIndex);
-      // Adjacent moves animate smoothly; a wrap (last->first / first->last) jumps
-      // instantly so the carousel doesn't slowly rewind through every card.
       const isWrap = Math.abs(index - targetIndex) > 1;
+      const previousIndex = targetIndex;
       targetIndex = index;
+      resetBoundaryOverscroll();
       locked = true;
       window.scrollTo({ top: index * vh(), behavior: isWrap ? "auto" : behavior });
+      if (index !== previousIndex) {
+        schedulePanelReset(index);
+      }
       window.clearTimeout(unlockTimer);
       unlockTimer = window.setTimeout(
         () => {
@@ -67,49 +86,150 @@ export function GalaxyScrollNav() {
       goTo(targetIndex + dir);
     };
 
-    // Keep the logical index in sync when the page is moved outside this
-    // controller (nav anchor links, scrollbar drag), but only once scrolling
-    // has actually settled — never mid-animation.
+    const tryPanelWheelScroll = (e: WheelEvent, direction: 1 | -1): boolean => {
+      if (!isPanelScrollable(targetIndex)) return false;
+      const root = activeScrollRoot();
+      if (!root || !canScrollPanelInDirection(root, direction)) return false;
+
+      e.preventDefault();
+      applyPanelWheelScroll(root, e.deltaY);
+      resetBoundaryOverscroll();
+      return true;
+    };
+
+    const tryBoundaryWheelHandoff = (e: WheelEvent, direction: 1 | -1): boolean => {
+      if (!isPanelScrollable(targetIndex)) return false;
+      const root = activeScrollRoot();
+      if (!root || !isAtScrollBoundary(root, direction)) return false;
+
+      e.preventDefault();
+      const { handoff, nextOverscroll } = shouldHandoffToCarousel(
+        boundaryOverscroll,
+        e.deltaY,
+        CARD_HANDOFF_WHEEL_THRESHOLD
+      );
+      boundaryOverscroll = nextOverscroll;
+
+      if (handoff && !wheelLatched && !locked && Math.abs(e.deltaY) >= 4) {
+        wheelLatched = true;
+        step(direction);
+      }
+      return true;
+    };
+
+    const tryPanelKeyScroll = (direction: 1 | -1): boolean => {
+      if (!isPanelScrollable(targetIndex)) return false;
+      const root = activeScrollRoot();
+      if (!root || !canScrollPanelInDirection(root, direction)) return false;
+      applyPanelPageScroll(root, direction);
+      resetBoundaryOverscroll();
+      return true;
+    };
+
     const onScroll = () => {
       if (locked) return;
       window.clearTimeout(settleTimer);
       settleTimer = window.setTimeout(() => {
-        if (!locked) targetIndex = clampWrap(Math.round(window.scrollY / vh()));
+        if (!locked) {
+          const nextIndex = clampWrap(Math.round(window.scrollY / vh()));
+          if (nextIndex !== targetIndex) {
+            targetIndex = nextIndex;
+            resetBoundaryOverscroll();
+            schedulePanelReset(nextIndex);
+          }
+        }
       }, 120);
     };
 
     const onWheel = (e: WheelEvent) => {
-      // Ignore predominantly-horizontal gestures (trackpad swipes).
       if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-      e.preventDefault();
 
-      // Re-arm the latch only after the wheel/momentum stream is idle. As long
-      // as momentum keeps firing events this timer keeps resetting, so the
-      // gesture stays latched and can't trigger a second card switch.
       window.clearTimeout(wheelIdleTimer);
       wheelIdleTimer = window.setTimeout(() => {
         wheelLatched = false;
+        resetBoundaryOverscroll();
       }, 220);
+
+      const direction: 1 | -1 = e.deltaY > 0 ? 1 : -1;
+
+      if (tryPanelWheelScroll(e, direction)) {
+        return;
+      }
+
+      if (tryBoundaryWheelHandoff(e, direction)) {
+        return;
+      }
+
+      e.preventDefault();
 
       if (wheelLatched || locked) return;
       if (Math.abs(e.deltaY) < 4) return;
 
       wheelLatched = true;
-      step(e.deltaY > 0 ? 1 : -1);
+      step(direction);
     };
 
     const onTouchStart = (e: TouchEvent) => {
       touchStartY = e.touches[0]?.clientY ?? 0;
+      touchScrollRoot =
+        getPanelScrollRootFromTarget(e.target) ?? activeScrollRoot();
+      touchGestureIsPanelScroll = false;
+
+      if (touchScrollRoot && isPanelScrollable(targetIndex)) {
+        const canScroll = touchScrollRoot.scrollHeight > touchScrollRoot.clientHeight + 2;
+        touchGestureIsPanelScroll = canScroll;
+      }
     };
+
     const onTouchMove = (e: TouchEvent) => {
-      // We drive navigation ourselves, so suppress native panning.
+      if (!touchScrollRoot || !touchGestureIsPanelScroll) {
+        e.preventDefault();
+        return;
+      }
+
+      const currentY = e.touches[0]?.clientY ?? touchStartY;
+      const dy = touchStartY - currentY;
+      const direction: 1 | -1 = dy > 0 ? 1 : -1;
+
+      if (canScrollPanelInDirection(touchScrollRoot, direction)) {
+        resetBoundaryOverscroll();
+        return;
+      }
+
       e.preventDefault();
     };
+
     const onTouchEnd = (e: TouchEvent) => {
       const endY = e.changedTouches[0]?.clientY ?? touchStartY;
       const dy = touchStartY - endY;
-      if (Math.abs(dy) < 45) return;
-      step(dy > 0 ? 1 : -1);
+      const direction: 1 | -1 = dy > 0 ? 1 : -1;
+      const root = touchScrollRoot ?? activeScrollRoot();
+
+      const atBoundary = root && isPanelScrollable(targetIndex)
+        ? isAtScrollBoundary(root, direction)
+        : false;
+      const swipeThreshold = atBoundary ? CARD_HANDOFF_TOUCH_THRESHOLD : 45;
+
+      if (Math.abs(dy) < swipeThreshold) {
+        touchScrollRoot = null;
+        touchGestureIsPanelScroll = false;
+        return;
+      }
+
+      if (
+        root &&
+        isPanelScrollable(targetIndex) &&
+        canScrollPanelInDirection(root, direction)
+      ) {
+        touchScrollRoot = null;
+        touchGestureIsPanelScroll = false;
+        return;
+      }
+
+      step(direction);
+      touchScrollRoot = null;
+      touchGestureIsPanelScroll = false;
+      resetBoundaryOverscroll();
     };
 
     const onKey = (e: KeyboardEvent) => {
@@ -119,10 +239,10 @@ export function GalaxyScrollNav() {
 
       if (e.key === "ArrowDown" || e.key === "PageDown" || (e.key === " " && !e.shiftKey)) {
         e.preventDefault();
-        step(1);
+        if (!tryPanelKeyScroll(1)) step(1);
       } else if (e.key === "ArrowUp" || e.key === "PageUp" || (e.key === " " && e.shiftKey)) {
         e.preventDefault();
-        step(-1);
+        if (!tryPanelKeyScroll(-1)) step(-1);
       } else if (e.key === "Home") {
         e.preventDefault();
         goTo(0);

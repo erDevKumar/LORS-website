@@ -8,6 +8,7 @@ import {
 } from "../content";
 import { CareersPanel } from "./CareersPanel";
 import { EngineeringPrinciplesGrid } from "./EngineeringPrinciplesGrid";
+import { GalaxyScrollRoot } from "./GalaxyScrollRoot";
 import { PortfolioEcosystemPanel } from "./PortfolioEcosystemPanel";
 import { ProductDetailPanel } from "./ProductDetailPanel";
 import { SectionHeader } from "./SectionHeader";
@@ -58,7 +59,7 @@ export function HologramSectionPanel({ panelId }: HologramSectionPanelProps) {
 
     case "ecosystem":
       return (
-        <div className="hologram-panel-scroll flex h-full w-full flex-col px-6 py-4">
+        <GalaxyScrollRoot panelId="ecosystem" className="flex flex-col px-6 py-4">
           <SectionHeader
             compact
             eyebrow="Our product ecosystem"
@@ -66,26 +67,26 @@ export function HologramSectionPanel({ panelId }: HologramSectionPanelProps) {
             subtitle={siteContent.ecosystemIntro}
           />
           <PortfolioEcosystemPanel compact />
-        </div>
+        </GalaxyScrollRoot>
       );
 
     case "routemates":
       return routemates ? (
-        <div className="hologram-panel-scroll flex h-full w-full flex-col px-6 py-4">
+        <GalaxyScrollRoot panelId="routemates" className="flex flex-col px-6 py-4">
           <ProductDetailPanel project={routemates} compact />
-        </div>
+        </GalaxyScrollRoot>
       ) : null;
 
     case "familyos":
       return familyos ? (
-        <div className="hologram-panel-scroll flex h-full w-full flex-col px-6 py-4">
+        <GalaxyScrollRoot panelId="familyos" className="flex flex-col px-6 py-4">
           <ProductDetailPanel project={familyos} compact />
-        </div>
+        </GalaxyScrollRoot>
       ) : null;
 
     case "tech":
       return (
-        <div className="hologram-panel-scroll flex h-full w-full flex-col px-6 py-4">
+        <GalaxyScrollRoot panelId="tech" className="flex flex-col px-6 py-4">
           <SectionHeader
             compact
             eyebrow="Tech stack"
@@ -100,12 +101,12 @@ export function HologramSectionPanel({ panelId }: HologramSectionPanelProps) {
             title="How we build"
           />
           <EngineeringPrinciplesGrid compact />
-        </div>
+        </GalaxyScrollRoot>
       );
 
     case "careers":
       return (
-        <div className="hologram-panel-scroll flex h-full w-full flex-col px-6 py-4">
+        <GalaxyScrollRoot panelId="careers" className="flex flex-col px-6 py-4">
           <SectionHeader
             compact
             eyebrow="Careers"
@@ -113,12 +114,12 @@ export function HologramSectionPanel({ panelId }: HologramSectionPanelProps) {
             subtitle="Why build with us?"
           />
           <CareersPanel compact />
-        </div>
+        </GalaxyScrollRoot>
       );
 
     case "contact":
       return (
-        <div className="hologram-panel-scroll flex h-full w-full flex-col items-center justify-center px-6 py-4 text-center">
+        <div className="flex h-full w-full flex-col items-center justify-center px-6 py-4 text-center">
           <SectionHeader
             compact
             className="mx-auto max-w-lg"

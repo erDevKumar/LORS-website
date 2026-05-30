@@ -108,6 +108,234 @@
       }
     ]
   },
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "May 30, 2026",
+    "intro": "LORS Nexus (\"Company,\" \"we,\" \"us,\" or \"our\") is dedicated to protecting your personal data and privacy. This Privacy Policy describes how we collect, process, store, encrypt, and share information when you use our website (lorsnexus.com), mobile applications, backend services, or any products within the LORS Nexus ecosystem, including RouteMates and FamilyOS (collectively, the \"Services\").",
+    "sections": [
+      {
+        "title": "1. Information We Collect",
+        "intro": "We collect data across three distinct categories to run our high-utility software suite:",
+        "subsections": [
+          {
+            "title": "Account & Profile Information",
+            "body": "When you register an account, we collect your name, email address, contact information, and authentication credentials (e.g., social logins like Google or Apple ID)."
+          },
+          {
+            "title": "Real-Time Telemetry & Geospatial Data (Specifically for RouteMates)",
+            "body": "To provide live tracking, group routing, and predictive geo-fencing, our mobile applications collect precise or approximate location data. This includes continuous background location updates, coordinates, velocity data, and trip logs. This data parses directly to our high-throughput backend services and real-time data engines."
+          },
+          {
+            "title": "Logistical Blueprint & Financial Metrics Data (Specifically for FamilyOS)",
+            "body": "When utilizing our central Content Management System, you voluntarily upload document indices, due dates, billing metadata, policy information, and notification thresholds."
+          },
+          {
+            "title": "Automated System Analytics",
+            "body": "We log standard technical parameters provided by your device, including IP addresses, mobile device hardware IDs, operating system versions, push notification tokens, performance metrics, and battery drain profiles."
+          }
+        ]
+      },
+      {
+        "title": "2. How We Process Your Information",
+        "intro": "LORS Nexus processes your data based on explicit legal frameworks:",
+        "bullets": [
+          {
+            "title": "Performance of a Contract",
+            "body": "To maintain the active telemetry overlays for RouteMates group journeys and handle user communication routing."
+          },
+          {
+            "title": "Legitimate Business Interests",
+            "body": "To run microservice performance optimizations, track security boundaries, debug technical anomalies, and isolate server vulnerabilities."
+          },
+          {
+            "title": "Explicit Consent",
+            "body": "For background tracking services or uploading high-value encrypted documents to your private application vaults."
+          }
+        ]
+      },
+      {
+        "title": "3. Data Storage, Retention, and Cryptographic Protection",
+        "subsections": [
+          {
+            "title": "Security Standards",
+            "body": "All data inside our engines utilizes industry-standard transit encryption layers (HTTPS/TLS) and rest encryption pipelines (such as military-grade AES-256 routines). High-value documents handled via FamilyOS are segregated using isolated backend permissions."
+          },
+          {
+            "title": "Retention Boundaries",
+            "body": "Telemetry and tracking locations collected during RouteMates trips are compressed and cached only as long as necessary to complete the group trip lifecycle or maintain account travel histories. Users retain complete discretion over account deletion timelines; choosing to delete your account initiates automated truncation sequences to purge your database rows across our storage grids within 30 days."
+          }
+        ]
+      },
+      {
+        "title": "4. Data Sharing and Transfers",
+        "body": "LORS Nexus will never sell, rent, or trade your personal information or data blueprints to data brokers or third-party marketing networks. We share details strictly with trusted infrastructure providers vital to running our codebases:",
+        "subsections": [
+          {
+            "title": "Cloud Infrastructure & Geospatial Engines",
+            "body": "Map render engines and backend host providers (e.g., AWS, Firebase RTDB, Google Maps SDK, or Mapbox API)."
+          },
+          {
+            "title": "Legal & Law Enforcement Mandates",
+            "body": "We may disclose data if subpoenaed by proper legal jurisdictions, but only to the minimum boundaries legally demanded to ensure public safe keeping or protect our intellectual property."
+          }
+        ]
+      },
+      {
+        "title": "5. Your Global Data Rights",
+        "intro": "Depending on your geographic location, you possess standard data protections, including:",
+        "bullets": [
+          {
+            "title": "The Right to Access / Export",
+            "body": "Request copies of all system data we hold about you."
+          },
+          {
+            "title": "The Right to Deletion (Erased Metadata)",
+            "body": "Request absolute erasure of your account details."
+          },
+          {
+            "title": "The Right to Revoke Consent",
+            "body": "Toggle off background device tracking controls natively inside your system preferences at any moment."
+          }
+        ]
+      }
+    ]
+  },
+  "termsAndConditions": {
+    "title": "Terms and Conditions",
+    "lastUpdated": "May 30, 2026",
+    "intro": "Welcome to LORS Nexus. By downloading our mobile applications, creating an account, or interacting with the backend ecosystems of RouteMates or FamilyOS, you explicitly agree to be legally bound by these Terms and Conditions. If you do not consent to these rules, immediately remove our application code from your mobile devices and exit our web domains.",
+    "sections": [
+      {
+        "title": "1. Limited Software End-User License",
+        "body": "LORS Nexus grants you a revocable, limited, non-exclusive, non-transferable, and non-sublicensable license to download, install, and execute our applications on verified target platforms (iOS, Android, and compatible web environments) strictly according to our system guidelines. We do not sell our software architecture to you; we merely license its utility interface."
+      },
+      {
+        "title": "2. Prohibited Uses & System Integrity Rules",
+        "intro": "You agree to use our systems solely for lawful, normal utility operations. You are explicitly barred from the following actions:",
+        "bullets": [
+          {
+            "title": "Reverse Engineering",
+            "body": "Attempting to decompile, disassemble, or derive the source code, backend APIs, or proprietary logic patterns of the LORS Nexus framework."
+          },
+          {
+            "title": "Security Disruption",
+            "body": "Circumventing or manipulating copy protections, rights management mechanisms, authentication layers, or REST API boundaries."
+          },
+          {
+            "title": "Telemetry Abuse",
+            "body": "Falsifying GPS data inputs or weaponizing tracking utilities to systematically monitor individuals without their explicit, real-time in-app authorization."
+          },
+          {
+            "title": "System Overloading",
+            "body": "Flooding our WebSocket lines or execution threads via automated scripts or bots to compromise infrastructure availability."
+          }
+        ]
+      },
+      {
+        "title": "3. Dedicated Rules for RouteMates (Geospatial & SOS Disclaimer)",
+        "subsections": [
+          {
+            "title": "Driver Disclaimers",
+            "body": "RouteMates provides high-utility geospatial visualization for informational group navigation. It must never be used in a manner that creates operator distraction. You agree to prioritize safe operation laws above any dynamic dashboard prompt or tracking event."
+          },
+          {
+            "title": "SOS & Emergency Fallback Limitations",
+            "body": "The integrated SOS feature acts as a secondary, automated communication system via your network carrier using push protocols or SMS fallbacks. LORS Nexus is not an emergency response provider, dispatch agency, or life-saving service. We explicitly disclaim liability for any communication failure, network latency, dead zones, or carrier outages that cause a delay or failure in broadcasting SOS alerts to your group members or emergency contacts."
+          }
+        ]
+      },
+      {
+        "title": "4. Dedicated Rules for FamilyOS (Data Vault Limitation)",
+        "subsections": [
+          {
+            "title": "User Responsibility",
+            "body": "FamilyOS is a logistics platform intended to help organize records, bills, and files. You are solely responsible for ensuring the accuracy of data inputs, loan due dates, policy expiration trackers, and notification settings."
+          },
+          {
+            "title": "No Fiduciary or Advisory Duty",
+            "body": "LORS Nexus does not provide legal, financial, or investment advice. The platform's automated notification engines should serve alongside your personal records; the company cannot be held liable for any penalties, financial losses, or coverage lapses resulting from missed push notifications or late document alerts."
+          }
+        ]
+      },
+      {
+        "title": "5. Absolute Intellectual Property Ownership",
+        "body": "The software codebases, graphics, vector asset coordinates, logos, UI components, data structures, trade secrets, and brand identifiers (including the names LORS Nexus, RouteMates, and FamilyOS) are the sole, exclusive intellectual property of LORS Nexus. No transfer of ownership occurs under these terms."
+      },
+      {
+        "title": "6. Disclaimer of Warranties",
+        "body": "TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SERVICES OPERATE ON AN \"AS-IS\" AND \"AS-AVAILABLE\" SYSTEM BOUNDARY. LORS NEXUS DISCLAIMS ALL WARRANTIES, WHETHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR ACCURACY OF GEOSPATIAL MAP DATA. WE DO NOT GUARANTEE SYSTEM UPTIME WILL REMAIN COMPLETELY UNINTERRUPTED OR ERROR-FREE.",
+        "emphasis": "legal"
+      },
+      {
+        "title": "7. Absolute Limitation of Liability",
+        "body": "TO THE FULLEST EXTENT PERMITTED BY LAW, IN NO EVENT WILL LORS NEXUS, ITS FOUNDERS, OR EMPLOYEES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES WHATSOEVER. This includes, but is not limited to, losses involving data degradation, business interruptions, vehicular accidents occurring during route navigation, or tracking failures. In any event, our maximum aggregated liability under these terms will be capped at $100 USD or the exact total financial sum you paid us to use the active app software feature within the past six calendar months.",
+        "emphasis": "legal"
+      },
+      {
+        "title": "8. System Account Termination",
+        "body": "We reserve the absolute right, at our sole discretion and without prior notice, to immediately suspend or permanently delete your account if we detect a breach of these terms, fraud, API manipulation, or any behavior that threatens the security and viability of our user ecosystem."
+      },
+      {
+        "title": "9. Legal Contact Desk",
+        "intro": "For any clarifications or official inquiries regarding our legal policy boundaries, contact us at:",
+        "contact": {
+          "label": "LORS Nexus Operations Desk",
+          "email": "lorsnexus@lorsnexus.com"
+        }
+      }
+    ]
+  },
+  "disclaimer": {
+    "title": "Disclaimer",
+    "lastUpdated": "May 30, 2026",
+    "intro": "This Disclaimer summarizes important limitations of LORS Nexus products and services. It supplements our Terms and Conditions and Privacy Policy. By using RouteMates, FamilyOS, or any LORS Nexus service, you acknowledge these limitations.",
+    "sections": [
+      {
+        "title": "RouteMates — Navigation & Driver Safety",
+        "subsections": [
+          {
+            "title": "Driver Disclaimers",
+            "body": "RouteMates provides high-utility geospatial visualization for informational group navigation. It must never be used in a manner that creates operator distraction. You agree to prioritize safe operation laws above any dynamic dashboard prompt or tracking event."
+          },
+          {
+            "title": "SOS & Emergency Fallback Limitations",
+            "body": "The integrated SOS feature acts as a secondary, automated communication system via your network carrier using push protocols or SMS fallbacks. LORS Nexus is not an emergency response provider, dispatch agency, or life-saving service. We explicitly disclaim liability for any communication failure, network latency, dead zones, or carrier outages that cause a delay or failure in broadcasting SOS alerts to your group members or emergency contacts."
+          }
+        ]
+      },
+      {
+        "title": "FamilyOS — Data Vault Limitations",
+        "subsections": [
+          {
+            "title": "User Responsibility",
+            "body": "FamilyOS is a logistics platform intended to help organize records, bills, and files. You are solely responsible for ensuring the accuracy of data inputs, loan due dates, policy expiration trackers, and notification settings."
+          },
+          {
+            "title": "No Fiduciary or Advisory Duty",
+            "body": "LORS Nexus does not provide legal, financial, or investment advice. The platform's automated notification engines should serve alongside your personal records; the company cannot be held liable for any penalties, financial losses, or coverage lapses resulting from missed push notifications or late document alerts."
+          }
+        ]
+      },
+      {
+        "title": "Disclaimer of Warranties",
+        "body": "TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SERVICES OPERATE ON AN \"AS-IS\" AND \"AS-AVAILABLE\" SYSTEM BOUNDARY. LORS NEXUS DISCLAIMS ALL WARRANTIES, WHETHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR ACCURACY OF GEOSPATIAL MAP DATA. WE DO NOT GUARANTEE SYSTEM UPTIME WILL REMAIN COMPLETELY UNINTERRUPTED OR ERROR-FREE.",
+        "emphasis": "legal"
+      },
+      {
+        "title": "Limitation of Liability",
+        "body": "TO THE FULLEST EXTENT PERMITTED BY LAW, IN NO EVENT WILL LORS NEXUS, ITS FOUNDERS, OR EMPLOYEES BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES WHATSOEVER. This includes, but is not limited to, losses involving data degradation, business interruptions, vehicular accidents occurring during route navigation, or tracking failures. In any event, our maximum aggregated liability will be capped at $100 USD or the exact total financial sum you paid us to use the active app software feature within the past six calendar months.",
+        "emphasis": "legal"
+      },
+      {
+        "title": "Legal Contact",
+        "intro": "For official inquiries regarding these disclaimers, contact us at:",
+        "contact": {
+          "label": "LORS Nexus Operations Desk",
+          "email": "lorsnexus@lorsnexus.com"
+        }
+      }
+    ]
+  },
   "featuredProjects": [
     {
       "id": "routemates",
@@ -122,7 +350,7 @@
       "href_env": "VITE_ROUTEMATES_URL",
       "glb": "assets/models/routemates.glb",
       "notifyCta": false,
-      "pitch": "RouteMates is a travel-companion super app engineered specifically for group-based journeys—whether it's a motorcycle convoy carving through mountain passes or a multi-car family road trip. The app bridges community and coordination, seamlessly combining the high-utility tracking of Google Maps with the instant communication of WhatsApp and the curated discovery of TripAdvisor.",
+      "pitch": "RouteMates is a travel-companion super app engineered specifically for group-based journeys—whether it's a motorcycle convoy carving through mountain passes or a multi-car family road trip. The app bridges community and coordination, seamlessly combining the high-utility tracking of Google Maps.",
       "features": [
         {
           "title": "Real-Time Group Telemetry",
