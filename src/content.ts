@@ -43,13 +43,18 @@ export type TechStackLayer = {
   purpose: string;
 };
 
-export type EngineeringPrinciple = {
+export type ContentHighlight = {
   title: string;
   body: string;
 };
 
+export type CareersRoleTrack = ContentHighlight;
+
+export type EngineeringPrinciple = ContentHighlight;
+
 export const techStack = generatedContent.techStack;
 export const engineeringCulture = generatedContent.engineeringCulture;
+export const ecosystemContent = generatedContent.ecosystemContent;
 export const careersContent = generatedContent.careersContent;
 
 export const statusLabels: Record<ProjectStatus, string> = {

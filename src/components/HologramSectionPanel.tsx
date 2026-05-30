@@ -8,6 +8,7 @@ import {
 } from "../content";
 import { CareersPanel } from "./CareersPanel";
 import { EngineeringPrinciplesGrid } from "./EngineeringPrinciplesGrid";
+import { PortfolioEcosystemPanel } from "./PortfolioEcosystemPanel";
 import { ProductDetailPanel } from "./ProductDetailPanel";
 import { SectionHeader } from "./SectionHeader";
 import { TechStackTable } from "./TechStackTable";
@@ -64,10 +65,7 @@ export function HologramSectionPanel({ panelId }: HologramSectionPanelProps) {
             title="Portfolio"
             subtitle={siteContent.ecosystemIntro}
           />
-          <p className="mt-4 text-xs leading-relaxed text-white/60">
-            Scroll to explore RouteMates and FamilyOS — our in-house flagship
-            products engineered from the ground up.
-          </p>
+          <PortfolioEcosystemPanel compact />
         </div>
       );
 

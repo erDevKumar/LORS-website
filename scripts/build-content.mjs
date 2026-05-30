@@ -34,7 +34,16 @@ const engineeringCulture = {
   principles: cultureMatter.data.principles || [],
 };
 
-// 4. Read careers.md
+// 4. Read ecosystem.md
+const ecosystemPath = path.join(CONTENT_DIR, "ecosystem.md");
+const ecosystemRaw = fs.readFileSync(ecosystemPath, "utf8");
+const ecosystemMatter = matter(ecosystemRaw);
+const ecosystemContent = {
+  title: ecosystemMatter.data.title || "",
+  highlights: ecosystemMatter.data.highlights || [],
+};
+
+// 5. Read careers.md
 const careersPath = path.join(CONTENT_DIR, "careers.md");
 const careersRaw = fs.readFileSync(careersPath, "utf8");
 const careersMatter = matter(careersRaw);
@@ -42,9 +51,11 @@ const careersContent = {
   title: careersMatter.data.title || "",
   subtitle: careersMatter.data.subtitle || "",
   body: careersMatter.data.body || "",
+  highlights: careersMatter.data.highlights || [],
+  roleTracks: careersMatter.data.roleTracks || [],
 };
 
-// 5. Read products/
+// 6. Read products/
 const productsDir = path.join(CONTENT_DIR, "products");
 const productFiles = fs.existsSync(productsDir) ? fs.readdirSync(productsDir) : [];
 const featuredProjects = [];
@@ -69,6 +80,7 @@ const contentObj = {
   siteContent,
   techStack,
   engineeringCulture,
+  ecosystemContent,
   careersContent,
   featuredProjects,
 };

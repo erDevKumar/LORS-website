@@ -8,7 +8,7 @@ export function CareersSection() {
       className="section-snap relative border-t border-white/10 px-4 py-24 sm:px-6"
       aria-labelledby="careers-heading"
     >
-      <div className="mx-auto max-w-3xl">
+      <div className="mx-auto max-w-6xl">
         <SectionHeader
           eyebrow="Careers"
           title="Join the Nexus"

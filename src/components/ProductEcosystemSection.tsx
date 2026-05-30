@@ -1,4 +1,5 @@
 import { siteContent } from "../content";
+import { PortfolioEcosystemPanel } from "./PortfolioEcosystemPanel";
 import { SectionHeader } from "./SectionHeader";
 
 export function ProductEcosystemSection() {
@@ -15,10 +16,9 @@ export function ProductEcosystemSection() {
           subtitle={siteContent.ecosystemIntro}
           titleId="ecosystem-heading"
         />
-        <p className="mt-8 max-w-3xl text-base leading-relaxed text-white/65">
-          Our flagship products are built completely in-house — scroll to explore
-          RouteMates and FamilyOS in detail.
-        </p>
+        <div className="mt-10">
+          <PortfolioEcosystemPanel />
+        </div>
       </div>
     </section>
   );
