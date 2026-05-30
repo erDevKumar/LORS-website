@@ -159,7 +159,7 @@
   }
 
   .status-badge {
-    @apply inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider;
+    @apply inline-flex items-center justify-center text-center max-w-full whitespace-normal leading-tight rounded-xl border px-2.5 py-1 text-xs font-semibold uppercase tracking-wider;
   }
 
   .status-live {

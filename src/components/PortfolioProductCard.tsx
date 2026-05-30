@@ -54,7 +54,7 @@ export function PortfolioProductCard({ project, compact = false }: PortfolioProd
               {project.name}
             </h3>
             <span
-              className={`status-badge shrink-0 ${statusClass(project.status)} ${
+              className={`status-badge shrink min-w-0 ${statusClass(project.status)} ${
                 compact ? "!px-2 !py-0.5 !text-[10px]" : ""
               }`}
             >

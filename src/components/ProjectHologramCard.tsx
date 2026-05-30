@@ -110,11 +110,11 @@ export function ProjectHologramCard({
                 </div>
               </div>
               <span
-                className={`status-badge shrink-0 ${statusClass(project.status)} ${
-                  compact ? "!px-2 !py-0.5 !text-[10px]" : ""
+                className={`status-badge shrink min-w-0 ${statusClass(project.status)} ${
+                  compact ? "!px-2 !py-0.5 !text-[10px]" : "max-sm:!text-[10px]"
                 }`}
               >
-                {statusLabels[project.status]}
+                {project.statusLabel ?? statusLabels[project.status]}
               </span>
             </div>
 

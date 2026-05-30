@@ -34,7 +34,7 @@ export function ProductDetailPanel({ project, compact = false, titleId }: Produc
         >
           {project.name}
         </h3>
-        <span className={`status-badge shrink-0 ${statusClass(project.status)}`}>
+        <span className={`status-badge shrink min-w-0 ${statusClass(project.status)} max-sm:!text-[10px]`}>
           {badgeLabel}
         </span>
       </div>
