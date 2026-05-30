@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="8" fill="#0a0f1c"/>
+  <circle cx="16" cy="14" r="7" stroke="#5b8def" stroke-width="1.5" fill="none" opacity="0.5"/>
+  <circle cx="16" cy="14" r="2.5" fill="#7eb8ff"/>
+  <path d="M16 4v3M16 25v3M4 14h3M25 14h3" stroke="#5b8def" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+  <text x="16" y="29" text-anchor="middle" fill="#7eb8ff" font-family="system-ui,sans-serif" font-size="8" font-weight="700">LN</text>
+</svg>

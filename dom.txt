@@ -1,0 +1,1694 @@
+<!DOCTYPE html><html lang="en" class="is-fallback"><head>
+    <script type="module">import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LORS Nexus — utility apps and IT solutions for everyday life. RouteMates, Family OS, and upcoming products for travel, documents, and more.">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lorsnexus.com">
+    <meta property="og:title" content="LORS Nexus — Elevating Everyday Experiences">
+    <meta property="og:description" content="Utility apps and IT platforms for everyday life — from shared travel to household coordination.">
+    <meta property="og:image" content="https://lorsnexus.com/assets/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://lorsnexus.com">
+    <meta property="twitter:title" content="LORS Nexus — Elevating Everyday Experiences">
+    <meta property="twitter:description" content="Utility apps and IT platforms for everyday life — from shared travel to household coordination.">
+    <meta property="twitter:image" content="https://lorsnexus.com/assets/og-image.png">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "LORS Nexus",
+        "url": "https://lorsnexus.com",
+        "logo": "https://lorsnexus.com/favicon.svg",
+        "description": "Utility apps and IT solutions for everyday life — from trips and documents to the connected experiences families rely on.",
+        "sameAs": []
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <title>LORS Nexus — Elevating Everyday Experiences</title>
+  <style type="text/css" data-vite-dev-id="/Users/erkumardevender/Desktop/LORS- website/src/styles/index.css">*, ::before, ::after {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}
+
+::backdrop {
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x:  ;
+  --tw-pan-y:  ;
+  --tw-pinch-zoom:  ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-gradient-from-position:  ;
+  --tw-gradient-via-position:  ;
+  --tw-gradient-to-position:  ;
+  --tw-ordinal:  ;
+  --tw-slashed-zero:  ;
+  --tw-numeric-figure:  ;
+  --tw-numeric-spacing:  ;
+  --tw-numeric-fraction:  ;
+  --tw-ring-inset:  ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgb(59 130 246 / 0.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur:  ;
+  --tw-brightness:  ;
+  --tw-contrast:  ;
+  --tw-grayscale:  ;
+  --tw-hue-rotate:  ;
+  --tw-invert:  ;
+  --tw-saturate:  ;
+  --tw-sepia:  ;
+  --tw-drop-shadow:  ;
+  --tw-backdrop-blur:  ;
+  --tw-backdrop-brightness:  ;
+  --tw-backdrop-contrast:  ;
+  --tw-backdrop-grayscale:  ;
+  --tw-backdrop-hue-rotate:  ;
+  --tw-backdrop-invert:  ;
+  --tw-backdrop-opacity:  ;
+  --tw-backdrop-saturate:  ;
+  --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
+}/*
+! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com
+*//*
+1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
+2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
+*/
+
+*,
+::before,
+::after {
+  box-sizing: border-box; /* 1 */
+  border-width: 0; /* 2 */
+  border-style: solid; /* 2 */
+  border-color: #e5e7eb; /* 2 */
+}
+
+::before,
+::after {
+  --tw-content: '';
+}
+
+/*
+1. Use a consistent sensible line-height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size.
+4. Use the user's configured `sans` font-family by default.
+5. Use the user's configured `sans` font-feature-settings by default.
+6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
+*/
+
+html,
+:host {
+  line-height: 1.5; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+  -moz-tab-size: 4; /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4; /* 3 */
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; /* 4 */
+  font-feature-settings: normal; /* 5 */
+  font-variation-settings: normal; /* 6 */
+  -webkit-tap-highlight-color: transparent; /* 7 */
+}
+
+/*
+1. Remove the margin in all browsers.
+2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
+*/
+
+body {
+  margin: 0; /* 1 */
+  line-height: inherit; /* 2 */
+}
+
+/*
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+3. Ensure horizontal rules are visible by default.
+*/
+
+hr {
+  height: 0; /* 1 */
+  color: inherit; /* 2 */
+  border-top-width: 1px; /* 3 */
+}
+
+/*
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+
+abbr:where([title]) {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/*
+Remove the default font size and weight for headings.
+*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*
+Reset links to optimize for opt-in styling instead of opt-out.
+*/
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/*
+Add the correct font weight in Edge and Safari.
+*/
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/*
+1. Use the user's configured `mono` font-family by default.
+2. Use the user's configured `mono` font-feature-settings by default.
+3. Use the user's configured `mono` font-variation-settings by default.
+4. Correct the odd `em` font sizing in all browsers.
+*/
+
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; /* 1 */
+  font-feature-settings: normal; /* 2 */
+  font-variation-settings: normal; /* 3 */
+  font-size: 1em; /* 4 */
+}
+
+/*
+Add the correct font size in all browsers.
+*/
+
+small {
+  font-size: 80%;
+}
+
+/*
+Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+*/
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+3. Remove gaps between table borders by default.
+*/
+
+table {
+  text-indent: 0; /* 1 */
+  border-color: inherit; /* 2 */
+  border-collapse: collapse; /* 3 */
+}
+
+/*
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+3. Remove default padding in all browsers.
+*/
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-feature-settings: inherit; /* 1 */
+  font-variation-settings: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  font-weight: inherit; /* 1 */
+  line-height: inherit; /* 1 */
+  letter-spacing: inherit; /* 1 */
+  color: inherit; /* 1 */
+  margin: 0; /* 2 */
+  padding: 0; /* 3 */
+}
+
+/*
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+
+button,
+select {
+  text-transform: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Remove default button styles.
+*/
+
+button,
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
+  -webkit-appearance: button; /* 1 */
+  background-color: transparent; /* 2 */
+  background-image: none; /* 2 */
+}
+
+/*
+Use the modern Firefox focus style for all focusable elements.
+*/
+
+:-moz-focusring {
+  outline: auto;
+}
+
+/*
+Remove the additional `:invalid` styles in Firefox. (https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737)
+*/
+
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/*
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+
+progress {
+  vertical-align: baseline;
+}
+
+/*
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/*
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+
+[type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/*
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/*
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to `inherit` in Safari.
+*/
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/*
+Add the correct display in Chrome and Safari.
+*/
+
+summary {
+  display: list-item;
+}
+
+/*
+Removes the default spacing and border for appropriate elements.
+*/
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+Reset default styling for dialogs.
+*/
+dialog {
+  padding: 0;
+}
+
+/*
+Prevent resizing textareas horizontally by default.
+*/
+
+textarea {
+  resize: vertical;
+}
+
+/*
+1. Reset the default placeholder opacity in Firefox. (https://github.com/tailwindlabs/tailwindcss/issues/3300)
+2. Set the default placeholder color to the user's configured gray 400 color.
+*/
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+input::placeholder,
+textarea::placeholder {
+  opacity: 1; /* 1 */
+  color: #9ca3af; /* 2 */
+}
+
+/*
+Set the default cursor for buttons.
+*/
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/*
+Make sure disabled buttons don't get the pointer cursor.
+*/
+:disabled {
+  cursor: default;
+}
+
+/*
+1. Make replaced elements `display: block` by default. (https://github.com/mozdevs/cssremedy/issues/14)
+2. Add `vertical-align: middle` to align replaced elements more sensibly by default. (https://github.com/jensimmons/cssremedy/issues/14#issuecomment-634934210)
+   This can trigger a poorly considered lint error in some tools but is included by design.
+*/
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+  display: block; /* 1 */
+  vertical-align: middle; /* 2 */
+}
+
+/*
+Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
+*/
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make elements with the HTML hidden attribute stay hidden by default */
+[hidden]:where(:not([hidden="until-found"])) {
+  display: none;
+}
+  html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+  body {
+  margin: 0px;
+  min-height: 100vh;
+  --tw-bg-opacity: 1;
+  background-color: rgb(4 8 20 / var(--tw-bg-opacity, 1));
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+  @media (min-width: 1024px) {
+    html {
+      scroll-snap-type: y proximity;
+    }
+  }
+.container {
+  width: 100%;
+}
+@media (min-width: 640px) {
+
+  .container {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+
+  .container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+
+  .container {
+    max-width: 1024px;
+  }
+}
+@media (min-width: 1280px) {
+
+  .container {
+    max-width: 1280px;
+  }
+}
+@media (min-width: 1536px) {
+
+  .container {
+    max-width: 1536px;
+  }
+}
+.section-snap {
+    scroll-snap-align: start;
+  }
+.hero-bg-gradient {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 221, 255, 0.18), transparent 55%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(124, 58, 237, 0.22), transparent 50%),
+      radial-gradient(ellipse 50% 40% at 0% 80%, rgba(8, 14, 33, 0.95), transparent 45%),
+      linear-gradient(165deg, #040814 0%, #080e21 40%, #0f1836 70%, #040814 100%);
+  }
+.hero-mesh {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%2300ddff' stroke-opacity='0.12' stroke-width='1'%3E%3Cpath d='M0 200h800M0 400h800M0 600h800M200 0v800M400 0v800M600 0v800'/%3E%3Ccircle cx='400' cy='400' r='120' stroke-opacity='0.08'/%3E%3Ccircle cx='400' cy='400' r='240' stroke-opacity='0.06'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 800px 800px;
+    background-position: center;
+  }
+.hero-nodes {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Cg fill='%2300ddff' fill-opacity='0.35'%3E%3Ccircle cx='80' cy='120' r='3'/%3E%3Ccircle cx='320' cy='140' r='3'/%3E%3Ccircle cx='520' cy='260' r='3'/%3E%3Ccircle cx='260' cy='220' r='4'/%3E%3C/g%3E%3Cg stroke='%2300ddff' stroke-opacity='0.15' stroke-width='1'%3E%3Cline x1='80' y1='120' x2='320' y2='140'/%3E%3Cline x1='320' y1='140' x2='520' y2='260'/%3E%3Cline x1='260' y1='220' x2='140' y2='280'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: center bottom;
+    opacity: 0.7;
+  }
+.glass-panel {
+  border-radius: 1rem;
+  border-width: 1px;
+  border-color: rgb(255 255 255 / 0.1);
+  background-color: rgb(255 255 255 / 0.05);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-backdrop-blur: blur(12px);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+@media (min-width: 640px) {
+
+  .glass-panel {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+}
+.section-heading {
+  font-family: Outfit, Inter, system-ui, sans-serif;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+@media (min-width: 640px) {
+
+  .section-heading {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+.section-sub {
+  margin-top: 1rem;
+  max-width: 42rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  line-height: 1.625;
+  color: rgb(255 255 255 / 0.65);
+}
+@media (min-width: 640px) {
+
+  .section-sub {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+/* Hologram 3D stage */
+.hologram-stage {
+    perspective: 1200px;
+    perspective-origin: 50% 40%;
+  }
+.hologram-card {
+  position: relative;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 700ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+html.is-webgl #ecosystem .hologram-card.mx-auto {
+  height: 400px;
+}
+.hologram-card {
+    transform-style: preserve-3d;
+    transform: rotateX(6deg) rotateY(-10deg) translateZ(0);
+    opacity: 0;
+    translate: 0 2rem;
+  }
+.hologram-card.is-visible {
+    opacity: 1;
+    translate: 0 0;
+    transform: rotateX(2deg) rotateY(-4deg) translateZ(0);
+  }
+.hologram-card.is-visible:hover {
+    transform: rotateX(0deg) rotateY(0deg) translateZ(12px);
+  }
+.hologram-card--featured {
+    transform: rotateX(4deg) rotateY(-8deg) scale(1);
+  }
+.hologram-card--featured.is-visible {
+    transform: rotateX(1deg) rotateY(-2deg) scale(1);
+  }
+.hologram-card--featured.is-visible:hover {
+    transform: rotateX(0deg) rotateY(0deg) translateZ(20px) scale(1.01);
+  }
+@media (max-width: 768px) {
+    .hologram-card,
+    .hologram-card--featured {
+      transform: none;
+    }
+
+    .hologram-card.is-visible,
+    .hologram-card--featured.is-visible,
+    .hologram-card.is-visible:hover,
+    .hologram-card--featured.is-visible:hover {
+      transform: none;
+    }
+  }
+.hologram-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  padding: 1px;
+}
+html.is-webgl #ecosystem .hologram-frame.mx-auto {
+  height: 400px;
+}
+.hologram-frame {
+    background: linear-gradient(
+      135deg,
+      rgba(126, 184, 255, 0.7),
+      rgba(124, 58, 237, 0.5),
+      rgba(91, 141, 239, 0.3),
+      rgba(126, 184, 255, 0.7)
+    );
+    box-shadow:
+      0 0 40px rgba(91, 141, 239, 0.2),
+      0 0 80px rgba(124, 58, 237, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+.hologram-frame--featured {
+    box-shadow:
+      0 0 60px rgba(91, 141, 239, 0.35),
+      0 0 120px rgba(124, 58, 237, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+.hologram-inner {
+  position: relative;
+  border-radius: 1rem;
+  background-color: rgb(8 14 33 / 0.95);
+  padding: 1.5rem;
+  --tw-backdrop-blur: blur(24px);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+html.is-webgl #ecosystem .hologram-inner.mx-auto {
+  height: 400px;
+}
+@media (min-width: 640px) {
+
+  .hologram-inner {
+    padding: 2rem;
+  }
+}
+.hologram-scanlines {
+  pointer-events: none;
+  position: absolute;
+  inset: 0px;
+  border-radius: 1rem;
+  opacity: 0.07;
+}
+
+html.is-webgl #ecosystem .hologram-scanlines {
+  display: none;
+}
+.hologram-scanlines {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(126, 184, 255, 0.15) 2px,
+      rgba(126, 184, 255, 0.15) 4px
+    );
+  }
+.hologram-shimmer {
+  pointer-events: none;
+  position: absolute;
+  inset: -100%;
+  opacity: 0.3;
+}
+
+html.is-webgl #ecosystem .hologram-shimmer {
+  display: none;
+}
+.hologram-shimmer {
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(126, 184, 255, 0.15) 45%,
+      rgba(167, 139, 250, 0.2) 50%,
+      transparent 55%
+    );
+    animation: hologram-shimmer 8s ease-in-out infinite;
+  }
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  border-width: 1px;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.status-live {
+  border-color: rgb(52 211 153 / 0.4);
+  background-color: rgb(16 185 129 / 0.15);
+  --tw-text-opacity: 1;
+  color: rgb(110 231 183 / var(--tw-text-opacity, 1));
+}
+.status-beta {
+  border-color: rgb(126 184 255 / 0.4);
+  background-color: rgb(0 221 255 / 0.2);
+  --tw-text-opacity: 1;
+  color: rgb(126 184 255 / var(--tw-text-opacity, 1));
+}
+.status-coming-soon {
+  border-color: rgb(167 139 250 / 0.4);
+  background-color: rgb(139 92 246 / 0.15);
+  --tw-text-opacity: 1;
+  color: rgb(196 181 253 / var(--tw-text-opacity, 1));
+}
+.status-concept {
+  border-color: rgb(255 255 255 / 0.2);
+  background-color: rgb(255 255 255 / 0.05);
+  color: rgb(255 255 255 / 0.6);
+}
+.flagship-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 9999px;
+  border-width: 1px;
+  border-color: rgb(126 184 255 / 0.5);
+  background-color: rgb(0 221 255 / 0.25);
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  --tw-text-opacity: 1;
+  color: rgb(126 184 255 / var(--tw-text-opacity, 1));
+}
+.pointer-events-none {
+  pointer-events: none;
+}
+.pointer-events-auto {
+  pointer-events: auto;
+}
+.visible {
+  visibility: visible;
+}
+.static {
+  position: static;
+}
+.fixed {
+  position: fixed;
+}
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.inset-0 {
+  inset: 0px;
+}
+.inset-x-0 {
+  left: 0px;
+  right: 0px;
+}
+.bottom-0 {
+  bottom: 0px;
+}
+.bottom-8 {
+  bottom: 2rem;
+}
+.left-1\/2 {
+  left: 50%;
+}
+.top-0 {
+  top: 0px;
+}
+.top-1\/2 {
+  top: 50%;
+}
+.z-0 {
+  z-index: 0;
+}
+.z-10 {
+  z-index: 10;
+}
+.z-50 {
+  z-index: 50;
+}
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+.mt-10 {
+  margin-top: 2.5rem;
+}
+.mt-14 {
+  margin-top: 3.5rem;
+}
+.mt-16 {
+  margin-top: 4rem;
+}
+.mt-2 {
+  margin-top: 0.5rem;
+}
+.mt-3 {
+  margin-top: 0.75rem;
+}
+.mt-4 {
+  margin-top: 1rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
+}
+.mt-8 {
+  margin-top: 2rem;
+}
+.block {
+  display: block;
+}
+.flex {
+  display: flex;
+}
+.inline-flex {
+  display: inline-flex;
+}
+.grid {
+  display: grid;
+}
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+.h-10 {
+  height: 2.5rem;
+}
+.h-14 {
+  height: 3.5rem;
+}
+.h-28 {
+  height: 7rem;
+}
+.h-6 {
+  height: 1.5rem;
+}
+.h-full {
+  height: 100%;
+}
+.h-screen {
+  height: 100vh;
+}
+.min-h-\[48px\] {
+  min-height: 48px;
+}
+.min-h-\[52px\] {
+  min-height: 52px;
+}
+.min-h-\[700vh\] {
+  min-height: 700vh;
+}
+.min-h-screen {
+  min-height: 100vh;
+}
+.w-10 {
+  width: 2.5rem;
+}
+.w-14 {
+  width: 3.5rem;
+}
+.w-28 {
+  width: 7rem;
+}
+.w-6 {
+  width: 1.5rem;
+}
+.w-full {
+  width: 100%;
+}
+.w-screen {
+  width: 100vw;
+}
+.min-w-\[200px\] {
+  min-width: 200px;
+}
+.max-w-2xl {
+  max-width: 42rem;
+}
+.max-w-3xl {
+  max-width: 48rem;
+}
+.max-w-4xl {
+  max-width: 56rem;
+}
+.max-w-6xl {
+  max-width: 72rem;
+}
+.max-w-lg {
+  max-width: 32rem;
+}
+.max-w-md {
+  max-width: 28rem;
+}
+.shrink-0 {
+  flex-shrink: 0;
+}
+.grow {
+  flex-grow: 1;
+}
+.-translate-x-1\/2 {
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.-translate-y-1\/2 {
+  --tw-translate-y: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+@keyframes bounce {
+
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+.flex-col {
+  flex-direction: column;
+}
+.items-start {
+  align-items: flex-start;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.gap-1 {
+  gap: 0.25rem;
+}
+.gap-3 {
+  gap: 0.75rem;
+}
+.gap-4 {
+  gap: 1rem;
+}
+.gap-6 {
+  gap: 1.5rem;
+}
+.gap-8 {
+  gap: 2rem;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+.rounded-2xl {
+  border-radius: 1rem;
+}
+.rounded-3xl {
+  border-radius: 1.5rem;
+}
+.rounded-full {
+  border-radius: 9999px;
+}
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+.border {
+  border-width: 1px;
+}
+.border-2 {
+  border-width: 2px;
+}
+.border-b {
+  border-bottom-width: 1px;
+}
+.border-t {
+  border-top-width: 1px;
+}
+.border-dashed {
+  border-style: dashed;
+}
+.border-lors-glow\/30 {
+  border-color: rgb(126 184 255 / 0.3);
+}
+.border-lors-glow\/50 {
+  border-color: rgb(126 184 255 / 0.5);
+}
+.border-white\/10 {
+  border-color: rgb(255 255 255 / 0.1);
+}
+.border-white\/20 {
+  border-color: rgb(255 255 255 / 0.2);
+}
+.border-white\/25 {
+  border-color: rgb(255 255 255 / 0.25);
+}
+.border-white\/30 {
+  border-color: rgb(255 255 255 / 0.3);
+}
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
+}
+.bg-black\/40 {
+  background-color: rgb(0 0 0 / 0.4);
+}
+.bg-lors-accent {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 221 255 / var(--tw-bg-opacity, 1));
+}
+.bg-lors-accent\/10 {
+  background-color: rgb(0 221 255 / 0.1);
+}
+.bg-lors-accent\/15 {
+  background-color: rgb(0 221 255 / 0.15);
+}
+.bg-lors-deep {
+  --tw-bg-opacity: 1;
+  background-color: rgb(8 14 33 / var(--tw-bg-opacity, 1));
+}
+.bg-lors-deep\/60 {
+  background-color: rgb(8 14 33 / 0.6);
+}
+.bg-lors-navy {
+  --tw-bg-opacity: 1;
+  background-color: rgb(4 8 20 / var(--tw-bg-opacity, 1));
+}
+.bg-lors-navy\/90 {
+  background-color: rgb(4 8 20 / 0.9);
+}
+.bg-transparent {
+  background-color: transparent;
+}
+.bg-white\/5 {
+  background-color: rgb(255 255 255 / 0.05);
+}
+.bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+}
+.from-lors-indigo\/20 {
+  --tw-gradient-from: rgb(18 27 69 / 0.2) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(18 27 69 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-lors-navy\/30 {
+  --tw-gradient-from: rgb(4 8 20 / 0.3) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(4 8 20 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.from-white\/\[0\.06\] {
+  --tw-gradient-from: rgb(255 255 255 / 0.06) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(255 255 255 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+.via-lors-navy\/50 {
+  --tw-gradient-to: rgb(4 8 20 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(4 8 20 / 0.5) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+.via-transparent {
+  --tw-gradient-to: rgb(0 0 0 / 0)  var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), transparent var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+.to-lors-navy\/90 {
+  --tw-gradient-to: rgb(4 8 20 / 0.9) var(--tw-gradient-to-position);
+}
+.to-transparent {
+  --tw-gradient-to: transparent var(--tw-gradient-to-position);
+}
+.p-5 {
+  padding: 1.25rem;
+}
+.p-6 {
+  padding: 1.5rem;
+}
+.p-8 {
+  padding: 2rem;
+}
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.py-1\.5 {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
+.py-24 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.pb-16 {
+  padding-bottom: 4rem;
+}
+.pt-24 {
+  padding-top: 6rem;
+}
+.text-center {
+  text-align: center;
+}
+.font-display {
+  font-family: Outfit, Inter, system-ui, sans-serif;
+}
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+.text-\[10px\] {
+  font-size: 10px;
+}
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.font-bold {
+  font-weight: 700;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.leading-relaxed {
+  line-height: 1.625;
+}
+.tracking-\[0\.35em\] {
+  letter-spacing: 0.35em;
+}
+.tracking-\[0\.3em\] {
+  letter-spacing: 0.3em;
+}
+.tracking-tight {
+  letter-spacing: -0.025em;
+}
+.tracking-widest {
+  letter-spacing: 0.1em;
+}
+.text-lors-accent\/20 {
+  color: rgb(0 221 255 / 0.2);
+}
+.text-lors-glow {
+  --tw-text-opacity: 1;
+  color: rgb(126 184 255 / var(--tw-text-opacity, 1));
+}
+.text-lors-glow\/60 {
+  color: rgb(126 184 255 / 0.6);
+}
+.text-lors-glow\/80 {
+  color: rgb(126 184 255 / 0.8);
+}
+.text-lors-glow\/90 {
+  color: rgb(126 184 255 / 0.9);
+}
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+.text-white\/20 {
+  color: rgb(255 255 255 / 0.2);
+}
+.text-white\/40 {
+  color: rgb(255 255 255 / 0.4);
+}
+.text-white\/45 {
+  color: rgb(255 255 255 / 0.45);
+}
+.text-white\/50 {
+  color: rgb(255 255 255 / 0.5);
+}
+.text-white\/55 {
+  color: rgb(255 255 255 / 0.55);
+}
+.text-white\/60 {
+  color: rgb(255 255 255 / 0.6);
+}
+.text-white\/65 {
+  color: rgb(255 255 255 / 0.65);
+}
+.text-white\/70 {
+  color: rgb(255 255 255 / 0.7);
+}
+.text-white\/75 {
+  color: rgb(255 255 255 / 0.75);
+}
+.text-white\/90 {
+  color: rgb(255 255 255 / 0.9);
+}
+.opacity-40 {
+  opacity: 0.4;
+}
+.opacity-50 {
+  opacity: 0.5;
+}
+.shadow-\[0_0_50px_rgba\(0\2c 221\2c 255\2c 0\.2\)\] {
+  --tw-shadow: 0 0 50px rgba(0,221,255,0.2);
+  --tw-shadow-colored: 0 0 50px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.shadow-black\/20 {
+  --tw-shadow-color: rgb(0 0 0 / 0.2);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+.shadow-lors-accent\/25 {
+  --tw-shadow-color: rgb(0 221 255 / 0.25);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+.shadow-lors-accent\/30 {
+  --tw-shadow-color: rgb(0 221 255 / 0.3);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+.outline-none {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.backdrop-blur-lg {
+  --tw-backdrop-blur: blur(16px);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+.backdrop-blur-sm {
+  --tw-backdrop-blur: blur(4px);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+.backdrop-blur-xl {
+  --tw-backdrop-blur: blur(24px);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+.transition {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+.duration-300 {
+  transition-duration: 300ms;
+}
+.ease-out {
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+@keyframes hologram-shimmer {
+  0%,
+  100% {
+    transform: translateX(-30%) translateY(-30%) rotate(25deg);
+  }
+  50% {
+    transform: translateX(30%) translateY(30%) rotate(25deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hologram-card {
+    opacity: 1;
+    translate: none;
+    transform: none;
+    transition: none;
+  }
+
+  .hologram-shimmer {
+    animation: none;
+  }
+
+  html {
+    scroll-snap-type: none;
+  }
+}
+
+/* WebGL Active Layer Overrides */
+html.is-webgl body {
+  background-color: transparent !important;
+}
+
+html.is-webgl .section-snap {
+  scroll-snap-align: none;
+}
+
+html.is-webgl section {
+  min-height: 100% !important;
+  height: 100% !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+html.is-webgl .hero-bg-gradient {
+  background: transparent !important;
+}
+
+html.is-webgl .hero-mesh,
+html.is-webgl .hero-nodes {
+  opacity: 0 !important;
+  background-image: none !important;
+}
+
+html.is-webgl .bg-lors-deep {
+  background-color: transparent !important;
+}
+
+/* Hide fallback 2D ecosystem diagram when WebGL constellation is active */
+html.is-webgl #ecosystem svg,
+html.is-webgl #ecosystem .absolute {
+  display: none !important;
+}
+
+/* Ensure #ecosystem block container is still scrollable and layout space is reserved */
+html.is-webgl #ecosystem .relative.mx-auto {
+  height: 400px;
+}
+.hover\:border-lors-accent\/40:hover {
+  border-color: rgb(0 221 255 / 0.4);
+}
+.hover\:border-lors-glow\/30:hover {
+  border-color: rgb(126 184 255 / 0.3);
+}
+.hover\:border-white\/50:hover {
+  border-color: rgb(255 255 255 / 0.5);
+}
+.hover\:bg-lors-glow:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(126 184 255 / var(--tw-bg-opacity, 1));
+}
+.hover\:bg-white\/5:hover {
+  background-color: rgb(255 255 255 / 0.05);
+}
+.hover\:text-lors-glow:hover {
+  --tw-text-opacity: 1;
+  color: rgb(126 184 255 / var(--tw-text-opacity, 1));
+}
+.hover\:text-lors-navy:hover {
+  --tw-text-opacity: 1;
+  color: rgb(4 8 20 / var(--tw-text-opacity, 1));
+}
+.hover\:text-white\/70:hover {
+  color: rgb(255 255 255 / 0.7);
+}
+.hover\:underline:hover {
+  text-decoration-line: underline;
+}
+.hover\:shadow-lg:hover {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.hover\:shadow-lors-accent\/10:hover {
+  --tw-shadow-color: rgb(0 221 255 / 0.1);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+.focus-visible\:outline:focus-visible {
+  outline-style: solid;
+}
+.focus-visible\:outline-2:focus-visible {
+  outline-width: 2px;
+}
+.focus-visible\:outline-offset-2:focus-visible {
+  outline-offset: 2px;
+}
+.focus-visible\:outline-lors-glow:focus-visible {
+  outline-color: #7eb8ff;
+}
+.focus-visible\:outline-white\/50:focus-visible {
+  outline-color: rgb(255 255 255 / 0.5);
+}
+.focus-visible\:ring-2:focus-visible {
+  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+}
+.focus-visible\:ring-lors-glow:focus-visible {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(126 184 255 / var(--tw-ring-opacity, 1));
+}
+.focus-visible\:ring-offset-2:focus-visible {
+  --tw-ring-offset-width: 2px;
+}
+.focus-visible\:ring-offset-lors-navy:focus-visible {
+  --tw-ring-offset-color: #040814;
+}
+@media (min-width: 640px) {
+
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+
+  .sm\:gap-6 {
+    gap: 1.5rem;
+  }
+
+  .sm\:px-3 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .sm\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .sm\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .sm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .sm\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+
+  .sm\:text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .sm\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+@media (min-width: 768px) {
+
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+
+  .md\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+}
+@media (min-width: 1024px) {
+
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lg\:gap-12 {
+    gap: 3rem;
+  }
+
+  .lg\:text-7xl {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+}
+
+</style></head>
+  <body>
+    <div id="root"><div class="flex min-h-[700vh] flex-col relative"><header class="fixed inset-x-0 top-0 z-50 transition-all duration-300 bg-transparent"><nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6" aria-label="Main"><a href="#" class="font-display text-lg font-bold tracking-tight text-white hover:text-lors-glow">LORS Nexus</a><ul class="flex items-center gap-1 sm:gap-6"><li><a href="#mission" class="rounded-lg px-2 py-1.5 text-xs font-medium text-white/75 transition hover:bg-white/5 hover:text-lors-glow sm:px-3 sm:text-sm">Mission</a></li><li><a href="#products" class="rounded-lg px-2 py-1.5 text-xs font-medium text-white/75 transition hover:bg-white/5 hover:text-lors-glow sm:px-3 sm:text-sm">Products</a></li><li><a href="#it" class="rounded-lg px-2 py-1.5 text-xs font-medium text-white/75 transition hover:bg-white/5 hover:text-lors-glow sm:px-3 sm:text-sm">IT</a></li><li><a href="#contact" class="rounded-lg px-2 py-1.5 text-xs font-medium text-white/75 transition hover:bg-white/5 hover:text-lors-glow sm:px-3 sm:text-sm">Contact</a></li></ul></nav></header><main class="relative z-10 "><section class="section-snap relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pb-16 pt-24 sm:px-6" aria-label="Introduction"><div class="hero-bg-gradient pointer-events-none absolute inset-0" aria-hidden="true"></div><div class="hero-mesh pointer-events-none absolute inset-0 opacity-40" aria-hidden="true"></div><div class="hero-nodes pointer-events-none absolute inset-0" aria-hidden="true"></div><div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-lors-navy/30 via-lors-navy/50 to-lors-navy/90" aria-hidden="true"></div><div class="relative z-10 mx-auto w-full max-w-4xl text-center"><div class="glass-panel"><p class="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-lors-glow/90 sm:text-sm">Utility apps · IT solutions · Product ecosystem</p><h1 class="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">LORS Nexus</h1><p class="mt-4 font-display text-xl font-medium text-lors-glow sm:text-2xl md:text-3xl">Elevating Everyday Experiences</p><p class="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/75 sm:text-lg">Utility apps and IT solutions for everyday life — from trips and documents to the connected experiences families rely on.</p><div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"><a href="mailto:lorsnexus@lorsnexus.com?subject=Hello%20LORS%20Nexus" class="inline-flex min-h-[48px] min-w-[200px] items-center justify-center rounded-full bg-lors-accent px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-lors-accent/25 transition hover:bg-lors-glow hover:text-lors-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lors-glow">Get in touch</a><a href="#products" class="inline-flex min-h-[48px] items-center justify-center rounded-full border border-white/25 px-8 py-3 text-sm font-medium text-white/90 transition hover:border-white/50 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50">View products</a></div></div></div><a href="#mission" class="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-white/40 transition hover:text-white/70" aria-label="Scroll to mission section"><svg class="h-6 w-6 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg></a></section><section id="mission" class="section-snap relative border-t border-white/10 bg-lors-deep px-4 py-24 sm:px-6" aria-labelledby="mission-heading"><div class="mx-auto max-w-6xl"><p class="text-xs font-semibold uppercase tracking-[0.3em] text-lors-glow/80">Our mission</p><h2 id="mission-heading" class="section-heading mt-2">Technology for real life</h2><p class="section-sub">We build practical mobile utilities and dependable technology platforms that solve real problems in daily life.</p><ul class="mt-14 grid gap-6 md:grid-cols-3"><li class="group rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-transparent p-6 transition hover:border-lors-glow/30 hover:shadow-lg hover:shadow-lors-accent/10"><span class="font-mono text-sm text-lors-glow/60">01</span><h3 class="mt-3 font-display text-xl font-semibold text-white">Everyday utility</h3><p class="mt-3 text-sm leading-relaxed text-white/65">Apps for trips, documents, media, and the small friction points that add up across your day.</p></li><li class="group rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-transparent p-6 transition hover:border-lors-glow/30 hover:shadow-lg hover:shadow-lors-accent/10"><span class="font-mono text-sm text-lors-glow/60">02</span><h3 class="mt-3 font-display text-xl font-semibold text-white">Built to solve real problems</h3><p class="mt-3 text-sm leading-relaxed text-white/65">We focus on practical workflows — not novelty — so each product earns a place in daily routines.</p></li><li class="group rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-transparent p-6 transition hover:border-lors-glow/30 hover:shadow-lg hover:shadow-lors-accent/10"><span class="font-mono text-sm text-lors-glow/60">03</span><h3 class="mt-3 font-display text-xl font-semibold text-white">Engineered for scale</h3><p class="mt-3 text-sm leading-relaxed text-white/65">Mobile-first experiences backed by reliable APIs, security-minded design, and production-grade delivery.</p></li></ul></div></section><section id="it" class="section-snap relative border-t border-white/10 px-4 py-24 sm:px-6" aria-labelledby="it-heading"><div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-lors-indigo/20 via-transparent to-transparent" aria-hidden="true"></div><div class="relative mx-auto max-w-6xl"><p class="text-xs font-semibold uppercase tracking-[0.3em] text-lors-glow/80">IT solutions</p><h2 id="it-heading" class="section-heading mt-2">Built by engineers, delivered with care</h2><p class="section-sub">LORS Nexus pairs product craft with professional IT delivery — from mobile clients and cloud APIs to security, DevOps, and consulting partnerships.</p><ul class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"><li class="rounded-xl border border-white/10 bg-lors-deep/60 p-5 backdrop-blur-sm transition hover:border-lors-accent/40"><h3 class="font-display text-lg font-semibold text-lors-glow">Mobile apps</h3><p class="mt-2 text-sm leading-relaxed text-white/60">Native and cross-platform clients with polished UX and offline-aware flows.</p></li><li class="rounded-xl border border-white/10 bg-lors-deep/60 p-5 backdrop-blur-sm transition hover:border-lors-accent/40"><h3 class="font-display text-lg font-semibold text-lors-glow">Cloud &amp; APIs</h3><p class="mt-2 text-sm leading-relaxed text-white/60">Scalable backends, REST contracts, and integrations built for real-world load.</p></li><li class="rounded-xl border border-white/10 bg-lors-deep/60 p-5 backdrop-blur-sm transition hover:border-lors-accent/40"><h3 class="font-display text-lg font-semibold text-lors-glow">Data &amp; security</h3><p class="mt-2 text-sm leading-relaxed text-white/60">Thoughtful data models, access control, and privacy-by-design patterns.</p></li><li class="rounded-xl border border-white/10 bg-lors-deep/60 p-5 backdrop-blur-sm transition hover:border-lors-accent/40"><h3 class="font-display text-lg font-semibold text-lors-glow">Product design</h3><p class="mt-2 text-sm leading-relaxed text-white/60">End-to-end product thinking from discovery through shipped experiences.</p></li><li class="rounded-xl border border-white/10 bg-lors-deep/60 p-5 backdrop-blur-sm transition hover:border-lors-accent/40"><h3 class="font-display text-lg font-semibold text-lors-glow">DevOps</h3><p class="mt-2 text-sm leading-relaxed text-white/60">CI/CD, observability, and environments that keep releases predictable.</p></li><li class="rounded-xl border border-white/10 bg-lors-deep/60 p-5 backdrop-blur-sm transition hover:border-lors-accent/40"><h3 class="font-display text-lg font-semibold text-lors-glow">IT consulting</h3><p class="mt-2 text-sm leading-relaxed text-white/60">Architecture reviews, delivery partnerships, and technical due diligence.</p></li></ul></div></section><section id="ecosystem" class="section-snap relative border-t border-white/10 bg-lors-deep px-4 py-24 sm:px-6" aria-labelledby="ecosystem-heading"><div class="mx-auto max-w-6xl"><p class="text-xs font-semibold uppercase tracking-[0.3em] text-lors-glow/80">Ecosystem</p><h2 id="ecosystem-heading" class="section-heading mt-2">One nexus, many products</h2><p class="section-sub">LORS Nexus is the parent brand for a growing portfolio of apps and ventures. Products ship under their own identity; future child companies can emerge from the nexus as they mature.</p><div class="relative mx-auto mt-16 flex max-w-lg flex-col items-center"><div class="relative aspect-square w-full max-w-md"><svg class="absolute inset-0 h-full w-full text-lors-accent/20" viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="140" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4 8"></circle><line x1="200" y1="200" x2="200" y2="60" stroke="currentColor" stroke-width="1" stroke-opacity="0.4"></line><line x1="200" y1="200" x2="333.1479122813215" y2="156.73762078750735" stroke="currentColor" stroke-width="1" stroke-opacity="0.4"></line><line x1="200" y1="200" x2="282.28993532094626" y2="313.26237921249265" stroke="currentColor" stroke-width="1" stroke-opacity="0.4"></line><line x1="200" y1="200" x2="117.71006467905377" y2="313.26237921249265" stroke="currentColor" stroke-width="1" stroke-opacity="0.4"></line><line x1="200" y1="200" x2="66.85208771867849" y2="156.73762078750738" stroke="currentColor" stroke-width="1" stroke-opacity="0.4" stroke-dasharray="4 6"></line></svg><div class="absolute left-1/2 top-1/2 z-10 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border-2 border-lors-glow/50 bg-lors-navy shadow-lg shadow-lors-accent/30"><span class="text-[10px] font-semibold uppercase tracking-widest text-lors-glow/80">Parent</span><span class="font-display text-sm font-bold text-white">LORS Nexus</span></div><div class="absolute z-10 -translate-x-1/2 -translate-y-1/2" style="left: 50%; top: 15%;"><span class="block whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-medium border-lors-glow/30 bg-lors-accent/15 text-lors-glow">RouteMates</span></div><div class="absolute z-10 -translate-x-1/2 -translate-y-1/2" style="left: 83.287%; top: 39.1844%;"><span class="block whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-medium border-lors-glow/30 bg-lors-accent/15 text-lors-glow">Family OS</span></div><div class="absolute z-10 -translate-x-1/2 -translate-y-1/2" style="left: 70.5725%; top: 78.3156%;"><span class="block whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-medium border-lors-glow/30 bg-lors-accent/15 text-lors-glow">Utilities</span></div><div class="absolute z-10 -translate-x-1/2 -translate-y-1/2" style="left: 29.4275%; top: 78.3156%;"><span class="block whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-medium border-lors-glow/30 bg-lors-accent/15 text-lors-glow">Nexus Lab</span></div><div class="absolute z-10 -translate-x-1/2 -translate-y-1/2" style="left: 16.713%; top: 39.1844%;"><span class="block whitespace-nowrap rounded-full border px-3 py-1.5 text-xs font-medium border-dashed border-white/30 bg-white/5 text-white/50">Future ventures</span></div></div><p class="mt-8 max-w-md text-center text-sm text-white/50">Each product ships under its own brand. As ventures mature, they can grow into independent companies while staying connected to the nexus vision.</p></div></div></section><section id="projects" class="section-snap relative border-t border-white/10 px-4 py-24 sm:px-6" aria-labelledby="projects-heading"><div class="pointer-events-none absolute inset-0 hero-bg-gradient opacity-50" aria-hidden="true"></div><div class="relative mx-auto max-w-6xl"><p class="text-xs font-semibold uppercase tracking-[0.3em] text-lors-glow/80">Flagship products</p><h2 id="products-heading" class="section-heading mt-2">Highlighted projects</h2><p class="section-sub">Our most visible utilities — built for everyday impact and engineered to grow with your life.</p><div class="mt-16 grid gap-8 lg:grid-cols-2 lg:gap-12"><div class="hologram-stage w-full"><div class="hologram-card hologram-card--featured "><div class="hologram-frame hologram-frame--featured"><div class="hologram-inner"><div class="hologram-scanlines" aria-hidden="true"></div><div class="hologram-shimmer" aria-hidden="true"></div><div class="relative z-10 flex flex-col gap-4"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-4"><div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-lors-glow/30 bg-lors-accent/10 text-lors-glow"><svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"></path></svg></div><div><span class="flagship-badge mb-2">Flagship</span><h3 class="font-display font-bold text-white text-2xl sm:text-3xl">Family OS</h3><p class="text-sm font-medium text-lors-glow/90">Your household, connected</p></div></div><span class="status-badge shrink-0 status-coming-soon">Coming soon</span></div><p class="leading-relaxed text-white/70 text-base sm:text-lg">A family-centric utility hub for shared calendars, documents, and household coordination — designed to keep everyone aligned without the clutter.</p></div></div></div></div></div><div class="hologram-stage w-full"><div class="hologram-card hologram-card--featured "><div class="hologram-frame hologram-frame--featured"><div class="hologram-inner"><div class="hologram-scanlines" aria-hidden="true"></div><div class="hologram-shimmer" aria-hidden="true"></div><div class="relative z-10 flex flex-col gap-4"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-4"><div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-lors-glow/30 bg-lors-accent/10 text-lors-glow"><svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path></svg></div><div><span class="flagship-badge mb-2">Flagship</span><h3 class="font-display font-bold text-white text-2xl sm:text-3xl">RouteMates</h3><p class="text-sm font-medium text-lors-glow/90">Travel &amp; trip companion</p></div></div><span class="status-badge shrink-0 status-beta">Beta</span></div><p class="leading-relaxed text-white/70 text-base sm:text-lg">Coordinate journeys with companions — shared trips, live location awareness, and mobile-first travel utilities built on a modern API stack.</p></div></div></div></div></div></div></div></section><section id="pipeline" class="section-snap relative border-t border-white/10 bg-lors-deep px-4 py-24 sm:px-6" aria-labelledby="pipeline-heading"><div class="mx-auto max-w-6xl"><p class="text-xs font-semibold uppercase tracking-[0.3em] text-lors-glow/80">Pipeline</p><h2 id="pipeline-heading" class="section-heading mt-2">Upcoming utilities</h2><p class="section-sub">Holographic previews of what we're shaping next — trip tools, document management, dual-camera recording, and more experiments from Nexus Lab.</p><div class="mt-14 grid gap-8 md:grid-cols-2"><div class="hologram-stage w-full"><div class="hologram-card  "><div class="hologram-frame "><div class="hologram-inner"><div class="hologram-scanlines" aria-hidden="true"></div><div class="hologram-shimmer" aria-hidden="true"></div><div class="relative z-10 flex flex-col gap-4"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-4"><div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-lors-glow/30 bg-lors-accent/10 text-lors-glow"><svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"></path></svg></div><div><h3 class="font-display font-bold text-white text-xl">DocVault</h3><p class="text-sm font-medium text-lors-glow/90">Documents, organized</p></div></div><span class="status-badge shrink-0 status-concept">In R&amp;D</span></div><p class="leading-relaxed text-white/70 text-sm">Secure document management for IDs, receipts, and household paperwork — find what you need in seconds.</p></div></div></div></div></div><div class="hologram-stage w-full"><div class="hologram-card  "><div class="hologram-frame "><div class="hologram-inner"><div class="hologram-scanlines" aria-hidden="true"></div><div class="hologram-shimmer" aria-hidden="true"></div><div class="relative z-10 flex flex-col gap-4"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-4"><div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-lors-glow/30 bg-lors-accent/10 text-lors-glow"><svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"></path></svg></div><div><h3 class="font-display font-bold text-white text-xl">Nexus Lab</h3><p class="text-sm font-medium text-lors-glow/90">More utilities in R&amp;D</p></div></div><span class="status-badge shrink-0 status-concept">In R&amp;D</span></div><p class="leading-relaxed text-white/70 text-sm">Experimental ideas across productivity, mobility, and connected living — the next everyday tools we're shaping behind the scenes.</p></div></div></div></div></div><div class="hologram-stage w-full"><div class="hologram-card  "><div class="hologram-frame "><div class="hologram-inner"><div class="hologram-scanlines" aria-hidden="true"></div><div class="hologram-shimmer" aria-hidden="true"></div><div class="relative z-10 flex flex-col gap-4"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-4"><div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-lors-glow/30 bg-lors-accent/10 text-lors-glow"><svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path></svg></div><div><h3 class="font-display font-bold text-white text-xl">TripKit</h3><p class="text-sm font-medium text-lors-glow/90">Plan every leg of the journey</p></div></div><span class="status-badge shrink-0 status-concept">In R&amp;D</span></div><p class="leading-relaxed text-white/70 text-sm">Trip planning utility — itineraries, checklists, and prep tools for weekends away or cross-country adventures.</p></div></div></div></div></div><div class="hologram-stage w-full"><div class="hologram-card  "><div class="hologram-frame "><div class="hologram-inner"><div class="hologram-scanlines" aria-hidden="true"></div><div class="hologram-shimmer" aria-hidden="true"></div><div class="relative z-10 flex flex-col gap-4"><div class="flex items-start justify-between gap-4"><div class="flex items-center gap-4"><div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-lors-glow/30 bg-lors-accent/10 text-lors-glow"><svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a41.763 41.763 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z"></path></svg></div><div><h3 class="font-display font-bold text-white text-xl">TwinCam</h3><p class="text-sm font-medium text-lors-glow/90">Two angles, one moment</p></div></div><span class="status-badge shrink-0 status-concept">In R&amp;D</span></div><p class="leading-relaxed text-white/70 text-sm">Dual-camera recording for creators and families — capture front and back (or wide and close) in a single synchronized session.</p></div></div></div></div></div></div></div></section><section id="contact" class="section-snap relative border-t border-white/10 px-4 py-24 sm:px-6" aria-labelledby="contact-heading"><div class="mx-auto max-w-3xl text-center"><p class="text-xs font-semibold uppercase tracking-[0.3em] text-lors-glow/80">Contact</p><h2 id="contact-heading" class="section-heading mt-2">Let's build what's next</h2><p class="section-sub mx-auto">Partnerships, product inquiries, or IT consulting — reach out and we'll connect you with the right team at LORS Nexus.</p><a href="mailto:lorsnexus@lorsnexus.com?subject=Hello%20LORS%20Nexus" class="mt-10 inline-flex min-h-[52px] items-center justify-center rounded-full bg-lors-accent px-10 py-3 text-base font-semibold text-white shadow-lg shadow-lors-accent/30 transition hover:bg-lors-glow hover:text-lors-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lors-glow">Get in touch</a><p class="mt-4"><a href="mailto:lorsnexus@lorsnexus.com" class="text-sm text-lors-glow/90 transition hover:text-lors-glow hover:underline">lorsnexus@lorsnexus.com</a></p></div></section></main><div class="w-full relative"><footer class="border-t border-white/10 bg-lors-navy px-4 py-8 sm:px-6"><div class="mx-auto flex max-w-6xl flex-col items-center gap-3 text-center text-sm text-white/45"><p class="text-white/55">Part of the LORS Nexus ecosystem</p><p>© 2026 LORS Nexus. All rights reserved.</p><p><a href="mailto:lorsnexus@lorsnexus.com" class="text-lors-glow/80 transition hover:text-lors-glow">lorsnexus@lorsnexus.com</a><span class="mx-2 text-white/20">·</span><span>lorsnexus.com</span></p></div></footer></div></div></div>
+    <script type="module" src="/src/main.tsx?t=1780122367258"></script>
+  
+
+</body></html>

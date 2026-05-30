@@ -1,0 +1,111 @@
+{
+  "siteContent": {
+    "companyName": "LORS Nexus",
+    "tagline": "Elevating Everyday Experiences",
+    "heroSubtitle": "Utility apps and IT solutions for everyday life — from trips and documents to the connected experiences families rely on.",
+    "about": "We build practical mobile utilities and dependable technology platforms that solve real problems in daily life.",
+    "domain": "lorsnexus.com",
+    "ecosystemIntro": "LORS Nexus is the parent brand for a growing portfolio of apps and ventures. Products ship under their own identity; future child companies can emerge from the nexus as they mature.",
+    "contactEmail": "lorsnexus@lorsnexus.com",
+    "routematesUrl": "https://lorsnexus.com/routemates-beta"
+  },
+  "missionPillars": [
+    {
+      "title": "Everyday utility",
+      "body": "Apps for trips, documents, media, and the small friction points that add up across your day."
+    },
+    {
+      "title": "Built to solve real problems",
+      "body": "We focus on practical workflows — not novelty — so each product earns a place in daily routines."
+    },
+    {
+      "title": "Engineered for scale",
+      "body": "Mobile-first experiences backed by reliable APIs, security-minded design, and production-grade delivery."
+    }
+  ],
+  "itCapabilities": [
+    {
+      "title": "Mobile apps",
+      "description": "Native and cross-platform clients with polished UX and offline-aware flows."
+    },
+    {
+      "title": "Cloud & APIs",
+      "description": "Scalable backends, REST contracts, and integrations built for real-world load."
+    },
+    {
+      "title": "Data & security",
+      "description": "Thoughtful data models, access control, and privacy-by-design patterns."
+    },
+    {
+      "title": "Product design",
+      "description": "End-to-end product thinking from discovery through shipped experiences."
+    },
+    {
+      "title": "DevOps",
+      "description": "CI/CD, observability, and environments that keep releases predictable."
+    },
+    {
+      "title": "IT consulting",
+      "description": "Architecture reviews, delivery partnerships, and technical due diligence."
+    }
+  ],
+  "featuredProjects": [
+    {
+      "id": "family-os",
+      "name": "Family OS",
+      "tagline": "Your household, connected",
+      "status": "coming-soon",
+      "category": "family",
+      "featured": true,
+      "glb": "assets/models/family-os.glb",
+      "notifyCta": true,
+      "description": "A family-centric utility hub for shared calendars, documents, and household coordination — designed to keep everyone aligned without the clutter."
+    },
+    {
+      "id": "routemates",
+      "name": "RouteMates",
+      "tagline": "Travel & trip companion",
+      "status": "beta",
+      "category": "travel",
+      "featured": true,
+      "href_env": "VITE_ROUTEMATES_URL",
+      "glb": "assets/models/routemates.glb",
+      "notifyCta": false,
+      "description": "Coordinate journeys with companions — shared trips, live location awareness, and mobile-first travel utilities built on a modern API stack."
+    }
+  ],
+  "upcomingProjects": [
+    {
+      "id": "docvault",
+      "name": "DocVault",
+      "tagline": "Documents, organized",
+      "status": "concept",
+      "category": "productivity",
+      "description": "Secure document management for IDs, receipts, and household paperwork — find what you need in seconds."
+    },
+    {
+      "id": "nexus-lab",
+      "name": "Nexus Lab",
+      "tagline": "More utilities in R&D",
+      "status": "concept",
+      "category": "platform",
+      "description": "Experimental ideas across productivity, mobility, and connected living — the next everyday tools we're shaping behind the scenes."
+    },
+    {
+      "id": "tripkit",
+      "name": "TripKit",
+      "tagline": "Plan every leg of the journey",
+      "status": "concept",
+      "category": "travel",
+      "description": "Trip planning utility — itineraries, checklists, and prep tools for weekends away or cross-country adventures."
+    },
+    {
+      "id": "twincam",
+      "name": "TwinCam",
+      "tagline": "Two angles, one moment",
+      "status": "concept",
+      "category": "media",
+      "description": "Dual-camera recording for creators and families — capture front and back (or wide and close) in a single synchronized session."
+    }
+  ]
+}
