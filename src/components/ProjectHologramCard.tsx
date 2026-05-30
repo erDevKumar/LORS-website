@@ -68,7 +68,7 @@ export function ProjectHologramCard({
       } ${visible ? "is-visible" : ""}`}
     >
       <div className={`hologram-frame ${featured ? "hologram-frame--featured" : ""}`}>
-        <div className={`hologram-inner ${compact ? "!p-4 sm:!p-4" : ""}`}>
+        <div className={`hologram-inner ${compact ? "!p-4 sm:!p-4" : "max-sm:p-4 max-sm:px-4"}`}>
           <div className="hologram-scanlines" aria-hidden />
           <div className="hologram-shimmer" aria-hidden />
           <div className={`relative z-10 flex flex-col ${compact ? "gap-3" : "gap-4"}`}>
@@ -76,7 +76,7 @@ export function ProjectHologramCard({
               <div className="flex min-w-0 items-start gap-3">
                 <div
                   className={`flex shrink-0 items-center justify-center rounded-xl border border-lors-glow/30 bg-lors-accent/10 text-lors-glow ${
-                    compact ? "h-10 w-10" : "h-14 w-14"
+                    compact ? "h-10 w-10" : "h-14 w-14 max-sm:h-12 max-sm:w-12"
                   }`}
                 >
                   <ProjectIcon category={project.category} compact={compact} />
@@ -92,10 +92,10 @@ export function ProjectHologramCard({
                       featured
                         ? compact
                           ? "text-lg"
-                          : "text-2xl sm:text-3xl"
+                          : "text-2xl sm:text-3xl max-sm:text-xl"
                         : compact
                           ? "text-base"
-                          : "text-xl"
+                          : "text-xl max-sm:text-lg"
                     }`}
                   >
                     {project.name}
@@ -120,7 +120,7 @@ export function ProjectHologramCard({
 
             <p
               className={`text-left leading-relaxed text-white/70 ${
-                compact ? "text-xs leading-snug" : featured ? "text-base sm:text-lg" : "text-sm"
+                compact ? "text-xs leading-snug" : featured ? "text-base sm:text-lg max-sm:text-sm" : "text-sm max-sm:text-xs"
               }`}
             >
               {project.description}

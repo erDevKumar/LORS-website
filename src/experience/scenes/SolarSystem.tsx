@@ -1,5 +1,5 @@
 import { useMemo, useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 import * as THREE from "three";
 import { useStore } from "../../store/useStore";
@@ -61,13 +61,17 @@ function OrbitRing({ quality }: { quality: Quality }) {
   );
 }
 
-function panelLayout() {
-  return {
-    width: "920px",
-    height: "680px",
-    scale: 0.95,
-    glow: [42, 33] as [number, number],
-  };
+function usePanelLayout() {
+  const { size } = useThree();
+  return useMemo(() => {
+    const isMobile = size.width < 768;
+    return {
+      width: isMobile ? "350px" : "920px",
+      height: isMobile ? "700px" : "680px",
+      scale: isMobile ? 1.35 : 0.95,
+      glow: (isMobile ? [25, 45] : [42, 33]) as [number, number],
+    };
+  }, [size.width]);
 }
 
 function ActiveGlow({ body }: { body: BodyDef }) {
@@ -75,7 +79,8 @@ function ActiveGlow({ body }: { body: BodyDef }) {
   const pos = useMemo(() => panelPosition(body.act), [body.act]);
   const matRef = useRef<THREE.SpriteMaterial>(null);
   const tex = useMemo(() => glowSprite(), []);
-  const glow = panelLayout().glow;
+  const layout = usePanelLayout();
+  const glow = layout.glow;
 
   useFrame((state, dt) => {
     if (!matRef.current) return;
@@ -108,7 +113,7 @@ function ActiveGlow({ body }: { body: BodyDef }) {
 function Panel({ body }: { body: BodyDef }) {
   const activeAct = useStore((s) => s.activeAct);
   const pos = useMemo(() => panelPosition(body.act), [body.act]);
-  const layout = useMemo(() => panelLayout(), []);
+  const layout = usePanelLayout();
   const groupRef = useRef<THREE.Group>(null);
   const domRef = useRef<HTMLDivElement>(null);
   const active = useRef(0);

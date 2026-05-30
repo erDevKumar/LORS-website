@@ -1,9 +1,23 @@
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
+import { useEffect } from "react";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import { useQualityTier } from "../hooks/useQualityTier";
 import { CameraController } from "./CameraController";
 import { GalaxyScene } from "./scenes/GalaxyScene";
 import { SolarSystem } from "./scenes/SolarSystem";
+
+function ResponsiveCamera() {
+  const { camera, size } = useThree();
+  useEffect(() => {
+    const aspect = size.width / size.height;
+    // On portrait screens, increase the FOV so content isn't cropped.
+    // 55 is the baseline FOV.
+    const fov = aspect < 1 ? Math.min(85, 55 / aspect) : 55;
+    (camera as any).fov = fov;
+    camera.updateProjectionMatrix();
+  }, [camera, size]);
+  return null;
+}
 
 export function CanvasRoot() {
   const qualityTier = useQualityTier();
@@ -30,6 +44,7 @@ export function CanvasRoot() {
         dpr={dpr}
         camera={{ fov: 55, near: 0.1, far: 500, position: [0, 3, 28] }}
       >
+        <ResponsiveCamera />
         <color attach="background" args={["#010308"]} />
         <fog attach="fog" args={["#010308", 150, 450]} />
 

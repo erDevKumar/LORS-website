@@ -7,8 +7,33 @@ type TechStackTableProps = {
 export function TechStackTable({ compact = false }: TechStackTableProps) {
   return (
     <div className={compact ? "mt-4" : "mt-8"}>
-      <div className="overflow-x-auto rounded-xl border border-white/10">
-        <table className="w-full min-w-[480px] border-collapse text-left">
+      {/* Mobile Card Layout (hidden on md and up) */}
+      <div className="grid grid-cols-1 gap-4 md:hidden">
+        {techStack.layers.map((row) => (
+          <div
+            key={row.layer}
+            className="rounded-xl border border-white/10 bg-lors-deep/80 p-4"
+          >
+            <div className="mb-2 border-b border-white/10 pb-2">
+              <h5 className="font-display font-semibold text-lors-glow text-sm">
+                {row.layer}
+              </h5>
+            </div>
+            <div className="mb-2">
+              <p className="text-xs font-semibold text-white/50 mb-1 uppercase tracking-wider">Technologies</p>
+              <p className="text-sm text-white/80">{row.technologies}</p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold text-white/50 mb-1 uppercase tracking-wider">Purpose</p>
+              <p className="text-sm text-white/60">{row.purpose}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Table Layout (hidden on screens smaller than md) */}
+      <div className="hidden md:block overflow-x-auto rounded-xl border border-white/10">
+        <table className="w-full border-collapse text-left">
           <thead>
             <tr className="border-b border-white/10 bg-lors-deep/80">
               <th

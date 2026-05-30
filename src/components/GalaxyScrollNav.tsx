@@ -252,12 +252,19 @@ export function GalaxyScrollNav() {
       }
     };
 
+    const onResize = () => {
+      if (!locked) {
+        window.scrollTo({ top: targetIndex * vh(), behavior: "auto" });
+      }
+    };
+
     window.addEventListener("wheel", onWheel, { passive: false });
     window.addEventListener("touchstart", onTouchStart, { passive: true });
     window.addEventListener("touchmove", onTouchMove, { passive: false });
     window.addEventListener("touchend", onTouchEnd, { passive: true });
     window.addEventListener("keydown", onKey);
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
 
     return () => {
       window.removeEventListener("wheel", onWheel);
@@ -266,6 +273,7 @@ export function GalaxyScrollNav() {
       window.removeEventListener("touchend", onTouchEnd);
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
       window.clearTimeout(unlockTimer);
       window.clearTimeout(wheelIdleTimer);
       window.clearTimeout(settleTimer);

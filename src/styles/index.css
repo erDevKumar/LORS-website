@@ -367,8 +367,11 @@ html.is-webgl #ecosystem .relative.mx-auto {
    hidden in WebGL mode, so clamping the height here is safe. */
 html.is-webgl .scroll-driver > section {
   height: 100vh;
+  height: 100dvh;
   min-height: 100vh;
+  min-height: 100dvh;
   max-height: 100vh;
+  max-height: 100dvh;
   overflow: hidden;
   scroll-snap-align: start;
   scroll-snap-stop: always;

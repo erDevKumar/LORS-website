@@ -3,7 +3,7 @@ import { contactMailto, siteContent } from "../content";
 export function Hero() {
   return (
     <section
-      className="section-snap relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pb-16 pt-24 sm:px-6"
+      className="section-snap relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden px-4 pb-16 pt-24 sm:px-6"
       aria-label="Introduction"
     >
       <div className="hero-bg-gradient pointer-events-none absolute inset-0" aria-hidden />
@@ -15,7 +15,7 @@ export function Hero() {
       />
 
       <div className="relative z-10 mx-auto w-full max-w-4xl text-center">
-        <div className="glass-panel">
+        <div className="glass-panel w-full">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-lors-glow/90 sm:text-sm">
             {siteContent.subTagline ?? "Utility Apps · IT Solutions · Product Ecosystem"}
           </p>
@@ -31,13 +31,13 @@ export function Hero() {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href={contactMailto()}
-              className="inline-flex min-h-[48px] min-w-[200px] items-center justify-center rounded-full bg-lors-accent px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-lors-accent/25 transition hover:bg-lors-glow hover:text-lors-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lors-glow"
+              className="inline-flex w-full sm:w-auto min-h-[48px] min-w-[200px] items-center justify-center rounded-full bg-lors-accent px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-lors-accent/25 transition hover:bg-lors-glow hover:text-lors-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lors-glow"
             >
               Get in touch
             </a>
             <a
               href="#ecosystem"
-              className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-white/25 px-8 py-3 text-sm font-medium text-white/90 transition hover:border-white/50 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
+              className="inline-flex w-full sm:w-auto min-h-[48px] min-w-[200px] sm:min-w-0 items-center justify-center rounded-full border border-white/25 px-8 py-3 text-sm font-medium text-white/90 transition hover:border-white/50 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
             >
               View products
             </a>
