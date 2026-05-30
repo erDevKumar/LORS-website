@@ -9,6 +9,24 @@ import {
   ellipticalGalaxySprite,
   cometTailSprite,
 } from "../galaxyTextures";
+import {
+  NebulaCollapse,
+  Nova,
+  Hypernova,
+  GalacticMerger,
+  BlackHoleMerger,
+  Kilonova,
+  GammaRayBurst,
+  TidalDisruptionEvent,
+  SolarFlare,
+  CoronalMassEjection,
+  MeteorShower,
+  PlanetaryTransit,
+  SolarEclipse,
+  GeomagneticStorm,
+} from "./galaxyEvents";
+
+const PLANET_POS: [number, number, number] = [-60, 22, -95];
 
 type Quality = "ultra" | "standard";
 
@@ -490,7 +508,7 @@ function DistantPlanet({ quality }: { quality: Quality }) {
     }
   });
   return (
-    <group position={[-60, 22, -95]}>
+    <group position={PLANET_POS}>
       {/* atmosphere rim */}
       <mesh scale={1.12}>
         <sphereGeometry args={[7, seg, seg]} />
@@ -570,6 +588,33 @@ export function GalaxyScene({ quality = "ultra" }: { quality?: Quality }) {
 
       {/* Supernova flares. */}
       <Supernova minDelay={ultra ? 16 : 26} maxDelay={ultra ? 34 : 50} />
+
+      {/* --- Star life & death --- */}
+      <NebulaCollapse minDelay={ultra ? 12 : 20} maxDelay={ultra ? 26 : 44} />
+      <Nova minDelay={ultra ? 7 : 12} maxDelay={ultra ? 16 : 26} />
+      {ultra && <Hypernova minDelay={22} maxDelay={45} />}
+
+      {/* --- Cosmic crashes --- */}
+      {ultra && <GalacticMerger minDelay={32} maxDelay={62} />}
+      <BlackHoleMerger minDelay={ultra ? 20 : 34} maxDelay={ultra ? 40 : 60} />
+      <Kilonova minDelay={ultra ? 16 : 28} maxDelay={ultra ? 34 : 52} />
+
+      {/* --- High-energy blasts --- */}
+      <GammaRayBurst minDelay={ultra ? 14 : 24} maxDelay={ultra ? 32 : 50} />
+      <TidalDisruptionEvent minDelay={ultra ? 22 : 36} maxDelay={ultra ? 44 : 64} />
+      <SolarFlare minDelay={ultra ? 8 : 14} maxDelay={ultra ? 18 : 30} />
+      <CoronalMassEjection minDelay={ultra ? 10 : 18} maxDelay={ultra ? 22 : 38} />
+
+      {/* --- Space motion & weather --- */}
+      <MeteorShower minDelay={ultra ? 18 : 30} maxDelay={ultra ? 38 : 58} count={ultra ? 7 : 4} />
+      <PlanetaryTransit minDelay={ultra ? 16 : 28} maxDelay={ultra ? 34 : 52} />
+      <SolarEclipse minDelay={ultra ? 20 : 34} maxDelay={ultra ? 40 : 60} />
+      <GeomagneticStorm
+        minDelay={ultra ? 18 : 30}
+        maxDelay={ultra ? 38 : 56}
+        position={PLANET_POS}
+        ribbons={ultra ? 3 : 2}
+      />
     </group>
   );
 }

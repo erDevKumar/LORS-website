@@ -135,6 +135,96 @@ export function ellipticalGalaxySprite(): THREE.CanvasTexture {
   return _elliptical;
 }
 
+let _beam: THREE.CanvasTexture | null = null;
+/** Bright bipolar beam/jet: long axis is vertical, brightest at center, feathered sides. */
+export function beamSprite(): THREE.CanvasTexture {
+  if (_beam) return _beam;
+  const w = 64;
+  const h = 256;
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d")!;
+
+  const lin = ctx.createLinearGradient(0, 0, 0, h);
+  lin.addColorStop(0, "rgba(255,255,255,0)");
+  lin.addColorStop(0.5, "rgba(255,255,255,1)");
+  lin.addColorStop(1, "rgba(255,255,255,0)");
+  ctx.fillStyle = lin;
+  ctx.fillRect(0, 0, w, h);
+
+  const feather = ctx.createLinearGradient(0, 0, w, 0);
+  feather.addColorStop(0, "rgba(0,0,0,1)");
+  feather.addColorStop(0.5, "rgba(0,0,0,0)");
+  feather.addColorStop(1, "rgba(0,0,0,1)");
+  ctx.globalCompositeOperation = "destination-out";
+  ctx.fillStyle = feather;
+  ctx.fillRect(0, 0, w, h);
+  ctx.globalCompositeOperation = "source-over";
+
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.needsUpdate = true;
+  _beam = tex;
+  return _beam;
+}
+
+let _aurora: THREE.CanvasTexture | null = null;
+/** Aurora ribbon: tall vertical green -> cyan -> violet gradient, feathered sides. */
+export function auroraRibbon(): THREE.CanvasTexture {
+  if (_aurora) return _aurora;
+  const w = 128;
+  const h = 256;
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d")!;
+
+  const lin = ctx.createLinearGradient(0, h, 0, 0);
+  lin.addColorStop(0, "rgba(60,255,160,0)");
+  lin.addColorStop(0.15, "rgba(60,255,160,0.55)");
+  lin.addColorStop(0.5, "rgba(60,230,255,0.5)");
+  lin.addColorStop(0.85, "rgba(150,120,255,0.3)");
+  lin.addColorStop(1, "rgba(150,120,255,0)");
+  ctx.fillStyle = lin;
+  ctx.fillRect(0, 0, w, h);
+
+  const feather = ctx.createLinearGradient(0, 0, w, 0);
+  feather.addColorStop(0, "rgba(0,0,0,1)");
+  feather.addColorStop(0.5, "rgba(0,0,0,0)");
+  feather.addColorStop(1, "rgba(0,0,0,1)");
+  ctx.globalCompositeOperation = "destination-out";
+  ctx.fillStyle = feather;
+  ctx.fillRect(0, 0, w, h);
+  ctx.globalCompositeOperation = "source-over";
+
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.needsUpdate = true;
+  _aurora = tex;
+  return _aurora;
+}
+
+let _accretion: THREE.CanvasTexture | null = null;
+/** Bright thin ring (accretion disc glow) with transparent center and edge. */
+export function accretionSprite(): THREE.CanvasTexture {
+  if (_accretion) return _accretion;
+  const size = 256;
+  const { canvas, ctx } = makeCanvas(size);
+  const c = size / 2;
+  const g = ctx.createRadialGradient(c, c, 0, c, c, c);
+  g.addColorStop(0, "rgba(255,255,255,0)");
+  g.addColorStop(0.45, "rgba(255,255,255,0)");
+  g.addColorStop(0.62, "rgba(255,224,184,0.9)");
+  g.addColorStop(0.75, "rgba(255,172,112,0.5)");
+  g.addColorStop(0.9, "rgba(255,140,90,0.12)");
+  g.addColorStop(1, "rgba(255,140,90,0)");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, size, size);
+  _accretion = toTexture(canvas);
+  return _accretion;
+}
+
 let _tail: THREE.CanvasTexture | null = null;
 /** Comet/meteor tail: bright rounded head fading to a transparent point. */
 export function cometTailSprite(): THREE.CanvasTexture {
