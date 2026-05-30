@@ -61,6 +61,16 @@ for (const file of pipelineFiles) {
 }
 
 // Build final object
+const featuredOrder = ["routemates", "family-os"];
+featuredProjects.sort(
+  (a, b) => featuredOrder.indexOf(a.id) - featuredOrder.indexOf(b.id)
+);
+
+const pipelineOrder = ["tripkit", "docvault", "twincam", "nexus-lab"];
+upcomingProjects.sort(
+  (a, b) => pipelineOrder.indexOf(a.id) - pipelineOrder.indexOf(b.id)
+);
+
 const contentObj = {
   siteContent: {
     ...siteContent,

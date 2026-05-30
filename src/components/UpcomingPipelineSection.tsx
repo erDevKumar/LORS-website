@@ -1,5 +1,6 @@
 import { upcomingProjects } from "../content";
 import { ProjectHologramCard } from "./ProjectHologramCard";
+import { SectionHeader } from "./SectionHeader";
 
 export function UpcomingPipelineSection() {
   return (
@@ -9,16 +10,12 @@ export function UpcomingPipelineSection() {
       aria-labelledby="pipeline-heading"
     >
       <div className="mx-auto max-w-6xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-lors-glow/80">
-          Pipeline
-        </p>
-        <h2 id="pipeline-heading" className="section-heading mt-2">
-          Upcoming utilities
-        </h2>
-        <p className="section-sub">
-          Holographic previews of what we&apos;re shaping next — trip tools, document management,
-          dual-camera recording, and more experiments from Nexus Lab.
-        </p>
+        <SectionHeader
+          eyebrow="Pipeline"
+          title="Upcoming utilities"
+          subtitle="Holographic previews of what we're shaping next — trip tools, document management, dual-camera recording, and more experiments from Nexus Lab."
+          titleId="pipeline-heading"
+        />
         <div className="mt-14 grid gap-8 md:grid-cols-2">
           {upcomingProjects.map((project) => (
             <ProjectHologramCard key={project.id} project={project} />

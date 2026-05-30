@@ -51,17 +51,6 @@
   ],
   "featuredProjects": [
     {
-      "id": "family-os",
-      "name": "Family OS",
-      "tagline": "Your household, connected",
-      "status": "coming-soon",
-      "category": "family",
-      "featured": true,
-      "glb": "assets/models/family-os.glb",
-      "notifyCta": true,
-      "description": "A family-centric utility hub for shared calendars, documents, and household coordination — designed to keep everyone aligned without the clutter."
-    },
-    {
       "id": "routemates",
       "name": "RouteMates",
       "tagline": "Travel & trip companion",
@@ -72,25 +61,20 @@
       "glb": "assets/models/routemates.glb",
       "notifyCta": false,
       "description": "Coordinate journeys with companions — shared trips, live location awareness, and mobile-first travel utilities built on a modern API stack."
+    },
+    {
+      "id": "family-os",
+      "name": "Family OS",
+      "tagline": "Your household, connected",
+      "status": "coming-soon",
+      "category": "family",
+      "featured": true,
+      "glb": "assets/models/family-os.glb",
+      "notifyCta": true,
+      "description": "A family-centric utility hub for shared calendars, documents, and household coordination — designed to keep everyone aligned without the clutter."
     }
   ],
   "upcomingProjects": [
-    {
-      "id": "docvault",
-      "name": "DocVault",
-      "tagline": "Documents, organized",
-      "status": "concept",
-      "category": "productivity",
-      "description": "Secure document management for IDs, receipts, and household paperwork — find what you need in seconds."
-    },
-    {
-      "id": "nexus-lab",
-      "name": "Nexus Lab",
-      "tagline": "More utilities in R&D",
-      "status": "concept",
-      "category": "platform",
-      "description": "Experimental ideas across productivity, mobility, and connected living — the next everyday tools we're shaping behind the scenes."
-    },
     {
       "id": "tripkit",
       "name": "TripKit",
@@ -100,12 +84,28 @@
       "description": "Trip planning utility — itineraries, checklists, and prep tools for weekends away or cross-country adventures."
     },
     {
+      "id": "docvault",
+      "name": "DocVault",
+      "tagline": "Documents, organized",
+      "status": "concept",
+      "category": "productivity",
+      "description": "Secure document management for IDs, receipts, and household paperwork — find what you need in seconds."
+    },
+    {
       "id": "twincam",
       "name": "TwinCam",
       "tagline": "Two angles, one moment",
       "status": "concept",
       "category": "media",
       "description": "Dual-camera recording for creators and families — capture front and back (or wide and close) in a single synchronized session."
+    },
+    {
+      "id": "nexus-lab",
+      "name": "Nexus Lab",
+      "tagline": "More utilities in R&D",
+      "status": "concept",
+      "category": "platform",
+      "description": "Experimental ideas across productivity, mobility, and connected living — the next everyday tools we're shaping behind the scenes."
     }
   ]
 }

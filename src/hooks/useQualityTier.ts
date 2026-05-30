@@ -60,5 +60,5 @@ export function useQualityTier() {
     };
   }, [setQualityTier, setPrefersReducedMotion, qualityTier]);
 
-  return "ultra";
+  return qualityTier;
 }

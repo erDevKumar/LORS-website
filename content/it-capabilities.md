@@ -1,6 +1,6 @@
 ---
 title: IT Solutions & Capabilities
-subtitle: Engineering trust and platform stability.
+subtitle: LORS Nexus pairs product craft with professional IT delivery — from mobile clients and cloud APIs to security, DevOps, and consulting partnerships.
 capabilities:
   - title: Mobile apps
     description: Native and cross-platform clients with polished UX and offline-aware flows.

@@ -1,50 +1,44 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useStore } from "../store/useStore";
+import { cameraTransform } from "./galaxyLayout";
 
 export function CameraController() {
   const qualityTier = useStore((state) => state.qualityTier);
-  const scrollProgress = useStore((state) => state.scrollProgress);
-  
-  const currentLookAt = useRef(new THREE.Vector3(0, 0, 0));
-  const targetPos = useRef(new THREE.Vector3(0, 0, 7.5));
-  
-  const mouse = useRef({ x: 0, y: 0 });
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
-      mouse.current.y = -(e.clientY / window.innerHeight) * 2 + 1;
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+  const currentLookAt = useRef(new THREE.Vector3(0, 2.6, 0));
+  const targetPos = useRef(new THREE.Vector3());
+  const initialized = useRef(false);
 
-  useFrame((state) => {
-    // Base position
-    const baseX = 0;
-    const baseY = 0; // slightly above center
-    const baseZ = 7.5;
+  useFrame((state, dt) => {
+    const scrollIndex = useStore.getState().scrollIndex;
+    const { position, lookAt } = cameraTransform(scrollIndex);
 
-    // Add mouse parallax (more pronounced on ultra)
-    const parallaxStrength = qualityTier === "ultra" ? 1.5 : 0.5;
-    const targetX = baseX + mouse.current.x * parallaxStrength;
-    const targetY = baseY + mouse.current.y * parallaxStrength - (scrollProgress * 2); // Slight downward drift on scroll
-    
-    targetPos.current.set(targetX, targetY, baseZ);
+    // Tier-aware mouse parallax, applied as a small offset around the orbit frame.
+    const parallax = qualityTier === "ultra" ? 1.1 : 0.5;
+    position.x += state.pointer.x * parallax;
+    position.y += state.pointer.y * parallax * 0.6;
+    targetPos.current.copy(position);
 
-    const lerpFactor = qualityTier === "ultra" ? 0.05 : 0.08;
+    if (!initialized.current) {
+      state.camera.position.copy(targetPos.current);
+      currentLookAt.current.copy(lookAt);
+      initialized.current = true;
+    }
 
-    // Smooth camera position
-    state.camera.position.lerp(targetPos.current, lerpFactor);
+    // Frame-rate independent smoothing for a fluid orbital flight.
+    const lambda = qualityTier === "ultra" ? 4 : 6;
+    state.camera.position.x = THREE.MathUtils.damp(state.camera.position.x, targetPos.current.x, lambda, dt);
+    state.camera.position.y = THREE.MathUtils.damp(state.camera.position.y, targetPos.current.y, lambda, dt);
+    state.camera.position.z = THREE.MathUtils.damp(state.camera.position.z, targetPos.current.z, lambda, dt);
 
-    // Look at origin, with slight offset based on scroll
-    const lookAtTarget = new THREE.Vector3(0, -(scrollProgress * 2), -5);
-    currentLookAt.current.lerp(lookAtTarget, lerpFactor);
+    currentLookAt.current.x = THREE.MathUtils.damp(currentLookAt.current.x, lookAt.x, lambda, dt);
+    currentLookAt.current.y = THREE.MathUtils.damp(currentLookAt.current.y, lookAt.y, lambda, dt);
+    currentLookAt.current.z = THREE.MathUtils.damp(currentLookAt.current.z, lookAt.z, lambda, dt);
+
     state.camera.lookAt(currentLookAt.current);
   });
 
   return null;
 }
-

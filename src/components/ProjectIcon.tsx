@@ -3,11 +3,17 @@ import type { ProjectCategory } from "../content";
 type ProjectIconProps = {
   category: ProjectCategory;
   className?: string;
+  compact?: boolean;
 };
 
-export function ProjectIcon({ category, className = "h-10 w-10" }: ProjectIconProps) {
+export function ProjectIcon({
+  category,
+  className,
+  compact = false,
+}: ProjectIconProps) {
+  const iconClass = className ?? (compact ? "h-6 w-6" : "h-10 w-10");
   const stroke = "currentColor";
-  const props = { className, fill: "none", viewBox: "0 0 24 24", stroke, strokeWidth: 1.5 };
+  const props = { className: iconClass, fill: "none", viewBox: "0 0 24 24", stroke, strokeWidth: 1.5 };
 
   switch (category) {
     case "travel":
