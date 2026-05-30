@@ -5,10 +5,13 @@
 @layer base {
   html {
     @apply scroll-smooth antialiased;
+    /* Stop cleanly at the top/bottom limits: no rubber-band overscroll or scroll chaining. */
+    overscroll-behavior-y: none;
   }
 
   body {
     @apply m-0 min-h-screen bg-lors-navy text-white;
+    overscroll-behavior-y: none;
   }
 
   @media (min-width: 1024px) {
@@ -230,9 +233,12 @@
   }
 }
 
-/* WebGL Active Layer Overrides */
+/* WebGL Active Layer Overrides.
+   Navigation between cards is driven programmatically by GalaxyScrollNav (looping
+   carousel), so we use `proximity` snap only to gently re-center after a manual
+   scrollbar drag — `mandatory` would fight the JS smooth-scroll animation. */
 html.is-webgl {
-  scroll-snap-type: y mandatory !important;
+  scroll-snap-type: y proximity !important;
 }
 
 html.is-webgl body {
@@ -311,9 +317,16 @@ html.is-webgl #ecosystem .relative.mx-auto {
   height: 400px;
 }
 
-/* Each act maps to exactly one viewport so scrollIndex (scrollY / vh) is accurate */
+/* Each act maps to EXACTLY one viewport so scroll-snap lands on the next card and
+   scrollIndex (scrollY / vh) stays integer-aligned. The fallback DOM content is
+   hidden in WebGL mode, so clamping the height here is safe. */
 html.is-webgl .scroll-driver > section {
+  height: 100vh;
   min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 /* Crisp, futuristic frame for the floating solar-system panels.

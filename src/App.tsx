@@ -3,6 +3,7 @@ import { useStore } from "./store/useStore";
 import { WebGLFallbackBoundary } from "./components/WebGLFallbackBoundary";
 import { CanvasRoot } from "./experience/CanvasRoot";
 import { ScrollSpy } from "./components/ScrollSpy";
+import { GalaxyScrollNav } from "./components/GalaxyScrollNav";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteNav } from "./components/SiteNav";
 import { Hero } from "./components/Hero";
@@ -32,6 +33,7 @@ export default function App() {
     <div className="flex flex-col relative">
       <GalaxyAudio />
       <ScrollSpy />
+      <GalaxyScrollNav />
       <WebGLFallbackBoundary>
         <CanvasRoot />
       </WebGLFallbackBoundary>
