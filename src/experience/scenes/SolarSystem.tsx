@@ -4,6 +4,7 @@ import { Html } from "@react-three/drei";
 import * as THREE from "three";
 import { useStore } from "../../store/useStore";
 import { HologramSectionPanel } from "../../components/HologramSectionPanel";
+import { glowSprite } from "../galaxyTextures";
 import {
   BODIES,
   ORBIT_RADIUS,
@@ -16,28 +17,41 @@ type Quality = "ultra" | "standard";
 
 const RING_SEG = { ultra: 96, standard: 48 } as const;
 
-/** Faint HUD-style orbit ring marking where the cards sit. */
 function OrbitRing({ quality }: { quality: Quality }) {
   const seg = RING_SEG[quality];
   return (
     <group rotation={[-Math.PI / 2 + ORBIT_TILT, 0, 0]}>
+      {/* Main orbit ring */}
       <mesh>
-        <ringGeometry args={[ORBIT_RADIUS - 0.06, ORBIT_RADIUS + 0.06, seg]} />
+        <ringGeometry args={[ORBIT_RADIUS - 0.15, ORBIT_RADIUS + 0.15, seg]} />
         <meshBasicMaterial
           color="#3fb6ff"
           transparent
-          opacity={0.16}
+          opacity={0.1}
           side={THREE.DoubleSide}
           depthWrite={false}
           blending={THREE.AdditiveBlending}
         />
       </mesh>
+      {/* Inner accent ring */}
       <mesh>
-        <ringGeometry args={[ORBIT_RADIUS - 1.6, ORBIT_RADIUS - 1.55, seg]} />
+        <ringGeometry args={[ORBIT_RADIUS - 4, ORBIT_RADIUS - 3.8, seg]} />
         <meshBasicMaterial
           color="#7c3aed"
           transparent
-          opacity={0.07}
+          opacity={0.05}
+          side={THREE.DoubleSide}
+          depthWrite={false}
+          blending={THREE.AdditiveBlending}
+        />
+      </mesh>
+      {/* Outer accent ring */}
+      <mesh>
+        <ringGeometry args={[ORBIT_RADIUS + 3.8, ORBIT_RADIUS + 4, seg]} />
+        <meshBasicMaterial
+          color="#00ddff"
+          transparent
+          opacity={0.04}
           side={THREE.DoubleSide}
           depthWrite={false}
           blending={THREE.AdditiveBlending}
@@ -47,29 +61,57 @@ function OrbitRing({ quality }: { quality: Quality }) {
   );
 }
 
-/** A content card floating at its orbital slot, billboarded to stay head-on. */
+function ActiveGlow({ body }: { body: BodyDef }) {
+  const activeAct = useStore((s) => s.activeAct);
+  const pos = useMemo(() => panelPosition(body.act), [body.act]);
+  const matRef = useRef<THREE.SpriteMaterial>(null);
+  const tex = useMemo(() => glowSprite(), []);
+
+  useFrame((state, dt) => {
+    if (!matRef.current) return;
+    const isActive = body.act === activeAct;
+    const target = isActive ? 0.35 : 0;
+    matRef.current.opacity = THREE.MathUtils.damp(matRef.current.opacity, target, 4, dt);
+    
+    if (isActive) {
+      const pulse = 0.95 + Math.sin(state.clock.elapsedTime * 1.5) * 0.05;
+      matRef.current.opacity *= pulse;
+    }
+  });
+
+  return (
+    <sprite position={[pos.x, pos.y, pos.z - 1]} scale={[42, 33, 1]}>
+      <spriteMaterial
+        ref={matRef}
+        map={tex}
+        color={body.color}
+        transparent
+        opacity={0}
+        depthWrite={false}
+        blending={THREE.AdditiveBlending}
+        toneMapped={false}
+      />
+    </sprite>
+  );
+}
+
 function Panel({ body }: { body: BodyDef }) {
   const activeAct = useStore((s) => s.activeAct);
   const pos = useMemo(() => panelPosition(body.act), [body.act]);
   const groupRef = useRef<THREE.Group>(null);
   const domRef = useRef<HTMLDivElement>(null);
   const active = useRef(0);
-  const phase = useMemo(() => Math.random() * Math.PI * 2, []);
 
   useFrame((state, dt) => {
-    const t = state.clock.elapsedTime;
     const target = body.act === activeAct ? 1 : 0;
     active.current = THREE.MathUtils.damp(active.current, target, 5, dt);
     const a = active.current;
     if (groupRef.current) {
       groupRef.current.quaternion.copy(state.camera.quaternion);
-      // Gentle drift so idle cards feel alive without skewing.
-      groupRef.current.position.y = pos.y + Math.sin(t * 0.5 + phase) * 0.18;
     }
     if (domRef.current) {
       domRef.current.style.opacity = a.toFixed(3);
       domRef.current.style.pointerEvents = a > 0.6 ? "auto" : "none";
-      domRef.current.style.transform = `scale(${0.96 + a * 0.04})`;
     }
   });
 
@@ -78,7 +120,7 @@ function Panel({ body }: { body: BodyDef }) {
       <Html
         transform
         className="hologram-panel-container"
-        scale={0.42}
+        scale={0.95}
         style={{
           width: "920px",
           height: "680px",
@@ -103,6 +145,9 @@ export function SolarSystem({ quality = "ultra" }: { quality?: Quality }) {
   return (
     <group>
       <OrbitRing quality={quality} />
+      {BODIES.map((body) => (
+        <ActiveGlow key={`glow-${body.id}`} body={body} />
+      ))}
       {BODIES.map((body) => (
         <Panel key={`panel-${body.id}`} body={body} />
       ))}

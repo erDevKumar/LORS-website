@@ -15,10 +15,10 @@ export function CameraController() {
     const scrollIndex = useStore.getState().scrollIndex;
     const { position, lookAt } = cameraTransform(scrollIndex);
 
-    // Tier-aware mouse parallax, applied as a small offset around the orbit frame.
-    const parallax = qualityTier === "ultra" ? 1.1 : 0.5;
+    // Tier-aware mouse parallax for immersive feel
+    const parallax = qualityTier === "ultra" ? 1.8 : 1.0;
     position.x += state.pointer.x * parallax;
-    position.y += state.pointer.y * parallax * 0.6;
+    position.y += state.pointer.y * parallax * 0.5;
     targetPos.current.copy(position);
 
     if (!initialized.current) {
@@ -27,15 +27,18 @@ export function CameraController() {
       initialized.current = true;
     }
 
-    // Frame-rate independent smoothing for a fluid orbital flight.
-    const lambda = qualityTier === "ultra" ? 4 : 6;
+    // Smoother damping for cinematic galactic travel
+    const lambda = qualityTier === "ultra" ? 2.5 : 3.5;
+
+    // Smooth camera position
     state.camera.position.x = THREE.MathUtils.damp(state.camera.position.x, targetPos.current.x, lambda, dt);
     state.camera.position.y = THREE.MathUtils.damp(state.camera.position.y, targetPos.current.y, lambda, dt);
     state.camera.position.z = THREE.MathUtils.damp(state.camera.position.z, targetPos.current.z, lambda, dt);
 
-    currentLookAt.current.x = THREE.MathUtils.damp(currentLookAt.current.x, lookAt.x, lambda, dt);
-    currentLookAt.current.y = THREE.MathUtils.damp(currentLookAt.current.y, lookAt.y, lambda, dt);
-    currentLookAt.current.z = THREE.MathUtils.damp(currentLookAt.current.z, lookAt.z, lambda, dt);
+    // Smooth look-at target
+    currentLookAt.current.x = THREE.MathUtils.damp(currentLookAt.current.x, lookAt.x, lambda * 0.8, dt);
+    currentLookAt.current.y = THREE.MathUtils.damp(currentLookAt.current.y, lookAt.y, lambda * 0.8, dt);
+    currentLookAt.current.z = THREE.MathUtils.damp(currentLookAt.current.z, lookAt.z, lambda * 0.8, dt);
 
     state.camera.lookAt(currentLookAt.current);
   });

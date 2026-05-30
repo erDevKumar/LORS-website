@@ -1,19 +1,19 @@
-import { itCapabilities } from "../content";
+import { engineeringCulture } from "../content";
 
-type ITCapabilityGridProps = {
+type EngineeringPrinciplesGridProps = {
   compact?: boolean;
 };
 
-export function ITCapabilityGrid({ compact = false }: ITCapabilityGridProps) {
+export function EngineeringPrinciplesGrid({ compact = false }: EngineeringPrinciplesGridProps) {
   return (
     <ul
-      className={`grid gap-4 sm:grid-cols-2 lg:grid-cols-3 ${
-        compact ? "mt-6 gap-2 sm:grid-cols-2 lg:grid-cols-3" : "mt-14"
+      className={`grid gap-4 sm:grid-cols-1 lg:grid-cols-3 ${
+        compact ? "mt-4 gap-2" : "mt-10"
       }`}
     >
-      {itCapabilities.map((cap) => (
+      {engineeringCulture.principles.map((principle) => (
         <li
-          key={cap.title}
+          key={principle.title}
           className={`rounded-xl border border-white/10 bg-lors-deep/60 backdrop-blur-sm transition hover:border-lors-accent/40 ${
             compact ? "p-3" : "p-5"
           }`}
@@ -23,14 +23,14 @@ export function ITCapabilityGrid({ compact = false }: ITCapabilityGridProps) {
               compact ? "text-sm" : "text-lg"
             }`}
           >
-            {cap.title}
+            {principle.title}
           </h3>
           <p
-            className={`mt-2 leading-relaxed text-white/60 ${
+            className={`mt-2 leading-relaxed text-white/65 ${
               compact ? "text-xs leading-snug" : "text-sm"
             }`}
           >
-            {cap.description}
+            {principle.body}
           </p>
         </li>
       ))}

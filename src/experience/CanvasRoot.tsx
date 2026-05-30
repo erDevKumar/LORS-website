@@ -28,10 +28,10 @@ export function CanvasRoot() {
           powerPreference: "high-performance",
         }}
         dpr={dpr}
-        camera={{ fov: 45, near: 0.1, far: 240, position: [0, 1.2, 16] }}
+        camera={{ fov: 55, near: 0.1, far: 500, position: [0, 3, 28] }}
       >
-        <color attach="background" args={["#02040a"]} />
-        <fog attach="fog" args={["#02040a", 60, 220]} />
+        <color attach="background" args={["#010308"]} />
+        <fog attach="fog" args={["#010308", 150, 450]} />
 
         <ambientLight intensity={0.35} />
         <directionalLight position={[10, 10, 5]} intensity={0.6} color="#9fd8ff" />

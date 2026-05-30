@@ -5,10 +5,18 @@ import { Stars } from "@react-three/drei";
 import {
   starSprite,
   glowSprite,
-  spiralGalaxySprite,
-  ellipticalGalaxySprite,
-  cometTailSprite,
+  hiiRegionSprite,
+  coreGlowSprite,
+  companionGlowSprite,
+  tidalBridgeSprite,
 } from "../galaxyTextures";
+import {
+  diskQuat,
+  armLocal,
+  CORE_RADIUS,
+  companionPosition,
+  companionRadius,
+} from "../m51";
 import {
   NebulaCollapse,
   Nova,
@@ -18,23 +26,12 @@ import {
   Kilonova,
   GammaRayBurst,
   TidalDisruptionEvent,
-  SolarFlare,
-  CoronalMassEjection,
-  MeteorShower,
-  PlanetaryTransit,
-  SolarEclipse,
-  GeomagneticStorm,
+  AGNFlicker,
 } from "./galaxyEvents";
-
-const PLANET_POS: [number, number, number] = [-60, 22, -95];
 
 type Quality = "ultra" | "standard";
 
 const ADD = THREE.AdditiveBlending;
-
-/* ------------------------------------------------------------------ */
-/* Round, twinkling shader starfield                                   */
-/* ------------------------------------------------------------------ */
 
 const STAR_VERT = /* glsl */ `
   uniform float uTime;
@@ -72,48 +69,101 @@ type StarData = {
   phases: Float32Array;
 };
 
-function buildDisk(count: number): StarData {
+function buildM51Arms(count: number): StarData {
   const positions = new Float32Array(count * 3);
   const colors = new Float32Array(count * 3);
   const sizes = new Float32Array(count);
   const phases = new Float32Array(count);
 
-  const core = new THREE.Color("#ffe6b8");
-  const mid = new THREE.Color("#8a6ff0");
-  const rim = new THREE.Color("#2a4a8f");
-  const maxR = 120;
-  const arms = 2;
+  const coreColor = new THREE.Color("#ffe8c0");
+  const hiiColor = new THREE.Color("#ff90c0");
+  const obColor = new THREE.Color("#8ac8ff");
   const c = new THREE.Color();
 
   for (let i = 0; i < count; i++) {
-    const r = Math.sqrt(Math.random()) * maxR;
-    const t = r / maxR;
-    const armAngle = (i % arms) * ((Math.PI * 2) / arms);
-    const spin = t * 4.2;
-    const jitter = (Math.random() - 0.5) * (0.6 + t * 1.4);
-    const angle = armAngle + spin + jitter;
+    const arm = i % 2;
+    const t = Math.pow(Math.random(), 0.65);
+    const loc = armLocal(arm, t);
+    
+    // Wider arms for the larger scale
+    const armWidth = 5 + t * 12;
+    const jitterX = (Math.random() - 0.5) * armWidth;
+    const jitterY = (Math.random() - 0.5) * armWidth;
+    const thickness = (1 - t) * 4 + 1;
+    const jitterZ = (Math.random() - 0.5) * thickness;
+    
+    const localPos = new THREE.Vector3(
+      loc.x + jitterX,
+      loc.y + jitterY,
+      jitterZ
+    );
+    const worldPos = localPos.applyQuaternion(diskQuat);
+    
+    positions[i * 3] = worldPos.x;
+    positions[i * 3 + 1] = worldPos.y;
+    positions[i * 3 + 2] = worldPos.z;
 
-    const thickness = (1 - t) * 5 + 0.6;
-    positions[i * 3] = Math.cos(angle) * r;
-    positions[i * 3 + 2] = Math.sin(angle) * r;
-    positions[i * 3 + 1] = (Math.random() - 0.5) * thickness * Math.pow(1 - t, 0.5);
+    if (t < 0.3) {
+      c.copy(coreColor).lerp(hiiColor, t / 0.3);
+    } else if (t < 0.7) {
+      c.copy(hiiColor).lerp(obColor, (t - 0.3) / 0.4);
+    } else {
+      c.copy(obColor);
+    }
 
-    if (t < 0.45) c.copy(core).lerp(mid, t / 0.45);
-    else c.copy(mid).lerp(rim, (t - 0.45) / 0.55);
-
-    const arm = 0.5 + 0.5 * Math.cos(angle * arms - spin * 2);
-    const bright = (0.4 + 0.6 * arm) * (1 - t * 0.5);
+    const bright = 0.5 + Math.random() * 0.5;
     colors[i * 3] = c.r * bright;
     colors[i * 3 + 1] = c.g * bright;
     colors[i * 3 + 2] = c.b * bright;
 
-    sizes[i] = 0.8 + Math.random() * 1.8;
+    sizes[i] = 0.8 + Math.random() * 2.0;
     phases[i] = Math.random() * Math.PI * 2;
   }
   return { positions, colors, sizes, phases };
 }
 
-const SCATTER_PALETTE = ["#ffffff", "#dbe7ff", "#ffe9cf", "#cfe0ff", "#ffd9d2"];
+function buildCoreBulge(count: number): StarData {
+  const positions = new Float32Array(count * 3);
+  const colors = new Float32Array(count * 3);
+  const sizes = new Float32Array(count);
+  const phases = new Float32Array(count);
+
+  const c = new THREE.Color();
+
+  for (let i = 0; i < count; i++) {
+    // Larger core bulge for the scaled galaxy
+    const r = Math.pow(Math.random(), 0.5) * CORE_RADIUS * 1.5;
+    const theta = Math.random() * Math.PI * 2;
+    const phi = (Math.random() - 0.5) * Math.PI * 0.5;
+    
+    const localPos = new THREE.Vector3(
+      r * Math.cos(theta) * Math.cos(phi),
+      r * Math.sin(theta) * Math.cos(phi),
+      r * Math.sin(phi) * 0.5
+    );
+    const worldPos = localPos.applyQuaternion(diskQuat);
+    
+    positions[i * 3] = worldPos.x;
+    positions[i * 3 + 1] = worldPos.y;
+    positions[i * 3 + 2] = worldPos.z;
+
+    const t = r / (CORE_RADIUS * 1.5);
+    c.setRGB(
+      1.0,
+      0.85 + t * 0.1,
+      0.65 + t * 0.2
+    );
+
+    const bright = 0.6 + Math.random() * 0.4;
+    colors[i * 3] = c.r * bright;
+    colors[i * 3 + 1] = c.g * bright;
+    colors[i * 3 + 2] = c.b * bright;
+
+    sizes[i] = 0.7 + Math.random() * 1.5;
+    phases[i] = Math.random() * Math.PI * 2;
+  }
+  return { positions, colors, sizes, phases };
+}
 
 function buildScatter(count: number, radius: number): StarData {
   const positions = new Float32Array(count * 3);
@@ -121,9 +171,9 @@ function buildScatter(count: number, radius: number): StarData {
   const sizes = new Float32Array(count);
   const phases = new Float32Array(count);
   const c = new THREE.Color();
+  const SCATTER_PALETTE = ["#ffffff", "#dbe7ff", "#ffe9cf", "#cfe0ff", "#ffd9d2"];
 
   for (let i = 0; i < count; i++) {
-    // Uniform on a sphere shell, with some radial depth.
     const u = Math.random() * 2 - 1;
     const theta = Math.random() * Math.PI * 2;
     const rr = radius * (0.55 + Math.random() * 0.45);
@@ -138,7 +188,6 @@ function buildScatter(count: number, radius: number): StarData {
     colors[i * 3 + 1] = c.g * b;
     colors[i * 3 + 2] = c.b * b;
 
-    // A few bright hero stars, mostly small ones.
     sizes[i] = Math.random() < 0.08 ? 3 + Math.random() * 4 : 1 + Math.random() * 1.6;
     phases[i] = Math.random() * Math.PI * 2;
   }
@@ -148,11 +197,9 @@ function buildScatter(count: number, radius: number): StarData {
 function ShaderStars({
   data,
   uScale,
-  spin = 0,
 }: {
   data: StarData;
   uScale: number;
-  spin?: number;
 }) {
   const ref = useRef<THREE.Points>(null);
   const uniforms = useMemo(
@@ -164,9 +211,8 @@ function ShaderStars({
     [uScale]
   );
 
-  useFrame((state, dt) => {
+  useFrame((state) => {
     uniforms.uTime.value = state.clock.elapsedTime;
-    if (spin && ref.current) ref.current.rotation.y += dt * spin;
   });
 
   const n = data.sizes.length;
@@ -190,9 +236,159 @@ function ShaderStars({
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* Soft rounded nebula                                                 */
-/* ------------------------------------------------------------------ */
+function CoreGlow() {
+  const matRef = useRef<THREE.SpriteMaterial>(null);
+  const tex = useMemo(() => coreGlowSprite(), []);
+  
+  useFrame((state) => {
+    if (matRef.current) {
+      const t = state.clock.elapsedTime;
+      matRef.current.opacity = 0.7 + Math.sin(t * 0.4) * 0.1;
+    }
+  });
+
+  return (
+    <sprite scale={[35, 35, 1]}>
+      <spriteMaterial
+        ref={matRef}
+        map={tex}
+        transparent
+        opacity={0.75}
+        depthWrite={false}
+        blending={ADD}
+        toneMapped={false}
+      />
+    </sprite>
+  );
+}
+
+function HIIRegions({ quality }: { quality: Quality }) {
+  const count = quality === "ultra" ? 30 : 18;
+  const tex = useMemo(() => hiiRegionSprite(), []);
+  
+  const regions = useMemo(() => {
+    const arr = [];
+    for (let i = 0; i < count; i++) {
+      const arm = i % 2;
+      const t = 0.2 + Math.random() * 0.6;
+      const loc = armLocal(arm, t);
+      // Larger jitter for the scaled galaxy
+      const jitter = 4 + t * 6;
+      const localPos = new THREE.Vector3(
+        loc.x + (Math.random() - 0.5) * jitter,
+        loc.y + (Math.random() - 0.5) * jitter,
+        (Math.random() - 0.5) * 2
+      );
+      const worldPos = localPos.applyQuaternion(diskQuat);
+      arr.push({
+        position: [worldPos.x, worldPos.y, worldPos.z] as [number, number, number],
+        scale: 5 + Math.random() * 8,
+        phase: Math.random() * Math.PI * 2,
+      });
+    }
+    return arr;
+  }, [count]);
+
+  return (
+    <group>
+      {regions.map((r, i) => (
+        <HIISprite key={i} tex={tex} position={r.position} scale={r.scale} phase={r.phase} />
+      ))}
+    </group>
+  );
+}
+
+function HIISprite({
+  tex,
+  position,
+  scale,
+  phase,
+}: {
+  tex: THREE.Texture;
+  position: [number, number, number];
+  scale: number;
+  phase: number;
+}) {
+  const matRef = useRef<THREE.SpriteMaterial>(null);
+  
+  useFrame((state) => {
+    if (matRef.current) {
+      matRef.current.opacity = 0.35 + Math.sin(state.clock.elapsedTime * 0.5 + phase) * 0.1;
+    }
+  });
+
+  return (
+    <sprite position={position} scale={[scale, scale, 1]}>
+      <spriteMaterial
+        ref={matRef}
+        map={tex}
+        color="#ff90c0"
+        transparent
+        opacity={0.4}
+        depthWrite={false}
+        blending={ADD}
+        toneMapped={false}
+      />
+    </sprite>
+  );
+}
+
+function Companion() {
+  const tex = useMemo(() => companionGlowSprite(), []);
+  const pos = companionPosition;
+  
+  return (
+    <group position={[pos.x, pos.y, pos.z]}>
+      <sprite scale={[companionRadius * 2.8, companionRadius * 2.2, 1]}>
+        <spriteMaterial
+          map={tex}
+          transparent
+          opacity={0.8}
+          depthWrite={false}
+          blending={ADD}
+          toneMapped={false}
+        />
+      </sprite>
+      <sprite scale={[companionRadius * 1.0, companionRadius * 1.0, 1]}>
+        <spriteMaterial
+          map={glowSprite()}
+          color="#fff0d0"
+          transparent
+          opacity={0.65}
+          depthWrite={false}
+          blending={ADD}
+          toneMapped={false}
+        />
+      </sprite>
+    </group>
+  );
+}
+
+function TidalBridge() {
+  const tex = useMemo(() => tidalBridgeSprite(), []);
+  const armTip = armLocal(1, 0.92);
+  const startPos = new THREE.Vector3(armTip.x, armTip.y, 0).applyQuaternion(diskQuat);
+  const endPos = companionPosition;
+  
+  const midPos = startPos.clone().lerp(endPos, 0.5);
+  const dir = endPos.clone().sub(startPos);
+  const length = dir.length();
+  const angle = Math.atan2(dir.y, dir.x);
+
+  return (
+    <mesh position={[midPos.x, midPos.y, midPos.z - 3]} rotation={[0, 0, angle]}>
+      <planeGeometry args={[length, 8]} />
+      <meshBasicMaterial
+        map={tex}
+        transparent
+        opacity={0.35}
+        depthWrite={false}
+        side={THREE.DoubleSide}
+        toneMapped={false}
+      />
+    </mesh>
+  );
+}
 
 function NebulaCloud({
   color,
@@ -245,376 +441,84 @@ function NebulaCloud({
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* Distant galaxies                                                    */
-/* ------------------------------------------------------------------ */
-
-function DistantGalaxy({
-  texture,
-  position,
-  size,
-  color,
-  spin,
-  tilt = 0,
-  opacity = 0.8,
-}: {
-  texture: THREE.Texture;
-  position: [number, number, number];
-  size: number;
-  color: string;
-  spin: number;
-  tilt?: number;
-  opacity?: number;
-}) {
-  const ref = useRef<THREE.Mesh>(null);
-  useFrame((_, dt) => {
-    if (ref.current) ref.current.rotation.z += dt * spin;
-  });
-  return (
-    <mesh ref={ref} position={position} rotation={[tilt, 0, Math.random() * Math.PI]}>
-      <planeGeometry args={[size, size]} />
-      <meshBasicMaterial
-        map={texture}
-        color={color}
-        transparent
-        opacity={opacity}
-        depthWrite={false}
-        blending={ADD}
-        toneMapped={false}
-      />
-    </mesh>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* Streaks: meteors + comets                                           */
-/* ------------------------------------------------------------------ */
-
-const X_AXIS = new THREE.Vector3(1, 0, 0);
-
-function Streak({
-  length,
-  width,
-  headSize,
-  color,
-  speed,
-  minDelay,
-  maxDelay,
-  spawn,
-}: {
-  length: number;
-  width: number;
-  headSize: number;
-  color: string;
-  speed: number;
-  minDelay: number;
-  maxDelay: number;
-  spawn: () => { start: THREE.Vector3; dir: THREE.Vector3; distance: number };
-}) {
-  const groupRef = useRef<THREE.Group>(null);
-  const tailRef = useRef<THREE.Group>(null);
-  const tailTex = useMemo(() => cometTailSprite(), []);
-
-  const state = useRef({
-    active: false,
-    nextAt: 1 + Math.random() * maxDelay,
-    start: new THREE.Vector3(),
-    dir: new THREE.Vector3(1, 0, 0),
-    travelled: 0,
-    distance: 0,
-  });
-
-  useFrame((s, dt) => {
-    const st = state.current;
-    const time = s.clock.elapsedTime;
-    const g = groupRef.current;
-    if (!g) return;
-
-    if (!st.active) {
-      g.visible = false;
-      if (time >= st.nextAt) {
-        const cfg = spawn();
-        st.start.copy(cfg.start);
-        st.dir.copy(cfg.dir).normalize();
-        st.distance = cfg.distance;
-        st.travelled = 0;
-        st.active = true;
-        g.position.copy(st.start);
-        if (tailRef.current) {
-          tailRef.current.quaternion.setFromUnitVectors(X_AXIS, st.dir);
-        }
-      }
-      return;
-    }
-
-    g.visible = true;
-    st.travelled += speed * dt * 60;
-    g.position.addScaledVector(st.dir, speed * dt * 60);
-    const p = st.travelled / st.distance;
-    // Fade in then out across the flight.
-    const fade = Math.sin(Math.min(1, Math.max(0, p)) * Math.PI);
-    g.scale.setScalar(0.6 + fade * 0.6);
-    if (p >= 1) {
-      st.active = false;
-      st.nextAt = time + minDelay + Math.random() * (maxDelay - minDelay);
-    }
-  });
-
-  return (
-    <group ref={groupRef} visible={false}>
-      <group ref={tailRef}>
-        <mesh position={[-length / 2, 0, 0]}>
-          <planeGeometry args={[length, width]} />
-          <meshBasicMaterial
-            map={tailTex}
-            color={color}
-            transparent
-            depthWrite={false}
-            blending={ADD}
-            toneMapped={false}
-          />
-        </mesh>
-      </group>
-      <sprite scale={[headSize, headSize, 1]}>
-        <spriteMaterial
-          map={glowSprite()}
-          color={color}
-          transparent
-          depthWrite={false}
-          blending={ADD}
-          toneMapped={false}
-        />
-      </sprite>
-    </group>
-  );
-}
-
-function meteorSpawn() {
-  const startX = (Math.random() - 0.5) * 110;
-  const startY = 20 + Math.random() * 30;
-  const startZ = -35 - Math.random() * 35;
-  const start = new THREE.Vector3(startX, startY, startZ);
-  const dir = new THREE.Vector3(
-    (Math.random() > 0.5 ? 1 : -1) * (0.6 + Math.random() * 0.5),
-    -1,
-    -(Math.random() * 0.3)
-  );
-  return { start, dir, distance: 60 + Math.random() * 30 };
-}
-
-function cometSpawn() {
-  const side = Math.random() > 0.5 ? 1 : -1;
-  const start = new THREE.Vector3(side * (70 + Math.random() * 20), 10 + Math.random() * 20, -55 - Math.random() * 20);
-  const dir = new THREE.Vector3(-side * (0.9 + Math.random() * 0.2), -0.25 - Math.random() * 0.2, 0.15);
-  return { start, dir, distance: 150 + Math.random() * 40 };
-}
-
-/* ------------------------------------------------------------------ */
-/* Supernova flare + shockwave                                         */
-/* ------------------------------------------------------------------ */
-
-function Supernova({ minDelay, maxDelay }: { minDelay: number; maxDelay: number }) {
-  const groupRef = useRef<THREE.Group>(null);
-  const flareRef = useRef<THREE.Sprite>(null);
-  const flareMat = useRef<THREE.SpriteMaterial>(null);
-  const ringRef = useRef<THREE.Mesh>(null);
-  const ringMat = useRef<THREE.MeshBasicMaterial>(null);
-
-  const st = useRef({ active: false, nextAt: 4 + Math.random() * maxDelay, t: 0 });
-
-  useFrame((s, dt) => {
-    const g = groupRef.current;
-    if (!g) return;
-    const time = s.clock.elapsedTime;
-
-    if (!st.current.active) {
-      g.visible = false;
-      if (time >= st.current.nextAt) {
-        g.position.set(
-          (Math.random() - 0.5) * 90,
-          (Math.random() - 0.5) * 50,
-          -45 - Math.random() * 40
-        );
-        g.quaternion.copy(s.camera.quaternion);
-        st.current.active = true;
-        st.current.t = 0;
-      }
-      return;
-    }
-
-    g.visible = true;
-    g.quaternion.copy(s.camera.quaternion);
-    st.current.t += dt;
-    const T = 1.8;
-    const p = Math.min(1, st.current.t / T);
-    // Fast spike up, slow decay.
-    const flare = p < 0.12 ? p / 0.12 : Math.pow(1 - (p - 0.12) / 0.88, 1.6);
-    const fs = 3 + flare * 14;
-    if (flareRef.current) flareRef.current.scale.setScalar(fs);
-    if (flareMat.current) flareMat.current.opacity = Math.max(0, flare);
-
-    const ringScale = 1 + p * 20;
-    if (ringRef.current) ringRef.current.scale.setScalar(ringScale);
-    if (ringMat.current) ringMat.current.opacity = Math.max(0, (1 - p) * 0.5);
-
-    if (p >= 1) {
-      st.current.active = false;
-      st.current.nextAt = time + minDelay + Math.random() * (maxDelay - minDelay);
-    }
-  });
-
-  return (
-    <group ref={groupRef} visible={false}>
-      <sprite ref={flareRef} scale={3}>
-        <spriteMaterial
-          ref={flareMat}
-          map={glowSprite()}
-          color="#dfeaff"
-          transparent
-          opacity={0}
-          depthWrite={false}
-          blending={ADD}
-          toneMapped={false}
-        />
-      </sprite>
-      <mesh ref={ringRef}>
-        <ringGeometry args={[0.85, 1, 64]} />
-        <meshBasicMaterial
-          ref={ringMat}
-          color="#bcd6ff"
-          transparent
-          opacity={0}
-          side={THREE.DoubleSide}
-          depthWrite={false}
-          blending={ADD}
-          toneMapped={false}
-        />
-      </mesh>
-    </group>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* Distant planet / moon                                               */
-/* ------------------------------------------------------------------ */
-
-function DistantPlanet({ quality }: { quality: Quality }) {
-  const ref = useRef<THREE.Mesh>(null);
-  const seg = quality === "ultra" ? 48 : 24;
-  useFrame((s, dt) => {
-    if (ref.current) {
-      ref.current.rotation.y += dt * 0.04;
-      ref.current.position.x = -60 + Math.sin(s.clock.elapsedTime * 0.02) * 4;
-    }
-  });
-  return (
-    <group position={PLANET_POS}>
-      {/* atmosphere rim */}
-      <mesh scale={1.12}>
-        <sphereGeometry args={[7, seg, seg]} />
-        <meshBasicMaterial color="#5b8bd0" transparent opacity={0.12} side={THREE.BackSide} blending={ADD} depthWrite={false} />
-      </mesh>
-      <mesh ref={ref}>
-        <sphereGeometry args={[7, seg, seg]} />
-        <meshStandardMaterial color="#3a5a86" emissive="#16243f" emissiveIntensity={0.5} roughness={0.9} metalness={0.1} />
-      </mesh>
-    </group>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* Scene                                                               */
-/* ------------------------------------------------------------------ */
-
 export function GalaxyScene({ quality = "ultra" }: { quality?: Quality }) {
-  const backdropRef = useRef<THREE.Group>(null);
   const ultra = quality === "ultra";
 
-  const diskData = useMemo(() => buildDisk(ultra ? 7000 : 3500), [ultra]);
-  const scatterData = useMemo(() => buildScatter(ultra ? 2600 : 1300, 150), [ultra]);
+  // Larger star counts for immersive environment
+  const armData = useMemo(() => buildM51Arms(ultra ? 12000 : 6000), [ultra]);
+  const coreData = useMemo(() => buildCoreBulge(ultra ? 3000 : 1500), [ultra]);
+  const scatterData = useMemo(() => buildScatter(ultra ? 4000 : 2000, 200), [ultra]);
 
-  const spiralTex = useMemo(() => spiralGalaxySprite(), []);
-  const ellipticalTex = useMemo(() => ellipticalGalaxySprite(), []);
-
-  useFrame((state) => {
-    if (backdropRef.current) {
-      const px = state.pointer.x * 0.04;
-      const py = state.pointer.y * 0.03;
-      backdropRef.current.rotation.y = THREE.MathUtils.lerp(backdropRef.current.rotation.y, px, 0.04);
-      backdropRef.current.rotation.x = THREE.MathUtils.lerp(backdropRef.current.rotation.x, -py, 0.04);
-    }
-  });
-
-  const nebulaCount = ultra ? 220 : 110;
+  const nebulaCount = ultra ? 280 : 140;
 
   return (
-    <group ref={backdropRef}>
-      {/* Faint far pinpoint base layer. */}
-      <Stars radius={150} depth={70} count={ultra ? 4000 : 2000} factor={3} saturation={0.5} fade speed={0.5} />
+    <group>
+      {/* Distant background stars - the universe beyond M51 */}
+      <Stars radius={250} depth={100} count={ultra ? 6000 : 3000} factor={4} saturation={0.5} fade speed={0.4} />
 
-      {/* Scattered round, twinkling, colored stars all around. */}
-      <ShaderStars data={scatterData} uScale={ultra ? 230 : 200} />
+      {/* M51 Whirlpool Galaxy - YOU ARE INSIDE THIS GALAXY */}
+      {/* The galaxy is centered at origin, cards orbit within it */}
+      
+      {/* Scattered halo stars surrounding the entire galaxy */}
+      <ShaderStars data={scatterData} uScale={ultra ? 280 : 240} />
 
-      {/* Tilted galactic disk band far behind the system. */}
-      <group position={[0, -8, -52]} rotation={[0.95, 0, 0.18]}>
-        <ShaderStars data={diskData} uScale={ultra ? 230 : 200} spin={0.012} />
-      </group>
+      {/* The galactic core at the center - where Hero card sits */}
+      <ShaderStars data={coreData} uScale={ultra ? 260 : 220} />
+      <CoreGlow />
+      <AGNFlicker minDelay={8} maxDelay={20} />
 
-      {/* Soft rounded nebulae. */}
-      <NebulaCloud color="#1aa7d8" position={[-32, 8, -42]} spread={16} count={nebulaCount} />
-      <NebulaCloud color="#7c3aed" position={[34, -10, -46]} spread={18} count={nebulaCount} />
+      {/* The grand spiral arms - cards travel through these */}
+      <ShaderStars data={armData} uScale={ultra ? 300 : 260} />
 
-      {/* Distant galaxies. */}
-      <DistantGalaxy texture={spiralTex} position={[58, 26, -100]} size={48} color="#cdbfff" spin={0.02} tilt={0.5} opacity={0.85} />
+      {/* Pink HII star-forming regions along the arms */}
+      <HIIRegions quality={quality} />
+
+      {/* NGC 5195 companion galaxy at the arm tip */}
+      <Companion />
+      <TidalBridge />
+
+      {/* Nebula clouds embedded throughout the galaxy */}
+      <NebulaCloud color="#6040a0" position={[-45, 12, -25]} spread={18} count={nebulaCount} />
+      <NebulaCloud color="#4080c0" position={[50, -8, 15]} spread={20} count={nebulaCount} />
+      <NebulaCloud color="#5030a0" position={[-30, -15, 35]} spread={16} count={nebulaCount} />
+      <NebulaCloud color="#3060a0" position={[25, 20, -40]} spread={22} count={nebulaCount} />
       {ultra && (
         <>
-          <DistantGalaxy texture={spiralTex} position={[-70, -30, -110]} size={40} color="#bfe4ff" spin={-0.015} tilt={-0.7} opacity={0.7} />
-          <DistantGalaxy texture={ellipticalTex} position={[20, 40, -120]} size={34} color="#ffe7c9" spin={0.008} tilt={0.2} opacity={0.6} />
+          <NebulaCloud color="#a06080" position={[60, 15, -30]} spread={24} count={nebulaCount} />
+          <NebulaCloud color="#3070b0" position={[-55, -20, 20]} spread={20} count={nebulaCount} />
+          <NebulaCloud color="#7050a0" position={[35, -25, 45]} spread={18} count={nebulaCount} />
         </>
       )}
 
-      {/* Distant drifting planet. */}
-      <DistantPlanet quality={quality} />
-
-      {/* Common space events. */}
-      <Streak length={9} width={0.5} headSize={1.6} color="#dcebff" speed={0.85} minDelay={2} maxDelay={7} spawn={meteorSpawn} />
-      <Streak length={7} width={0.4} headSize={1.3} color="#cfe6ff" speed={1.05} minDelay={3} maxDelay={9} spawn={meteorSpawn} />
-      {ultra && (
-        <Streak length={6} width={0.35} headSize={1.1} color="#ffe0d6" speed={0.7} minDelay={4} maxDelay={11} spawn={meteorSpawn} />
-      )}
-
-      {/* Comet with a long glowing tail. */}
-      <Streak length={26} width={1.6} headSize={3.4} color="#bfe0ff" speed={0.32} minDelay={14} maxDelay={28} spawn={cometSpawn} />
-
-      {/* Supernova flares. */}
-      <Supernova minDelay={ultra ? 16 : 26} maxDelay={ultra ? 34 : 50} />
-
-      {/* --- Star life & death --- */}
-      <NebulaCollapse minDelay={ultra ? 12 : 20} maxDelay={ultra ? 26 : 44} />
-      <Nova minDelay={ultra ? 7 : 12} maxDelay={ultra ? 16 : 26} />
-      {ultra && <Hypernova minDelay={22} maxDelay={45} />}
-
-      {/* --- Cosmic crashes --- */}
-      {ultra && <GalacticMerger minDelay={32} maxDelay={62} />}
-      <BlackHoleMerger minDelay={ultra ? 20 : 34} maxDelay={ultra ? 40 : 60} />
-      <Kilonova minDelay={ultra ? 16 : 28} maxDelay={ultra ? 34 : 52} />
-
-      {/* --- High-energy blasts --- */}
-      <GammaRayBurst minDelay={ultra ? 14 : 24} maxDelay={ultra ? 32 : 50} />
-      <TidalDisruptionEvent minDelay={ultra ? 22 : 36} maxDelay={ultra ? 44 : 64} />
-      <SolarFlare minDelay={ultra ? 8 : 14} maxDelay={ultra ? 18 : 30} />
-      <CoronalMassEjection minDelay={ultra ? 10 : 18} maxDelay={ultra ? 22 : 38} />
-
-      {/* --- Space motion & weather --- */}
-      <MeteorShower minDelay={ultra ? 18 : 30} maxDelay={ultra ? 38 : 58} count={ultra ? 7 : 4} />
-      <PlanetaryTransit minDelay={ultra ? 16 : 28} maxDelay={ultra ? 34 : 52} />
-      <SolarEclipse minDelay={ultra ? 20 : 34} maxDelay={ultra ? 40 : 60} />
-      <GeomagneticStorm
-        minDelay={ultra ? 18 : 30}
-        maxDelay={ultra ? 38 : 56}
-        position={PLANET_POS}
-        ribbons={ultra ? 3 : 2}
-      />
+      {/* Galactic events happening around you as you travel - frequent and visible */}
+      {/* Nebula collapses / star births */}
+      <NebulaCollapse minDelay={ultra ? 4 : 8} maxDelay={ultra ? 10 : 18} siteIndex={0} />
+      <NebulaCollapse minDelay={ultra ? 6 : 12} maxDelay={ultra ? 14 : 22} siteIndex={3} />
+      
+      {/* Nova flares - common stellar events */}
+      <Nova minDelay={ultra ? 3 : 6} maxDelay={ultra ? 8 : 14} siteIndex={1} />
+      <Nova minDelay={ultra ? 4 : 8} maxDelay={ultra ? 10 : 16} siteIndex={4} />
+      <Nova minDelay={ultra ? 5 : 10} maxDelay={ultra ? 12 : 20} siteIndex={7} />
+      
+      {/* Hypernovae - dramatic but less frequent */}
+      {ultra && <Hypernova minDelay={8} maxDelay={20} siteIndex={2} />}
+      
+      {/* Galaxy mergers in the distance */}
+      {ultra && <GalacticMerger minDelay={15} maxDelay={35} siteIndex={3} />}
+      
+      {/* Black hole events */}
+      <BlackHoleMerger minDelay={ultra ? 8 : 15} maxDelay={ultra ? 18 : 30} siteIndex={5} />
+      
+      {/* Kilonova - neutron star mergers */}
+      <Kilonova minDelay={ultra ? 6 : 12} maxDelay={ultra ? 15 : 25} siteIndex={6} />
+      <Kilonova minDelay={ultra ? 8 : 14} maxDelay={ultra ? 18 : 28} siteIndex={8} />
+      
+      {/* Gamma ray bursts - brief and bright */}
+      <GammaRayBurst minDelay={ultra ? 5 : 10} maxDelay={ultra ? 12 : 22} siteIndex={0} />
+      <GammaRayBurst minDelay={ultra ? 7 : 12} maxDelay={ultra ? 15 : 25} siteIndex={4} />
+      
+      {/* Tidal disruption events */}
+      <TidalDisruptionEvent minDelay={ultra ? 10 : 18} maxDelay={ultra ? 22 : 38} siteIndex={7} />
     </group>
   );
 }

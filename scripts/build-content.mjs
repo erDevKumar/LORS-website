@@ -15,20 +15,36 @@ const siteYamlPath = path.join(CONTENT_DIR, "site.yaml");
 const siteYamlRaw = fs.readFileSync(siteYamlPath, "utf8");
 const siteContent = YAML.parse(siteYamlRaw);
 
-// 2. Read mission.md
-const missionPath = path.join(CONTENT_DIR, "mission.md");
-const missionRaw = fs.readFileSync(missionPath, "utf8");
-const missionMatter = matter(missionRaw);
-const missionPillars = missionMatter.data.pillars || [];
-const missionAbout = missionMatter.data.about || "";
+// 2. Read tech-stack.md
+const techStackPath = path.join(CONTENT_DIR, "tech-stack.md");
+const techStackRaw = fs.readFileSync(techStackPath, "utf8");
+const techStackMatter = matter(techStackRaw);
+const techStack = {
+  title: techStackMatter.data.title || "",
+  subtitle: techStackMatter.data.subtitle || "",
+  layers: techStackMatter.data.layers || [],
+};
 
-// 3. Read it-capabilities.md
-const itPath = path.join(CONTENT_DIR, "it-capabilities.md");
-const itRaw = fs.readFileSync(itPath, "utf8");
-const itMatter = matter(itRaw);
-const itCapabilities = itMatter.data.capabilities || [];
+// 3. Read engineering-culture.md
+const culturePath = path.join(CONTENT_DIR, "engineering-culture.md");
+const cultureRaw = fs.readFileSync(culturePath, "utf8");
+const cultureMatter = matter(cultureRaw);
+const engineeringCulture = {
+  title: cultureMatter.data.title || "",
+  principles: cultureMatter.data.principles || [],
+};
 
-// 4. Read products/
+// 4. Read careers.md
+const careersPath = path.join(CONTENT_DIR, "careers.md");
+const careersRaw = fs.readFileSync(careersPath, "utf8");
+const careersMatter = matter(careersRaw);
+const careersContent = {
+  title: careersMatter.data.title || "",
+  subtitle: careersMatter.data.subtitle || "",
+  body: careersMatter.data.body || "",
+};
+
+// 5. Read products/
 const productsDir = path.join(CONTENT_DIR, "products");
 const productFiles = fs.existsSync(productsDir) ? fs.readdirSync(productsDir) : [];
 const featuredProjects = [];
@@ -44,45 +60,19 @@ for (const file of productFiles) {
   }
 }
 
-// 5. Read pipeline/
-const pipelineDir = path.join(CONTENT_DIR, "pipeline");
-const pipelineFiles = fs.existsSync(pipelineDir) ? fs.readdirSync(pipelineDir) : [];
-const upcomingProjects = [];
-
-for (const file of pipelineFiles) {
-  if (file.endsWith(".md")) {
-    const raw = fs.readFileSync(path.join(pipelineDir, file), "utf8");
-    const parsed = matter(raw);
-    upcomingProjects.push({
-      ...parsed.data,
-      description: parsed.content.trim(),
-    });
-  }
-}
-
-// Build final object
 const featuredOrder = ["routemates", "family-os"];
 featuredProjects.sort(
   (a, b) => featuredOrder.indexOf(a.id) - featuredOrder.indexOf(b.id)
 );
 
-const pipelineOrder = ["tripkit", "docvault", "twincam", "nexus-lab"];
-upcomingProjects.sort(
-  (a, b) => pipelineOrder.indexOf(a.id) - pipelineOrder.indexOf(b.id)
-);
-
 const contentObj = {
-  siteContent: {
-    ...siteContent,
-    about: missionAbout || siteContent.about,
-  },
-  missionPillars,
-  itCapabilities,
+  siteContent,
+  techStack,
+  engineeringCulture,
+  careersContent,
   featuredProjects,
-  upcomingProjects,
 };
 
-// Write output JSON
 fs.writeFileSync(
   path.join(OUTPUT_DIR, "content.json"),
   JSON.stringify(contentObj, null, 2),

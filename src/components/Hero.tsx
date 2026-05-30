@@ -17,7 +17,7 @@ export function Hero() {
       <div className="relative z-10 mx-auto w-full max-w-4xl text-center">
         <div className="glass-panel">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-lors-glow/90 sm:text-sm">
-            Utility apps · IT solutions · Product ecosystem
+            {siteContent.subTagline ?? "Utility Apps · IT Solutions · Product Ecosystem"}
           </p>
           <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
             {siteContent.companyName}
@@ -36,7 +36,7 @@ export function Hero() {
               Get in touch
             </a>
             <a
-              href="#products"
+              href="#ecosystem"
               className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-white/25 px-8 py-3 text-sm font-medium text-white/90 transition hover:border-white/50 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50"
             >
               View products
@@ -46,9 +46,9 @@ export function Hero() {
       </div>
 
       <a
-        href="#mission"
+        href="#ecosystem"
         className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-white/40 transition hover:text-white/70"
-        aria-label="Scroll to mission section"
+        aria-label="Scroll to product ecosystem section"
       >
         <svg
           className="h-6 w-6 animate-bounce"

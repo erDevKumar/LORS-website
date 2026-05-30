@@ -261,3 +261,119 @@ export function cometTailSprite(): THREE.CanvasTexture {
   _tail = tex;
   return _tail;
 }
+
+let _hii: THREE.CanvasTexture | null = null;
+/** Soft pink/magenta HII emission nebula for star-forming regions. */
+export function hiiRegionSprite(): THREE.CanvasTexture {
+  if (_hii) return _hii;
+  const size = 256;
+  const { canvas, ctx } = makeCanvas(size);
+  const c = size / 2;
+  const g = ctx.createRadialGradient(c, c, 0, c, c, c);
+  g.addColorStop(0, "rgba(255,140,180,0.9)");
+  g.addColorStop(0.2, "rgba(255,100,160,0.6)");
+  g.addColorStop(0.45, "rgba(220,80,140,0.3)");
+  g.addColorStop(0.7, "rgba(180,60,120,0.12)");
+  g.addColorStop(1, "rgba(150,40,100,0)");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, size, size);
+  _hii = toTexture(canvas);
+  return _hii;
+}
+
+let _dust: THREE.CanvasTexture | null = null;
+/** Dark dust lane texture (meant for normal blending, not additive). */
+export function dustStrandSprite(): THREE.CanvasTexture {
+  if (_dust) return _dust;
+  const size = 256;
+  const { canvas, ctx } = makeCanvas(size);
+  const c = size / 2;
+  const g = ctx.createRadialGradient(c, c, 0, c, c, c);
+  g.addColorStop(0, "rgba(10,8,15,0.7)");
+  g.addColorStop(0.3, "rgba(15,12,20,0.5)");
+  g.addColorStop(0.6, "rgba(20,15,25,0.25)");
+  g.addColorStop(1, "rgba(25,20,30,0)");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, size, size);
+  _dust = toTexture(canvas);
+  return _dust;
+}
+
+let _coreGlow: THREE.CanvasTexture | null = null;
+/** Warm yellow-orange glow for the galactic core/bulge. */
+export function coreGlowSprite(): THREE.CanvasTexture {
+  if (_coreGlow) return _coreGlow;
+  const size = 512;
+  const { canvas, ctx } = makeCanvas(size);
+  const c = size / 2;
+  const g = ctx.createRadialGradient(c, c, 0, c, c, c);
+  g.addColorStop(0, "rgba(255,245,200,1)");
+  g.addColorStop(0.08, "rgba(255,230,180,0.95)");
+  g.addColorStop(0.2, "rgba(255,210,140,0.7)");
+  g.addColorStop(0.4, "rgba(255,180,100,0.35)");
+  g.addColorStop(0.65, "rgba(200,140,80,0.12)");
+  g.addColorStop(1, "rgba(150,100,60,0)");
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, size, size);
+  _coreGlow = toTexture(canvas);
+  return _coreGlow;
+}
+
+let _companionGlow: THREE.CanvasTexture | null = null;
+/** Yellowish glow for the NGC 5195 companion galaxy. */
+export function companionGlowSprite(): THREE.CanvasTexture {
+  if (_companionGlow) return _companionGlow;
+  const size = 256;
+  const { canvas, ctx } = makeCanvas(size);
+  const c = size / 2;
+  ctx.translate(c, c);
+  ctx.scale(1, 0.75);
+  const g = ctx.createRadialGradient(0, 0, 0, 0, 0, c);
+  g.addColorStop(0, "rgba(255,235,190,0.9)");
+  g.addColorStop(0.2, "rgba(255,220,170,0.6)");
+  g.addColorStop(0.45, "rgba(230,190,140,0.3)");
+  g.addColorStop(0.7, "rgba(200,160,110,0.1)");
+  g.addColorStop(1, "rgba(150,120,80,0)");
+  ctx.fillStyle = g;
+  ctx.beginPath();
+  ctx.arc(0, 0, c, 0, Math.PI * 2);
+  ctx.fill();
+  _companionGlow = toTexture(canvas);
+  return _companionGlow;
+}
+
+let _tidalBridge: THREE.CanvasTexture | null = null;
+/** Elongated dust/gas bridge connecting M51 to NGC 5195. */
+export function tidalBridgeSprite(): THREE.CanvasTexture {
+  if (_tidalBridge) return _tidalBridge;
+  const w = 512;
+  const h = 64;
+  const canvas = document.createElement("canvas");
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext("2d")!;
+
+  const lin = ctx.createLinearGradient(0, 0, w, 0);
+  lin.addColorStop(0, "rgba(80,60,50,0)");
+  lin.addColorStop(0.2, "rgba(100,80,70,0.3)");
+  lin.addColorStop(0.5, "rgba(120,100,90,0.5)");
+  lin.addColorStop(0.8, "rgba(100,80,70,0.3)");
+  lin.addColorStop(1, "rgba(80,60,50,0)");
+  ctx.fillStyle = lin;
+  ctx.fillRect(0, 0, w, h);
+
+  const v = ctx.createLinearGradient(0, 0, 0, h);
+  v.addColorStop(0, "rgba(0,0,0,1)");
+  v.addColorStop(0.5, "rgba(0,0,0,0)");
+  v.addColorStop(1, "rgba(0,0,0,1)");
+  ctx.globalCompositeOperation = "destination-out";
+  ctx.fillStyle = v;
+  ctx.fillRect(0, 0, w, h);
+  ctx.globalCompositeOperation = "source-over";
+
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  tex.needsUpdate = true;
+  _tidalBridge = tex;
+  return _tidalBridge;
+}

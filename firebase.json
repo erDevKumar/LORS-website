@@ -1,7 +1,11 @@
 {
   "hosting": {
     "public": "dist",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
     "rewrites": [
       {
         "source": "**",
@@ -17,6 +21,13 @@
             "value": "public,max-age=31536000,immutable"
           }
         ]
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/apply",
+        "destination": "https://docs.google.com/forms/d/e/1FAIpQLSceU0YNp_Rjee9O_hYt3TnK-sE4W6ApG4zo7Qub6U8_mmOuXQ/viewform",
+        "type": 302
       }
     ]
   }

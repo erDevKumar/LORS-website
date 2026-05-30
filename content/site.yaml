@@ -1,8 +1,20 @@
 companyName: LORS Nexus
 tagline: Elevating Everyday Experiences
-heroSubtitle: Utility apps and IT solutions for everyday life — from trips and documents to the connected experiences families rely on.
-about: We build practical mobile utilities and dependable technology platforms that solve real problems in daily life.
+subTagline: Utility Apps · IT Solutions · Product Ecosystem
+heroSubtitle: >-
+  At LORS Nexus, we don't build for clients—we build for the future. We are an
+  independent software development studio dedicated to engineering an elite
+  ecosystem of in-house mobile and web applications. By blending powerful utility
+  with human-centric design, we transform complex technological frameworks into
+  seamless everyday tools.
 domain: lorsnexus.com
-ecosystemIntro: LORS Nexus is the parent brand for a growing portfolio of apps and ventures. Products ship under their own identity; future child companies can emerge from the nexus as they mature.
+ecosystemIntro: >-
+  Our flagship products are built completely in-house, engineered from the ground
+  up to solve real-world problems.
 contactEmail: lorsnexus@lorsnexus.com
-routematesUrl: https://lorsnexus.com/routemates-beta # placeholder or env overridden
+contactSla: Under 24 Business Hours
+pgpNote: Available upon request for encrypted communications
+careersFormUrl_env: VITE_CAREERS_FORM_URL
+routematesSupportSubject: Support - RouteMates
+familyosSupportSubject: Support - FamilyOS
+routematesUrl: https://lorsnexus.com/routemates-beta

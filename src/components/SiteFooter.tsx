@@ -4,7 +4,9 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-white/10 bg-lors-navy px-4 py-8 sm:px-6">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 text-center text-sm text-white/45">
-        <p className="text-white/55">Part of the {siteContent.companyName} ecosystem</p>
+        <p className="text-white/55">
+          {siteContent.tagline} — {siteContent.companyName}
+        </p>
         <p>
           &copy; {siteContent.year} {siteContent.companyName}. All rights reserved.
         </p>
