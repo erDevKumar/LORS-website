@@ -45,7 +45,9 @@ export function GalaxyScrollNav() {
     let touchStartY = 0;
     let touchScrollRoot: HTMLElement | null = null;
     let touchGestureIsPanelScroll = false;
+    let scrolledDuringSwipe = false;
     let wheelLatched = false;
+    let wheelRequiresPause = false;
     let wheelIdleTimer = 0;
     let boundaryOverscroll = 0;
 
@@ -93,6 +95,7 @@ export function GalaxyScrollNav() {
 
       e.preventDefault();
       applyPanelWheelScroll(root, e.deltaY);
+      wheelRequiresPause = true;
       resetBoundaryOverscroll();
       return true;
     };
@@ -103,6 +106,9 @@ export function GalaxyScrollNav() {
       if (!root || !isAtScrollBoundary(root, direction)) return false;
 
       e.preventDefault();
+
+      if (wheelRequiresPause) return true;
+
       const { handoff, nextOverscroll } = shouldHandoffToCarousel(
         boundaryOverscroll,
         e.deltaY,
@@ -147,6 +153,7 @@ export function GalaxyScrollNav() {
       window.clearTimeout(wheelIdleTimer);
       wheelIdleTimer = window.setTimeout(() => {
         wheelLatched = false;
+        wheelRequiresPause = false;
         resetBoundaryOverscroll();
       }, 220);
 
@@ -174,6 +181,7 @@ export function GalaxyScrollNav() {
       touchScrollRoot =
         getPanelScrollRootFromTarget(e.target) ?? activeScrollRoot();
       touchGestureIsPanelScroll = false;
+      scrolledDuringSwipe = false;
 
       if (touchScrollRoot && isPanelScrollable(targetIndex)) {
         const canScroll = touchScrollRoot.scrollHeight > touchScrollRoot.clientHeight + 2;
@@ -192,6 +200,7 @@ export function GalaxyScrollNav() {
       const direction: 1 | -1 = dy > 0 ? 1 : -1;
 
       if (canScrollPanelInDirection(touchScrollRoot, direction)) {
+        scrolledDuringSwipe = true;
         resetBoundaryOverscroll();
         return;
       }
@@ -219,16 +228,18 @@ export function GalaxyScrollNav() {
       if (
         root &&
         isPanelScrollable(targetIndex) &&
-        canScrollPanelInDirection(root, direction)
+        (canScrollPanelInDirection(root, direction) || scrolledDuringSwipe)
       ) {
         touchScrollRoot = null;
         touchGestureIsPanelScroll = false;
+        scrolledDuringSwipe = false;
         return;
       }
 
       step(direction);
       touchScrollRoot = null;
       touchGestureIsPanelScroll = false;
+      scrolledDuringSwipe = false;
       resetBoundaryOverscroll();
     };
 
