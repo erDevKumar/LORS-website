@@ -47,7 +47,6 @@ export function GalaxyScrollNav() {
     let touchGestureIsPanelScroll = false;
     let scrolledDuringSwipe = false;
     let wheelLatched = false;
-    let wheelRequiresPause = false;
     let wheelIdleTimer = 0;
     let boundaryOverscroll = 0;
 
@@ -95,7 +94,6 @@ export function GalaxyScrollNav() {
 
       e.preventDefault();
       applyPanelWheelScroll(root, e.deltaY);
-      wheelRequiresPause = true;
       resetBoundaryOverscroll();
       return true;
     };
@@ -106,8 +104,6 @@ export function GalaxyScrollNav() {
       if (!root || !isAtScrollBoundary(root, direction)) return false;
 
       e.preventDefault();
-
-      if (wheelRequiresPause) return true;
 
       const { handoff, nextOverscroll } = shouldHandoffToCarousel(
         boundaryOverscroll,
@@ -153,7 +149,6 @@ export function GalaxyScrollNav() {
       window.clearTimeout(wheelIdleTimer);
       wheelIdleTimer = window.setTimeout(() => {
         wheelLatched = false;
-        wheelRequiresPause = false;
         resetBoundaryOverscroll();
       }, 220);
 
@@ -228,7 +223,7 @@ export function GalaxyScrollNav() {
       if (
         root &&
         isPanelScrollable(targetIndex) &&
-        (canScrollPanelInDirection(root, direction) || scrolledDuringSwipe)
+        (canScrollPanelInDirection(root, direction) || (scrolledDuringSwipe && !atBoundary))
       ) {
         touchScrollRoot = null;
         touchGestureIsPanelScroll = false;

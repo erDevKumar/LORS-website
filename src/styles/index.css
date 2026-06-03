@@ -2,10 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   BASE
+   ───────────────────────────────────────────────────────────────────────────── */
 @layer base {
+  :root {
+    /* Default panel accent (cyan glow — overridden per-panel below) */
+    --pa:  #7eb8ff;
+    --pr:  126;
+    --pg:  184;
+    --pb:  255;
+  }
+
   html {
     @apply antialiased;
-    /* Stop cleanly at the top/bottom limits: no rubber-band overscroll or scroll chaining. */
     overscroll-behavior-y: none;
   }
 
@@ -15,56 +25,271 @@
   }
 
   @media (min-width: 1024px) {
-    html {
-      scroll-snap-type: y proximity;
-    }
+    html { scroll-snap-type: y proximity; }
   }
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   PER-PANEL ACCENT TOKENS
+   Each floating panel inherits its planet colour via CSS custom properties.
+   Set on the [data-galaxy-panel-id] wrapper rendered by SolarSystem.tsx.
+   ───────────────────────────────────────────────────────────────────────────── */
+[data-galaxy-panel-id="hero"]       { --pa: #ffd27a; --pr: 255; --pg: 210; --pb: 122; }
+[data-galaxy-panel-id="ecosystem"]  { --pa: #19c8ff; --pr: 25;  --pg: 200; --pb: 255; }
+[data-galaxy-panel-id="routemates"] { --pa: #36e0a4; --pr: 54;  --pg: 224; --pb: 164; }
+[data-galaxy-panel-id="familyos"]   { --pa: #9a6bff; --pr: 154; --pg: 107; --pb: 255; }
+[data-galaxy-panel-id="tech"]       { --pa: #7eb8ff; --pr: 126; --pg: 184; --pb: 255; }
+[data-galaxy-panel-id="careers"]    { --pa: #ff7ec2; --pr: 255; --pg: 126; --pb: 194; }
+[data-galaxy-panel-id="contact"]    { --pa: #ffc24d; --pr: 255; --pg: 194; --pb: 77;  }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   COMPONENT LAYER
+   ───────────────────────────────────────────────────────────────────────────── */
 @layer components {
-  .section-snap {
-    scroll-snap-align: start;
-  }
 
-  .hero-bg-gradient {
+  /* ── SECTION SNAP ── */
+  .section-snap { scroll-snap-align: start; }
+
+  /* ── PANEL CHROME ─────────────────────────────────────────────────────────
+     The holographic panel container floating in the galaxy.
+     ::before   – top accent line in planet colour
+     background – stacked: scanlines + radial glow + flat base
+  ─────────────────────────────────────────────────────────────────────────── */
+  .planet-panel {
     background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 221, 255, 0.18), transparent 55%),
-      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(124, 58, 237, 0.22), transparent 50%),
-      radial-gradient(ellipse 50% 40% at 0% 80%, rgba(8, 14, 33, 0.95), transparent 45%),
-      linear-gradient(165deg, #040814 0%, #080e21 40%, #0f1836 70%, #040814 100%);
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(var(--pr), var(--pg), var(--pb), 0.008) 3px,
+        rgba(var(--pr), var(--pg), var(--pb), 0.008) 4px
+      ),
+      radial-gradient(
+        ellipse at 50% 0%,
+        rgba(var(--pr), var(--pg), var(--pb), 0.07) 0%,
+        transparent 58%
+      ),
+      #050916;
+    border: 1px solid rgba(var(--pr), var(--pg), var(--pb), 0.22);
+    box-shadow:
+      0 0 70px  rgba(var(--pr), var(--pg), var(--pb), 0.09),
+      0 0 140px rgba(var(--pr), var(--pg), var(--pb), 0.04),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+    will-change: opacity;
+    padding-bottom: 2.5rem;
+    position: relative;
+    overflow: hidden;
   }
 
-  .hero-mesh {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%2300ddff' stroke-opacity='0.12' stroke-width='1'%3E%3Cpath d='M0 200h800M0 400h800M0 600h800M200 0v800M400 0v800M600 0v800'/%3E%3Ccircle cx='400' cy='400' r='120' stroke-opacity='0.08'/%3E%3Ccircle cx='400' cy='400' r='240' stroke-opacity='0.06'/%3E%3C/g%3E%3C/svg%3E");
-    background-size: 800px 800px;
-    background-position: center;
+  /* Planet-colour accent line at panel top */
+  .planet-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 6%; right: 6%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(var(--pr), var(--pg), var(--pb), 0.95) 50%,
+      transparent 100%
+    );
+    z-index: 10;
+    pointer-events: none;
   }
 
-  .hero-nodes {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Cg fill='%2300ddff' fill-opacity='0.35'%3E%3Ccircle cx='80' cy='120' r='3'/%3E%3Ccircle cx='320' cy='140' r='3'/%3E%3Ccircle cx='520' cy='260' r='3'/%3E%3Ccircle cx='260' cy='220' r='4'/%3E%3C/g%3E%3Cg stroke='%2300ddff' stroke-opacity='0.15' stroke-width='1'%3E%3Cline x1='80' y1='120' x2='320' y2='140'/%3E%3Cline x1='320' y1='140' x2='520' y2='260'/%3E%3Cline x1='260' y1='220' x2='140' y2='280'/%3E%3C/g%3E%3C/svg%3E");
-    background-size: cover;
-    background-position: center bottom;
-    opacity: 0.7;
+  /* ── PANEL ACCENT UTILITIES ─────────────────────────────────────────────── */
+  .panel-accent         { color: var(--pa, #7eb8ff); }
+  .panel-accent-bg      { background: rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.10); }
+  .panel-accent-bg-dim  { background: rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.06); }
+  .panel-accent-border  { border-color: rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.22); }
+  .panel-accent-border-strong { border-color: rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.45); }
+
+  /* ── EYEBROW LABEL ───────────────────────────────────────────────────────
+     Small uppercase label with a leading accent dash.
+  ─────────────────────────────────────────────────────────────────────────── */
+  .panel-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--pa, #7eb8ff);
+    opacity: 0.9;
+  }
+  .panel-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 1px;
+    background: var(--pa, #7eb8ff);
+    opacity: 0.65;
+    flex-shrink: 0;
   }
 
+  /* ── PANEL DIVIDER ────────────────────────────────────────────────────── */
+  .panel-divider {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.18) 50%,
+      transparent 100%
+    );
+    margin: 12px 0;
+    flex-shrink: 0;
+  }
+
+  /* ── NEXUS SURFACE CARD ──────────────────────────────────────────────────
+     Inner content cards inside each hologram panel.
+  ─────────────────────────────────────────────────────────────────────────── */
+  .nexus-card {
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .nexus-card:hover {
+    background: rgba(255, 255, 255, 0.055);
+    border-color: rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.28);
+  }
+  .nexus-card--accent {
+    background: rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.07);
+    border: 1px solid rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.18);
+    border-radius: 10px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .nexus-card--accent:hover {
+    background: rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.11);
+    border-color: rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.38);
+  }
+
+  /* ── BUTTONS ────────────────────────────────────────────────────────────
+     .btn-accent        – filled with planet colour
+     .btn-outline-accent – bordered ghost with planet colour
+  ─────────────────────────────────────────────────────────────────────────── */
+  .btn-accent {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 22px;
+    min-height: 40px;
+    border-radius: 9999px;
+    font-family: "Outfit", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: #040814;
+    background: var(--pa, #7eb8ff);
+    box-shadow:
+      0 0 18px rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.38),
+      0 2px 8px rgba(0, 0, 0, 0.35);
+    transition: opacity 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    white-space: nowrap;
+  }
+  .btn-accent:hover {
+    opacity: 0.88;
+    box-shadow:
+      0 0 28px rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.55),
+      0 4px 12px rgba(0, 0, 0, 0.35);
+    transform: translateY(-1px);
+  }
+  .btn-accent:active { transform: translateY(0); opacity: 0.95; }
+
+  .btn-outline-accent {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 20px;
+    min-height: 40px;
+    border-radius: 9999px;
+    font-family: "Outfit", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--pa, #7eb8ff);
+    background: rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.06);
+    border: 1px solid rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.38);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+    white-space: nowrap;
+  }
+  .btn-outline-accent:hover {
+    background: rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.13);
+    border-color: rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.65);
+    transform: translateY(-1px);
+  }
+
+  /* ── HOLOGRAM HERO GLASS ────────────────────────────────────────────────── */
   .glass-panel {
-    @apply rounded-2xl border border-white/10 bg-white/5 px-6 py-8 shadow-2xl backdrop-blur-md sm:px-10 sm:py-10;
+    @apply rounded-2xl border border-white/10 bg-white/[0.04] px-6 py-8 shadow-2xl backdrop-blur-md sm:px-10 sm:py-10;
   }
 
+  /* ── STATUS BADGES ───────────────────────────────────────────────────────── */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 9999px;
+    border-width: 1px;
+    border-style: solid;
+    padding: 1px 10px;
+    font-family: "Outfit", sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+  }
+  .status-live        { border-color: rgba(52,211,153,0.45); background: rgba(16,185,129,0.12); color: rgb(110,231,183); }
+  .status-beta        { border-color: rgba(0,221,255,0.45);  background: rgba(0,221,255,0.10);  color: #00ddff; }
+  .status-coming-soon { border-color: rgba(154,107,255,0.45);background: rgba(154,107,255,0.10);color: #9a6bff; }
+  .status-concept     { border-color: rgba(255,255,255,0.20);background: rgba(255,255,255,0.05);color: rgba(255,255,255,0.5); }
+
+  /* ── SECTION TYPOGRAPHY (fallback mode) ──────────────────────────────────── */
   .section-heading {
     @apply font-display text-3xl font-bold tracking-tight text-white sm:text-4xl;
   }
-
   .section-sub {
     @apply mt-4 max-w-2xl text-base leading-relaxed text-white/65 sm:text-lg;
   }
 
-  /* Hologram 3D stage */
-  .hologram-stage {
-    perspective: 1200px;
-    perspective-origin: 50% 40%;
+  /* ── HOLOGRAM PANEL SCROLL ───────────────────────────────────────────────── */
+  .hologram-panel-scroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.3) transparent;
+  }
+  .hologram-panel-scroll::-webkit-scrollbar       { width: 3px; }
+  .hologram-panel-scroll::-webkit-scrollbar-track  { background: transparent; }
+  .hologram-panel-scroll::-webkit-scrollbar-thumb  {
+    background: rgba(var(--pr, 126), var(--pg, 184), var(--pb, 255), 0.35);
+    border-radius: 9999px;
   }
 
+  [data-galaxy-scroll-root],
+  .galaxy-scroll-root {
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* ── SCROLL FADE OVERLAYS ───────────────────────────────────────────────── */
+  .galaxy-scroll-fade--top {
+    background: linear-gradient(to bottom, rgba(5, 9, 22, 0.95), transparent);
+  }
+  .galaxy-scroll-fade--bottom {
+    background: linear-gradient(to top, rgba(5, 9, 22, 0.95), transparent);
+  }
+  .galaxy-scroll-hint {
+    animation: galaxy-scroll-hint 3s ease-out forwards;
+  }
+
+  /* ── HOLOGRAM CARD (fallback mode 3D cards) ──────────────────────────────── */
+  .hologram-stage    { perspective: 1200px; perspective-origin: 50% 40%; }
   .hologram-card {
     @apply relative transition-all duration-700 ease-out;
     transform-style: preserve-3d;
@@ -72,47 +297,36 @@
     opacity: 0;
     translate: 0 2rem;
   }
-
   .hologram-card.is-visible {
-    opacity: 1;
-    translate: 0 0;
+    opacity: 1; translate: 0 0;
     transform: rotateX(2deg) rotateY(-4deg) translateZ(0);
   }
-
   .hologram-card.is-visible:hover {
     transform: rotateX(0deg) rotateY(0deg) translateZ(12px);
   }
-
-  .hologram-card--featured {
-    transform: rotateX(4deg) rotateY(-8deg) scale(1);
+  .hologram-card--compact,
+  .hologram-card--compact.hologram-card--featured {
+    transform: none; opacity: 1; translate: none;
   }
-
-  .hologram-card--featured.is-visible {
-    transform: rotateX(1deg) rotateY(-2deg) scale(1);
+  .hologram-card--compact.is-visible:hover,
+  .hologram-card--compact.hologram-card--featured.is-visible:hover {
+    transform: none;
   }
-
-  .hologram-card--featured.is-visible:hover {
-    transform: rotateX(0deg) rotateY(0deg) translateZ(20px) scale(1.01);
-  }
-
+  .hologram-stage--compact { perspective: none; }
   @media (max-width: 768px) {
     .hologram-card,
     .hologram-card--featured {
       transform: none;
     }
-
     .hologram-card.is-visible,
     .hologram-card--featured.is-visible,
     .hologram-card.is-visible:hover,
-    .hologram-card--featured.is-visible:hover {
-      transform: none;
-    }
+    .hologram-card--featured.is-visible:hover { transform: none; }
   }
 
   .hologram-frame {
     @apply relative overflow-hidden rounded-2xl p-[1px];
-    background: linear-gradient(
-      135deg,
+    background: linear-gradient(135deg,
       rgba(126, 184, 255, 0.7),
       rgba(124, 58, 237, 0.5),
       rgba(91, 141, 239, 0.3),
@@ -123,31 +337,11 @@
       0 0 80px rgba(124, 58, 237, 0.12),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
-
-  .hologram-frame--featured {
-    box-shadow:
-      0 0 60px rgba(91, 141, 239, 0.35),
-      0 0 120px rgba(124, 58, 237, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  }
-
   .hologram-inner {
     @apply relative rounded-2xl bg-lors-deep/95 p-6 backdrop-blur-xl sm:p-8;
   }
-
-  .hologram-scanlines {
-    @apply pointer-events-none absolute inset-0 rounded-2xl opacity-[0.07];
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(126, 184, 255, 0.15) 2px,
-      rgba(126, 184, 255, 0.15) 4px
-    );
-  }
-
   .hologram-shimmer {
-    @apply pointer-events-none absolute -inset-full opacity-30;
+    @apply pointer-events-none absolute -inset-full opacity-25;
     background: linear-gradient(
       105deg,
       transparent 40%,
@@ -157,146 +351,92 @@
     );
     animation: hologram-shimmer 8s ease-in-out infinite;
   }
-
-  .status-badge {
-    @apply inline-flex items-center justify-center text-center max-w-full whitespace-normal break-words [text-wrap:balance] leading-tight rounded-xl border px-2.5 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-wider;
+  .hologram-scanlines {
+    @apply pointer-events-none absolute inset-0 rounded-2xl;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(126, 184, 255, 0.1) 2px, rgba(126, 184, 255, 0.1) 4px
+    );
+    opacity: 0.06;
   }
 
-  .status-live {
-    @apply border-emerald-400/40 bg-emerald-500/15 text-emerald-300;
-  }
-
-  .status-beta {
-    @apply border-lors-glow/40 bg-lors-accent/20 text-lors-glow;
-  }
-
-  .status-coming-soon {
-    @apply border-violet-400/40 bg-violet-500/15 text-violet-300;
-  }
-
-  .status-concept {
-    @apply border-white/20 bg-white/5 text-white/60;
-  }
-
+  /* ── FLAGSHIP BADGE ──────────────────────────────────────────────────────── */
   .flagship-badge {
     @apply inline-flex items-center gap-1 rounded-full border border-lors-glow/50 bg-lors-accent/25 px-3 py-1 text-xs font-bold uppercase tracking-widest text-lors-glow;
   }
 
-  .hologram-card--compact,
-  .hologram-card--compact.hologram-card--featured {
-    transform: none;
-    opacity: 1;
-    translate: none;
+  /* ── HERO FALLBACK BACKGROUNDS ───────────────────────────────────────────── */
+  .hero-bg-gradient {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 221, 255, 0.18), transparent 55%),
+      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(124, 58, 237, 0.22), transparent 50%),
+      linear-gradient(165deg, #040814 0%, #080e21 40%, #0f1836 70%, #040814 100%);
+  }
+  .hero-mesh {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%2300ddff' stroke-opacity='0.08' stroke-width='1'%3E%3Cpath d='M0 200h800M0 400h800M0 600h800M200 0v800M400 0v800M600 0v800'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 800px 800px;
+    background-position: center;
   }
 
-  .hologram-card--compact.is-visible:hover,
-  .hologram-card--compact.hologram-card--featured.is-visible:hover {
-    transform: none;
+  /* ── MOBILE PANEL OVERRIDES ─────────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .planet-panel { padding-bottom: 1rem; }
   }
 
-  .hologram-stage--compact {
-    perspective: none;
-  }
-
-  .hologram-panel-scroll {
-    overflow-y: auto;
-    overflow-x: hidden;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(126, 184, 255, 0.35) transparent;
-  }
-
-  [data-galaxy-scroll-root],
-  .galaxy-scroll-root {
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-    scroll-padding-top: 8px;
-    scroll-padding-bottom: 48px;
-  }
-
-  .legal-panel-scroll {
-    scrollbar-color: rgba(142, 180, 255, 0.45) transparent;
-  }
-
-  .legal-panel-scroll .legal-document-panel {
-    min-height: min-content;
-  }
-
-  .galaxy-scroll-fade--top {
-    background: linear-gradient(to bottom, rgba(5, 9, 22, 0.95), transparent);
-  }
-
-  .galaxy-scroll-fade--bottom {
-    background: linear-gradient(to top, rgba(5, 9, 22, 0.95), transparent);
-  }
-
-  .galaxy-scroll-hint {
-    animation: galaxy-scroll-hint 3s ease-out forwards;
-  }
+  /* ── LEGAL ───────────────────────────────────────────────────────────────── */
+  .legal-footer-bar { padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .legal-page       { min-height: 100vh; min-height: 100dvh; }
+  .legal-page-main  { padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px)); }
+  .legal-panel-scroll { scrollbar-color: rgba(142, 180, 255, 0.4) transparent; }
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   KEYFRAMES
+   ───────────────────────────────────────────────────────────────────────────── */
 @keyframes galaxy-scroll-hint {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, 6px);
-  }
-  15% {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-  75% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+  0%   { opacity: 0; transform: translate(-50%, 6px); }
+  15%  { opacity: 1; transform: translate(-50%, 0);   }
+  75%  { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 @keyframes hologram-shimmer {
-  0%,
-  100% {
-    transform: translateX(-30%) translateY(-30%) rotate(25deg);
-  }
-  50% {
-    transform: translateX(30%) translateY(30%) rotate(25deg);
-  }
+  0%, 100% { transform: translateX(-30%) translateY(-30%) rotate(25deg); }
+  50%       { transform: translateX(30%)  translateY(30%)  rotate(25deg); }
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   REDUCED MOTION
+   ───────────────────────────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .hologram-card {
-    opacity: 1;
-    translate: none;
-    transform: none;
-    transition: none;
-  }
-
-  .hologram-shimmer {
-    animation: none;
-  }
-
-  html {
-    scroll-snap-type: none;
-  }
+  .hologram-card   { opacity: 1; translate: none; transform: none; transition: none; }
+  .hologram-shimmer { animation: none; }
+  html             { scroll-snap-type: none; }
 }
 
-/* WebGL Active Layer Overrides.
-   Navigation between cards is driven programmatically by GalaxyScrollNav (looping
-   carousel), so we use `proximity` snap only to gently re-center after a manual
-   scrollbar drag — `mandatory` would fight the JS smooth-scroll animation. */
-html.is-webgl {
-  scroll-snap-type: y proximity !important;
+/* ─────────────────────────────────────────────────────────────────────────────
+   WEBGL ACTIVE MODE
+   Programmatic carousel navigation drives all scroll — snap gently re-centres
+   after manual scrollbar drags only.
+   ───────────────────────────────────────────────────────────────────────────── */
+html.is-webgl                         { scroll-snap-type: y proximity !important; }
+html.is-webgl body                    { background-color: transparent !important; }
+html.is-webgl .scroll-driver          { opacity: 0 !important; pointer-events: none !important; }
+html.is-webgl .hero-bg-gradient       { background: transparent !important; }
+html.is-webgl .hero-mesh              { opacity: 0 !important; background-image: none !important; }
+html.is-webgl .bg-lors-deep           { background-color: transparent !important; }
+
+/* Each act = exactly one viewport height so scrollIndex stays integer-aligned */
+html.is-webgl .scroll-driver > section {
+  height: 100vh;  height: 100dvh;
+  min-height: 100vh;  min-height: 100dvh;
+  max-height: 100vh;  max-height: 100dvh;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
-html.is-webgl body {
-  background-color: transparent !important;
-}
-
-/* Scroll driver in WebGL mode is invisible but takes up space and provides targets */
-html.is-webgl .scroll-driver {
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* Ensure hologram panels look good within 1200x800 */
+/* Panels inside the R3F Html() wrapper */
 html.is-webgl .hologram-panel-container section {
   min-height: 100% !important;
   height: 100% !important;
@@ -307,101 +447,16 @@ html.is-webgl .hologram-panel-container section {
   flex-direction: column !important;
   justify-content: center !important;
 }
-
-html.is-webgl .hologram-panel-container .section-snap {
-  scroll-snap-align: none !important;
-}
-
-html.is-webgl .hero-bg-gradient {
-  background: transparent !important;
-}
-
-html.is-webgl .hero-mesh,
-html.is-webgl .hero-nodes {
-  opacity: 0 !important;
-  background-image: none !important;
-}
-
-html.is-webgl .bg-lors-deep {
-  background-color: transparent !important;
-}
-
-/* Ensure hologram panels render section layouts inside WebGL */
-html.is-webgl .hologram-panel-container .hologram-glass-wrapper {
-  background-color: rgba(4, 8, 20, 0.88) !important;
-}
-
+html.is-webgl .hologram-panel-container .section-snap       { scroll-snap-align: none !important; }
+html.is-webgl .hologram-panel-container .hologram-glass-wrapper { background-color: rgba(4, 8, 20, 0.88) !important; }
 html.is-webgl .hologram-panel-container .hologram-card,
 html.is-webgl .hologram-panel-container .hologram-card--featured {
-  transform: none !important;
-  opacity: 1 !important;
-  translate: none !important;
+  transform: none !important; opacity: 1 !important; translate: none !important;
 }
-
-html.is-webgl .hologram-panel-container .hologram-stage {
-  perspective: none !important;
-}
-
+html.is-webgl .hologram-panel-container .hologram-stage { perspective: none !important; }
+html.is-webgl .hologram-panel-container .glass-panel    { background-color: rgba(255,255,255,0.04) !important; }
 html.is-webgl .hologram-panel-container .section-heading,
-html.is-webgl .hologram-panel-container .section-sub {
-  text-align: left;
-}
-
-html.is-webgl .hologram-panel-container .glass-panel {
-  background-color: rgba(255, 255, 255, 0.05) !important;
-}
-
-/* Hide fallback 2D ecosystem diagram when WebGL constellation is active */
+html.is-webgl .hologram-panel-container .section-sub    { text-align: left; }
 html.is-webgl #ecosystem svg,
-html.is-webgl #ecosystem .absolute {
-  display: none !important;
-}
-
-/* Ensure #ecosystem block container is still scrollable and layout space is reserved */
-html.is-webgl #ecosystem .relative.mx-auto {
-  height: 400px;
-}
-
-/* Each act maps to EXACTLY one viewport so scroll-snap lands on the next card and
-   scrollIndex (scrollY / vh) stays integer-aligned. The fallback DOM content is
-   hidden in WebGL mode, so clamping the height here is safe. */
-html.is-webgl .scroll-driver > section {
-  height: 100vh;
-  height: 100dvh;
-  min-height: 100vh;
-  min-height: 100dvh;
-  max-height: 100vh;
-  max-height: 100dvh;
-  overflow: hidden;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
-/* Crisp, futuristic frame for the floating solar-system panels.
-   No heavy backdrop blur so the embedded section text stays sharp. */
-.planet-panel {
-  background-color: rgba(5, 9, 22, 0.9);
-  border: 1px solid rgba(123, 196, 255, 0.28);
-  box-shadow:
-    inset 0 0 0 1px rgba(123, 196, 255, 0.08),
-    0 0 40px rgba(0, 221, 255, 0.18),
-    0 0 90px rgba(124, 58, 237, 0.12);
-  will-change: opacity;
-  padding-bottom: 2.5rem;
-}
-
-/* Sticky legal footer — visible on all routes */
-.legal-footer-bar {
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-
-/* Standalone legal document pages (no galaxy) */
-.legal-page {
-  min-height: 100vh;
-  min-height: 100dvh;
-}
-
-.legal-page-main {
-  padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
-}
-
+html.is-webgl #ecosystem .absolute                      { display: none !important; }
+html.is-webgl #ecosystem .relative.mx-auto              { height: 400px; }

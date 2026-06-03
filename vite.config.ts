@@ -32,4 +32,9 @@ function careersApplyRedirect(): Plugin {
 
 export default defineConfig({
   plugins: [react(), careersApplyRedirect()],
+  server: {
+    host: true,
+    port: 5173,
+    allowedHosts: true,
+  },
 });

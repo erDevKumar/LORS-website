@@ -1,36 +1,32 @@
 import { engineeringCulture } from "../content";
 
-type EngineeringPrinciplesGridProps = {
-  compact?: boolean;
-};
+type EngineeringPrinciplesGridProps = { compact?: boolean };
 
 export function EngineeringPrinciplesGrid({ compact = false }: EngineeringPrinciplesGridProps) {
   return (
     <ul
-      className={`grid gap-4 w-full min-w-0 break-words sm:grid-cols-1 lg:grid-cols-3 ${
-        compact ? "mt-4 gap-2" : "mt-10"
+      className={`grid w-full min-w-0 gap-3 ${
+        compact ? "mt-3 grid-cols-1" : "mt-8 sm:grid-cols-3"
       }`}
     >
-      {engineeringCulture.principles.map((principle) => (
+      {engineeringCulture.principles.map((p) => (
         <li
-          key={principle.title}
-          className={`rounded-xl border border-white/10 bg-lors-deep/60 backdrop-blur-sm transition hover:border-lors-accent/40 ${
-            compact ? "p-3" : "p-5"
-          }`}
+          key={p.title}
+          className={`nexus-card--accent ${compact ? "p-3" : "p-5"}`}
         >
           <h3
-            className={`font-display font-semibold text-lors-glow ${
-              compact ? "text-sm" : "text-lg"
+            className={`font-display font-bold text-lors-glow leading-tight ${
+              compact ? "text-xs" : "text-sm sm:text-base"
             }`}
           >
-            {principle.title}
+            {p.title}
           </h3>
           <p
-            className={`mt-2 leading-relaxed text-white/65 ${
-              compact ? "text-xs leading-snug" : "text-sm"
+            className={`mt-2 leading-relaxed text-white/60 ${
+              compact ? "text-[10px] leading-snug" : "text-xs sm:text-sm"
             }`}
           >
-            {principle.body}
+            {p.body}
           </p>
         </li>
       ))}

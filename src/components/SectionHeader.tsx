@@ -5,6 +5,7 @@ type SectionHeaderProps = {
   titleId?: string;
   compact?: boolean;
   className?: string;
+  accent?: boolean;
 };
 
 export function SectionHeader({
@@ -14,21 +15,22 @@ export function SectionHeader({
   titleId,
   compact = false,
   className = "",
+  accent = false,
 }: SectionHeaderProps) {
   return (
-    <header className={className}>
+    <header className={`${className}`}>
       {eyebrow && (
         <p
-          className={`font-semibold uppercase tracking-[0.3em] text-lors-glow/80 ${
-            compact ? "text-[10px]" : "text-xs"
-          }`}
+          className={`panel-eyebrow mb-2 ${accent ? "panel-accent" : "text-lors-glow/80"}`}
         >
           {eyebrow}
         </p>
       )}
       <h2
         id={titleId}
-        className={`section-heading break-words [text-wrap:balance] ${eyebrow ? "mt-2" : ""} ${compact ? "!text-xl sm:!text-2xl" : ""}`}
+        className={`section-heading break-words [text-wrap:balance] ${eyebrow ? "" : ""} ${
+          compact ? "!text-xl sm:!text-2xl" : ""
+        }`}
       >
         {title}
       </h2>
