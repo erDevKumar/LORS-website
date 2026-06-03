@@ -13,7 +13,6 @@ import { FamilyOSSection } from "../components/FamilyOSSection";
 import { TechStackSection } from "../components/TechStackSection";
 import { CareersSection } from "../components/CareersSection";
 import { ContactSection } from "../components/ContactSection";
-import { GalaxyAudio } from "../components/GalaxyAudio";
 
 const HASH_TO_ACT: Record<string, number> = {
   hero: 0,
@@ -58,7 +57,6 @@ export function GalaxyHome() {
 
   return (
     <div className="relative flex flex-col">
-      <GalaxyAudio />
       <ScrollSpy />
       <GalaxyScrollNav />
       <WebGLFallbackBoundary>
