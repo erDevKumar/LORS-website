@@ -75,10 +75,12 @@ function usePanelLayout() {
     const exactScale = (1805 * Math.tan(fovRad)) / size.height;
     
     if (isMobileOrTablet) {
+      // Use calc strings so CSS can evaluate dynamic device inset variables (notches, home bars)
       return {
-        width: Math.floor(size.width * 0.9) + "px",
-        height: Math.floor(size.height * 0.8) + "px",
-        scale: exactScale,
+        width: "calc(100dvw - 32px)",
+        height: "calc(100dvh - 64px - env(safe-area-inset-top) - 48px - env(safe-area-inset-bottom) - 32px)",
+        scale: exactScale * 0.95, // Slight reduction to guarantee 1:1 fits safely without edge clipping
+        marginTop: "calc((64px + env(safe-area-inset-top) - 48px - env(safe-area-inset-bottom)) / 2)",
         glow: [size.width * 0.08, size.height * 0.08] as [number, number],
       };
     }
@@ -158,6 +160,7 @@ function Panel({ body }: { body: BodyDef }) {
         style={{
           width: layout.width,
           height: layout.height,
+          marginTop: layout.marginTop,
           display: "flex",
           alignItems: "stretch",
           justifyContent: "center",

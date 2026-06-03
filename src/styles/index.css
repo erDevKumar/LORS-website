@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    @apply scroll-smooth antialiased;
+    @apply antialiased;
     /* Stop cleanly at the top/bottom limits: no rubber-band overscroll or scroll chaining. */
     overscroll-behavior-y: none;
   }
@@ -159,7 +159,7 @@
   }
 
   .status-badge {
-    @apply inline-flex items-center justify-center text-center max-w-full whitespace-normal leading-tight rounded-xl border px-2.5 py-1 text-xs font-semibold uppercase tracking-wider;
+    @apply inline-flex items-center justify-center text-center max-w-full whitespace-normal break-words [text-wrap:balance] leading-tight rounded-xl border px-2.5 py-1 text-[10px] sm:text-xs font-semibold uppercase tracking-wider;
   }
 
   .status-live {
@@ -386,7 +386,6 @@ html.is-webgl .scroll-driver > section {
     inset 0 0 0 1px rgba(123, 196, 255, 0.08),
     0 0 40px rgba(0, 221, 255, 0.18),
     0 0 90px rgba(124, 58, 237, 0.12);
-  transition: opacity 0.25s ease;
   will-change: opacity;
   padding-bottom: 2.5rem;
 }

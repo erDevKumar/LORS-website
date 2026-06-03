@@ -28,7 +28,7 @@ export function SectionHeader({
       )}
       <h2
         id={titleId}
-        className={`section-heading ${eyebrow ? "mt-2" : ""} ${compact ? "!text-2xl sm:!text-3xl" : ""}`}
+        className={`section-heading break-words [text-wrap:balance] ${eyebrow ? "mt-2" : ""} ${compact ? "!text-xl sm:!text-2xl" : ""}`}
       >
         {title}
       </h2>

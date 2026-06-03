@@ -6,34 +6,34 @@ type TechStackTableProps = {
 
 export function TechStackTable({ compact = false }: TechStackTableProps) {
   return (
-    <div className={compact ? "mt-4" : "mt-8"}>
+    <div className={`w-full min-w-0 break-words ${compact ? "mt-4" : "mt-8"}`}>
       {/* Mobile Card Layout (hidden on md and up) */}
-      <div className="grid grid-cols-1 gap-4 md:hidden">
+      <div className="grid w-full min-w-0 grid-cols-1 gap-4 md:hidden">
         {techStack.layers.map((row) => (
           <div
             key={row.layer}
-            className="rounded-xl border border-white/10 bg-lors-deep/80 p-4"
+            className="w-full min-w-0 rounded-xl border border-white/10 bg-lors-deep/80 p-4"
           >
             <div className="mb-2 border-b border-white/10 pb-2">
-              <h5 className="font-display font-semibold text-lors-glow text-sm">
+              <h5 className="font-display text-sm font-semibold text-lors-glow">
                 {row.layer}
               </h5>
             </div>
             <div className="mb-2">
-              <p className="text-xs font-semibold text-white/50 mb-1 uppercase tracking-wider">Technologies</p>
-              <p className="text-sm text-white/80">{row.technologies}</p>
+              <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-white/50">Technologies</p>
+              <p className="text-sm text-white/80 break-words [text-wrap:balance]">{row.technologies}</p>
             </div>
             <div>
-              <p className="text-xs font-semibold text-white/50 mb-1 uppercase tracking-wider">Purpose</p>
-              <p className="text-sm text-white/60">{row.purpose}</p>
+              <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-white/50">Purpose</p>
+              <p className="text-sm text-white/60 break-words">{row.purpose}</p>
             </div>
           </div>
         ))}
       </div>
 
       {/* Desktop Table Layout (hidden on screens smaller than md) */}
-      <div className="hidden md:block overflow-x-auto rounded-xl border border-white/10">
-        <table className="w-full border-collapse text-left">
+      <div className="hidden w-full min-w-0 overflow-x-auto rounded-xl border border-white/10 md:block">
+        <table className="w-full min-w-max border-collapse text-left">
           <thead>
             <tr className="border-b border-white/10 bg-lors-deep/80">
               <th

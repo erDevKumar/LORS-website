@@ -1,39 +1,35 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export function GalaxyAudio() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const playedRef = useRef(false);
 
   useEffect(() => {
-    // A royalty-free space ambient drone / wind sound
     const audio = new Audio("https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3");
     audio.loop = true;
-    audio.volume = 0.4; // Soft background volume
-    audioRef.current = audio;
+    audio.volume = 0.4;
 
-    const playAudio = () => {
-      if (!isPlaying) {
-        audio.play().then(() => setIsPlaying(true)).catch((e) => console.log("Audio play blocked by browser:", e));
-      }
+    const tryPlay = () => {
+      if (playedRef.current) return;
+      audio.play()
+        .then(() => { playedRef.current = true; })
+        .catch(() => {});
     };
 
-    // Try playing immediately (might work if user already interacted with site)
-    playAudio();
+    tryPlay();
 
-    // Attach listeners for first interaction to bypass autoplay policies
-    window.addEventListener("click", playAudio, { once: true });
-    window.addEventListener("scroll", playAudio, { once: true });
-    window.addEventListener("touchstart", playAudio, { once: true });
-    window.addEventListener("keydown", playAudio, { once: true });
+    window.addEventListener("click", tryPlay, { once: true });
+    window.addEventListener("scroll", tryPlay, { once: true });
+    window.addEventListener("touchstart", tryPlay, { once: true });
+    window.addEventListener("keydown", tryPlay, { once: true });
 
     return () => {
       audio.pause();
-      window.removeEventListener("click", playAudio);
-      window.removeEventListener("scroll", playAudio);
-      window.removeEventListener("touchstart", playAudio);
-      window.removeEventListener("keydown", playAudio);
+      window.removeEventListener("click", tryPlay);
+      window.removeEventListener("scroll", tryPlay);
+      window.removeEventListener("touchstart", tryPlay);
+      window.removeEventListener("keydown", tryPlay);
     };
-  }, [isPlaying]);
+  }, []);
 
   return null;
 }

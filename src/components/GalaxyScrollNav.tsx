@@ -70,7 +70,7 @@ export function GalaxyScrollNav() {
       targetIndex = index;
       resetBoundaryOverscroll();
       locked = true;
-      window.scrollTo({ top: index * vh(), behavior: isWrap ? "auto" : behavior });
+      window.scrollTo({ top: index * vh(), behavior: isWrap ? "instant" : behavior });
       if (index !== previousIndex) {
         schedulePanelReset(index);
       }
@@ -79,7 +79,7 @@ export function GalaxyScrollNav() {
         () => {
           locked = false;
         },
-        reduceMotion || isWrap ? 220 : 620
+        reduceMotion || isWrap ? 150 : 480
       );
     };
 

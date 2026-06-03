@@ -52,7 +52,7 @@ export function GalaxyHome() {
 
     const vh = window.innerHeight || 1;
     window.requestAnimationFrame(() => {
-      window.scrollTo({ top: act * vh, behavior: "auto" });
+      window.scrollTo({ top: act * vh, behavior: "instant" });
     });
   }, [location.hash]);
 

@@ -7,7 +7,7 @@ type EngineeringPrinciplesGridProps = {
 export function EngineeringPrinciplesGrid({ compact = false }: EngineeringPrinciplesGridProps) {
   return (
     <ul
-      className={`grid gap-4 sm:grid-cols-1 lg:grid-cols-3 ${
+      className={`grid gap-4 w-full min-w-0 break-words sm:grid-cols-1 lg:grid-cols-3 ${
         compact ? "mt-4 gap-2" : "mt-10"
       }`}
     >

@@ -27,18 +27,18 @@ export function CameraController() {
       initialized.current = true;
     }
 
-    // Smoother damping for cinematic galactic travel
-    const lambda = qualityTier === "ultra" ? 2.5 : 3.5;
+    // Responsive damping — settles within ~0.8s so panels feel snappy
+    const lambda = qualityTier === "ultra" ? 4.5 : 5.5;
 
     // Smooth camera position
     state.camera.position.x = THREE.MathUtils.damp(state.camera.position.x, targetPos.current.x, lambda, dt);
     state.camera.position.y = THREE.MathUtils.damp(state.camera.position.y, targetPos.current.y, lambda, dt);
     state.camera.position.z = THREE.MathUtils.damp(state.camera.position.z, targetPos.current.z, lambda, dt);
 
-    // Smooth look-at target
-    currentLookAt.current.x = THREE.MathUtils.damp(currentLookAt.current.x, lookAt.x, lambda * 0.8, dt);
-    currentLookAt.current.y = THREE.MathUtils.damp(currentLookAt.current.y, lookAt.y, lambda * 0.8, dt);
-    currentLookAt.current.z = THREE.MathUtils.damp(currentLookAt.current.z, lookAt.z, lambda * 0.8, dt);
+    // Look-at damps at the same rate so the camera looks at its destination throughout travel
+    currentLookAt.current.x = THREE.MathUtils.damp(currentLookAt.current.x, lookAt.x, lambda, dt);
+    currentLookAt.current.y = THREE.MathUtils.damp(currentLookAt.current.y, lookAt.y, lambda, dt);
+    currentLookAt.current.z = THREE.MathUtils.damp(currentLookAt.current.z, lookAt.z, lambda, dt);
 
     state.camera.lookAt(currentLookAt.current);
   });

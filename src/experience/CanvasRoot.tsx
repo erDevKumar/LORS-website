@@ -34,7 +34,7 @@ export function CanvasRoot() {
   const enablePost = qualityTier === "ultra";
 
   return (
-    <div className="fixed inset-0 z-0 h-screen w-screen overflow-hidden bg-black pointer-events-auto">
+    <div className="fixed inset-0 z-0 h-[100dvh] w-[100dvw] overflow-hidden bg-black pointer-events-auto">
       <Canvas
         gl={{
           antialias: qualityTier === "ultra",
