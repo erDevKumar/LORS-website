@@ -3,46 +3,48 @@ id: routemates
 name: RouteMates
 tagline: Travel-Companion Super App
 classification: Travel-Companion Super App
-platforms: iOS & Android
+platforms: Android · iOS (coming soon)
 status: beta
-statusLabel: Version 1.0 (Active Deployment & Alpha Testing)
+statusLabel: Beta — Android Early Access
 category: travel
 featured: true
 href_env: VITE_ROUTEMATES_URL
 glb: assets/models/routemates.glb
 notifyCta: false
 pitch: >-
-  RouteMates is a travel-companion super app engineered specifically for
-  group-based journeys—whether it's a motorcycle convoy carving through mountain
-  passes or a multi-car family road trip. The app bridges community and
-  coordination, seamlessly combining the high-utility tracking of Google Maps.
+  RouteMates is a travel-companion super app built for group-based journeys —
+  motorcycle convoys, multi-car road trips, family outings. It combines
+  real-time multi-person location tracking, trip coordination, and community
+  in one dark-native, beautifully crafted Android experience.
 features:
-  - title: Real-Time Group Telemetry
+  - title: Seamless Onboarding
     body: >-
-      Live map visualization featuring instant position markers, tracking up to
-      100 group members simultaneously with location updates parsing every 2–5
-      seconds.
-  - title: Contextual Map Adaptability
+      Full onboarding flow with email, Google, and phone sign-up. Identity
+      verification (Aadhaar / PAN), profile setup, vehicle registration, and
+      preference configuration — all handled in a single polished wizard.
+  - title: Real-Time Multi-Person Location Tracking
     body: >-
-      Smooth transitions between Trip Mode (full group route visualization),
-      Drive Mode (distraction-free UI with turn-by-turn navigation), and Single
-      User Mode (focused individual tracking).
-  - title: Fail-Safe Security (SOS System)
+      Live WebSocket-powered map showing every group member's position, speed,
+      heading, battery level, and ETA. Custom member markers update every 5
+      seconds (battery-aware). Trail replay shows the last 30 minutes of each
+      member's path.
+  - title: Trip Management
     body: >-
-      A prominent, long-press activated emergency button that instantly
-      broadcasts exact coordinates via in-app alerts, push notifications, and
-      automated fallback SMS networks to all members and pre-configured
-      emergency contacts.
-  - title: Smart Geo-Fencing
+      Create, edit, and manage trips with source / destination, cover photo,
+      public or private toggle, and status transitions (Draft → Upcoming →
+      Ongoing → Completed). Full trip lifecycle with member invite and
+      permission system.
+  - title: Fail-Safe SOS System
     body: >-
-      Predictive background monitoring that automatically triggers real-time
-      dashboard alerts the moment any group member deviates more than 500 meters
-      off-route for over 30 seconds.
-  - title: Social Discovery Layer
+      One-tap SOS button broadcasts exact coordinates over WebSocket to all
+      active trip members instantly, with FCM push notification fallback to
+      ensure no alert is missed even when the app is backgrounded.
+  - title: Social & Community (Beta)
     body: >-
-      An integrated read-and-post community feed featuring travel logs, public
-      trip invitations, and geographic filter chips to link global travel
-      networks.
+      In-app notification centre, connections, and a community feed — currently
+      in active development. Trip invitations and public trip discovery coming
+      in the next release.
 ---
 
 RouteMates is our flagship travel-companion super app for group-based journeys.
+Available now on Android (Beta). iOS and full feature set coming soon.
